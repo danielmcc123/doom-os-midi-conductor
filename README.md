@@ -7,11 +7,11 @@ MIDI to the gear on the DIN output, each device on its own channel. An add-on fo
 **Guide and patcher: https://danielmcc123.github.io/doom-os-midi-conductor/**
 
 > **DOOM OS is included.** The patcher turns Roland's stock 5.52 into one firmware file that contains DOOM OS
-> 0.6.1-alpha (build ED5E) and the MIDI Conductor together. You don't patch DOOM OS separately, and the patcher
+> 0.6.2-alpha (build 3824) and the MIDI Conductor together. You don't patch DOOM OS separately, and the patcher
 > only accepts Roland's stock file, so it won't touch a file that already has a different DOOM OS in it.
 >
 > **Experimental. Use at your own risk.** Flashing modified firmware can brick a unit. This is only tested on
-> one SP-404MKII running Roland 5.52 with DOOM OS 0.6.1-alpha (build ED5E). It changes a few of Roland's own
+> one SP-404MKII running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). It changes a few of Roland's own
 > routines, which adds risk of its own. Keep your original Roland files so you can go back.
 
 ## What you get
@@ -45,8 +45,8 @@ You can also open `patcher.html` from a downloaded copy of this repository.
 
 ## Files
 
-`releases/0.1.0-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
-image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches.
+`releases/0.2.0-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
+image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.1.0-alpha/` is the earlier release, built on DOOM OS 0.6.1-alpha (ED5E), kept for reference.
 
 ## Credits and licence
 
