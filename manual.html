@@ -68,34 +68,7 @@ figcaption{font-size:13px;color:var(--dim);margin-top:6px}
 running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). The patch changes a few of Roland's own routines, which adds risk of its own.
 Keep the original Roland files so you can go back. Use at your own risk.</div>
 <h2>Contents</h2>
-<p><a href="#midi">MIDI mode and banks</a> · <a href="#edit">Editing a CTRL</a> · <a href="#pads">Pad channels and devices</a> · <a href="#names">CC names</a> · <a href="#notes">Notes</a> · <a href="#auto">Recording knob moves</a> · <a href="#keys">Key summary</a> · <a href="#limits">Limits</a></p>
-
-<h2 id="midi">MIDI mode and banks</h2>
-<p>In MIDI mode the CTRL knobs send MIDI instead of changing the effect. There are 36 CTRLs in six banks of six. The MIDI page shows three CTRLs at a time.</p>
-<ul>
-<li><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd> chooses bank 1 to 6 and turns MIDI mode on. The FX key of the active bank is lit.</li>
-<li>Press <kbd>VALUE</kbd> to flip between CTRL pages 1/2 and 2/2 (CTRL 1 to 3, then 4 to 6).</li>
-<li><kbd>EXIT</kbd> leaves MIDI mode and returns to DOOM OS.</li>
-</ul>
-<p>Each CTRL sends a CC on the channel and number you set.</p>
-
-<div class="shots">
-<figure><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3 with values, device and CC names"><figcaption>CTRL 1 to 3 (page 1/2)</figcaption></figure>
-<figure><img src="images/midi-page-2.png" alt="MIDI page 2/2: CTRL 4 to 6"><figcaption>CTRL 4 to 6 (page 2/2)</figcaption></figure>
-</div>
-
-<h2 id="edit">Editing a CTRL</h2>
-<p><kbd>SHIFT</kbd> + <kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL, then use the CTRL knobs to set it:</p>
-<ul>
-<li><b>CTRL 1</b> chooses its device or MIDI channel. The knob runs through devices 1 to 7, then channels 1 to 16.</li>
-<li><b>CTRL 2</b> chooses its CC. For a device that has a CC list (below) it picks by name.</li>
-</ul>
-<p>If a CTRL follows a device, the page shows <code>Dn CH c</code>. Changing a device's channel updates every pad and CTRL that uses it.
-All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
-
-<div class="shots">
-<figure><img src="images/midi-edit.png" alt="Edit mode: CTRL 2 is boxed"><figcaption>Edit mode, CTRL 2 selected</figcaption></figure>
-</div>
+<p><a href="#pads">Pad channels and devices</a> (<a href="#names">CC names</a>) · <a href="#sequencing">Sequence your synths</a> · <a href="#midi">MIDI mode and banks</a> · <a href="#auto">Recording knob moves</a> · <a href="#edit">Editing a CTRL</a> · <a href="#keys">Key summary</a> · <a href="#limits">Limits</a></p>
 
 <h2 id="pads">Pad channels and devices</h2>
 <p>Every pad sends its notes on its own channel. <b>A pad with no channel sends no note at all.</b>
@@ -113,18 +86,37 @@ All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
 <figure><img src="images/learn-devices.png" alt="Devices screen: device 1 named MINILOG on channel 4"><figcaption>Devices view</figcaption></figure>
 </div>
 
-<h2 id="names">CC names</h2>
+<h3 id="names">CC names</h3>
 <p>Devices named <code>MINILOG</code> or <code>NTS-1</code> carry that synth's CC list. A CTRL that follows such a device picks its CC by name, and the page shows the name.
 Other devices keep raw CC numbers.</p>
 <p>This release has the MINILOG and NTS-1 lists built in. Lists for other synths are planned.</p>
 <h3>Your own devices</h3>
 <p>On the unit you can give each of the seven device slots a channel and pick a name from the fixed list, and any CTRL can send any CC number as a raw number, so every synth works. What you can't do yet is create your own named CC list or type your own device name; that is planned for a later release.</p>
 
-<h2 id="notes">Notes</h2>
+<h2 id="sequencing">Sequence your synths</h2>
+<p>The SP's sequencer can play your external synths. Every pad hit in a pattern goes out of the DIN MIDI output as a note, on that pad's channel. Put different pads on different channels and one pattern plays several synths at once.</p>
+<ol class="steps">
+<li><b>Give the pad a channel.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens learn mode. Tap the pad and use <b>CTRL 1</b> to pick a channel or a named device. A pad with no channel sends no note.</li>
+<li><b>Make the pad playable.</b> A pad needs a sample before the sequencer will play it. To play a synth without any sound from the SP, record silence into the pad (sample with nothing coming in, or the input turned down) instead of loading a sample and muting it.</li>
+<li><b>Record or enter the pattern</b> in DOOM OS as usual. Each step sends the pad's note on the pad's channel.</li>
+<li><b>Play melodies from one pad.</b> In the piano roll, each step's pitch is added to the pad's note.</li>
+<li><b>Add movement.</b> Record your CTRL moves into the pattern (see <a href="#auto">Recording knob moves</a>) and they play back as CC on the same loop.</li>
+</ol>
+<p>Notes end at the step's gate, not at the end of the sample, so a short silent sample is fine. STOP and choke send no note-off yet, so a note can be left hanging; an all-notes-off or panic on the synth clears it.</p>
+
+<h2 id="midi">MIDI mode and banks</h2>
+<p>In MIDI mode the CTRL knobs send MIDI instead of changing the effect. There are 36 CTRLs in six banks of six. The MIDI page shows three CTRLs at a time.</p>
 <ul>
-<li>Pitched steps from DOOM's piano roll send the pad's note plus the step's pitch, on the pad's channel.</li>
-<li>Notes end at the step's gate instead of the sample's end. STOP and choke then send no note-off, so a note can be left hanging.</li>
+<li><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd> chooses bank 1 to 6 and turns MIDI mode on. The FX key of the active bank is lit.</li>
+<li>Press <kbd>VALUE</kbd> to flip between CTRL pages 1/2 and 2/2 (CTRL 1 to 3, then 4 to 6).</li>
+<li><kbd>EXIT</kbd> leaves MIDI mode and returns to DOOM OS.</li>
 </ul>
+<p>Each CTRL sends a CC on the channel and number you set.</p>
+
+<div class="shots">
+<figure><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3 with values, device and CC names"><figcaption>CTRL 1 to 3 (page 1/2)</figcaption></figure>
+<figure><img src="images/midi-page-2.png" alt="MIDI page 2/2: CTRL 4 to 6"><figcaption>CTRL 4 to 6 (page 2/2)</figcaption></figure>
+</div>
 
 <h2 id="auto">Recording knob moves</h2>
 <p>Record your CTRL moves into a pattern and have them play back as CC. Each CTRL has its own lane of 64 points across the pattern, so slow sweeps stay smooth.</p>
@@ -139,6 +131,19 @@ Other devices keep raw CC numbers.</p>
 <figure><img src="images/midi-rec.png" alt="MIDI page with REC shown next to the title"><figcaption>Recording on</figcaption></figure>
 </div>
 <p>All patterns share the same lanes, and they are kept in RAM only, so they are cleared when you power off.</p>
+
+<h2 id="edit">Editing a CTRL</h2>
+<p><kbd>SHIFT</kbd> + <kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL, then use the CTRL knobs to set it:</p>
+<ul>
+<li><b>CTRL 1</b> chooses its device or MIDI channel. The knob runs through devices 1 to 7, then channels 1 to 16.</li>
+<li><b>CTRL 2</b> chooses its CC. For a device that has a CC list (below) it picks by name.</li>
+</ul>
+<p>If a CTRL follows a device, the page shows <code>Dn CH c</code>. Changing a device's channel updates every pad and CTRL that uses it.
+All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
+
+<div class="shots">
+<figure><img src="images/midi-edit.png" alt="Edit mode: CTRL 2 is boxed"><figcaption>Edit mode, CTRL 2 selected</figcaption></figure>
+</div>
 
 <h2 id="keys">Key summary</h2>
 <div class="tbl"><table>

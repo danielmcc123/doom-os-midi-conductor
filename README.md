@@ -19,6 +19,8 @@ MIDI to the gear on the DIN output, each device on its own channel. An add-on fo
 - **36 MIDI CTRLs in six banks.** The CTRL knobs send CCs on any channel instead of changing the effect.
   Pick a bank with SHIFT + FX1..FX6.
 - **Edit on the unit.** SHIFT + MARK edits each CTRL's device, channel and CC. Settings are saved.
+- **Sequence your synths.** Pattern steps play out of the DIN MIDI output as notes on each pad's channel, so one
+  pattern plays several synths. See the manual's "Sequence your synths".
 - **Per-pad MIDI channels.** Every pad sends notes on its own channel (a pad with no channel sends no note).
   Seven device slots with names.
 - **Named CCs** for the Korg Minilogue and NTS-1.
