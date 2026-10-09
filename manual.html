@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>MIDI Conductor Manual</title><meta name="description" content="Every control of the DOOM OS MIDI Conductor patch for the SP-404MKII.">
+<style>
+:root{--bg:#0e1013;--panel:#171a1f;--line:#2a2f37;--fg:#e8eaed;--dim:#9aa3ad;--acc:#ff7a1a;--acc2:#ffb066;--ok:#5fd18a;--warn:#f2c14e;--code:#0a0c0f}
+@media (prefers-color-scheme: light){:root{--bg:#f6f4f0;--panel:#fff;--line:#ddd7cd;--fg:#1d2024;--dim:#5d6670;--acc:#d9560a;--acc2:#b5440a;--ok:#1f7a45;--warn:#8a6100;--code:#efebe4}}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc)}a:hover{color:var(--acc2)}
+.wrap{max-width:860px;margin:0 auto;padding:0 20px}
+nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
+nav .wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:12px 20px}
+nav b{letter-spacing:.04em}nav a{text-decoration:none;color:var(--dim);font-size:14px}nav a:hover,nav a.on{color:var(--fg)}
+nav .sp{flex:1}
+h1{font-size:clamp(34px,6vw,54px);line-height:1.05;margin:56px 0 12px;letter-spacing:-.02em}
+h1 em{color:var(--acc);font-style:normal}
+h2{font-size:26px;margin:52px 0 10px;padding-top:6px;letter-spacing:-.01em}
+h3{font-size:18px;margin:28px 0 6px}
+p.lead{font-size:19px;color:var(--dim);max-width:640px}
+.warn{border:1px solid var(--warn);border-left-width:5px;background:var(--panel);padding:14px 18px;border-radius:8px;margin:28px 0}
+.warn b{color:var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
+.card h3{margin:0 0 4px;font-size:16px;color:var(--acc)}.card p{margin:0;color:var(--dim);font-size:15px}
+pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px}
+pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto}
+code{background:var(--code);padding:1px 6px;border-radius:4px}pre code{padding:0;background:none}
+kbd{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 7px;white-space:nowrap}
+table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{color:var(--dim);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
+.tbl{overflow-x:auto}
+.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--line);color:var(--dim);margin-left:6px;vertical-align:middle}
+.tag.ok{color:var(--ok);border-color:var(--ok)}.tag.test{color:var(--warn);border-color:var(--warn)}
+ol.steps{padding-left:22px}ol.steps li{margin:10px 0}
+footer{border-top:1px solid var(--line);margin-top:64px;padding:26px 0 48px;color:var(--dim);font-size:14px}
+.cta{display:inline-block;background:var(--acc);color:#111;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:8px;margin:6px 8px 6px 0}
+.cta.alt{background:none;color:var(--fg);border:1px solid var(--line)}
+@media(max-width:560px){nav .wrap{gap:12px}h2{font-size:23px}}
+
+.panel{margin:20px 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.drop{margin:14px;min-height:150px;padding:24px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--line);border-radius:10px}
+.drop:hover,.drop.over{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
+.drop.bad{border-color:#e5604d}
+.drop:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
+.drop .big{margin:0;font-size:18px;font-weight:600;overflow-wrap:anywhere}
+.drop .big.file{font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:400}
+.drop .small{margin:0;font-size:13px;color:var(--dim)}
+.status{margin:0 14px;padding:12px 0;border-top:1px solid var(--line);font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.7;min-height:48px;color:var(--dim)}
+.status.ok{color:var(--ok)}.status.bad{color:#e5604d}
+.actions{padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.btn{height:44px;padding:0 22px;border:0;border-radius:8px;display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;background:var(--acc);color:#111;cursor:pointer;text-decoration:none}
+.btn:disabled{background:var(--line);color:var(--dim);cursor:not-allowed}
+.btn.ghost{background:none;border:1px solid var(--line);color:var(--fg);font-weight:500}
+.state{margin-left:auto;font-size:12px;color:var(--dim)}
+a.btn,a.btn:hover{color:#111}.btn.ghost,.btn.ghost:hover{color:var(--fg)}
+[hidden]{display:none!important}
+.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,400px));gap:14px;margin:18px 0}
+figure{margin:0}figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;image-rendering:pixelated}
+figcaption{font-size:13px;color:var(--dim);margin-top:6px}
+</style></head><body>
+<nav><div class="wrap"><b>MIDI CONDUCTOR</b><a href="index.html">Overview</a><a href="patcher.html">Patcher</a><a href="manual.html" class=on>Manual</a><span class="sp"></span><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a></div></nav>
+<div class="wrap">
+<h1>Manual</h1>
+<p class="lead">Everything the MIDI Conductor adds to DOOM OS, and the buttons that run it.</p>
+<div class="warn"><b>Experimental.</b> Flashing modified firmware can brick your SP-404MKII, and this has only been tested on one unit
+running Roland 5.52 with DOOM OS 0.6.1-alpha (build ED5E). The patch changes a few of Roland's own routines, which adds risk of its own.
+Keep the original Roland files so you can go back. Use at your own risk.</div>
+<h2>Contents</h2>
+<p><a href="#midi">MIDI mode and banks</a> · <a href="#edit">Editing a CTRL</a> · <a href="#pads">Pad channels and devices</a> · <a href="#names">CC names</a> · <a href="#notes">Notes</a> · <a href="#auto">Recording knob moves</a> · <a href="#keys">Key summary</a> · <a href="#limits">Limits</a></p>
+
+<h2 id="midi">MIDI mode and banks</h2>
+<p>In MIDI mode the CTRL knobs send MIDI instead of changing the effect. There are 36 CTRLs in six banks of six. The MIDI page shows three CTRLs at a time.</p>
+<ul>
+<li><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd> chooses bank 1 to 6 and turns MIDI mode on. The FX key of the active bank is lit.</li>
+<li>Press <kbd>VALUE</kbd> to flip between CTRL pages 1/2 and 2/2 (CTRL 1 to 3, then 4 to 6).</li>
+<li><kbd>EXIT</kbd> leaves MIDI mode and returns to DOOM OS.</li>
+</ul>
+<p>Each CTRL sends a CC on the channel and number you set.</p>
+
+<div class="shots">
+<figure><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3 with values, device and CC names"><figcaption>CTRL 1 to 3 (page 1/2)</figcaption></figure>
+<figure><img src="images/midi-page-2.png" alt="MIDI page 2/2: CTRL 4 to 6"><figcaption>CTRL 4 to 6 (page 2/2)</figcaption></figure>
+</div>
+
+<h2 id="edit">Editing a CTRL</h2>
+<p><kbd>SHIFT</kbd> + <kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL, then use the CTRL knobs to set it:</p>
+<ul>
+<li><b>CTRL 1</b> chooses its device or MIDI channel. The knob runs through devices 1 to 7, then channels 1 to 16.</li>
+<li><b>CTRL 2</b> chooses its CC. For a device that has a CC list (below) it picks by name.</li>
+</ul>
+<p>If a CTRL follows a device, the page shows <code>Dn CH c</code>. Changing a device's channel updates every pad and CTRL that uses it.
+All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
+
+<div class="shots">
+<figure><img src="images/midi-edit.png" alt="Edit mode: CTRL 2 is boxed"><figcaption>Edit mode, CTRL 2 selected</figcaption></figure>
+</div>
+
+<h2 id="pads">Pad channels and devices</h2>
+<p>Every pad sends its notes on its own channel. <b>A pad with no channel sends no note at all.</b>
+<kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens learn mode from any DOOM screen (MIDI mode can be off).</p>
+<h3>Pads view</h3>
+<ul><li><kbd>VALUE</kbd> picks the pad bank A to J. Tap a pad to select it.</li>
+<li><b>CTRL 1</b> sets its device or channel. <b>CTRL 3</b> clears it.</li></ul>
+<h3>Devices view (press VALUE to switch)</h3>
+<ul><li><kbd>VALUE</kbd> picks device 1 to 7.</li>
+<li><b>CTRL 1</b> sets the device's channel, <b>CTRL 2</b> its name (from a fixed list), <b>CTRL 3</b> clears it.</li></ul>
+<p><kbd>EXIT</kbd> or <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> leaves learn mode. The pad screen and MIDI page show just the device name.</p>
+
+<div class="shots">
+<figure><img src="images/learn-pads.png" alt="Pad learn screen: bank C, pad 4"><figcaption>Pads view</figcaption></figure>
+<figure><img src="images/learn-devices.png" alt="Devices screen: device 1 named MINILOG on channel 4"><figcaption>Devices view</figcaption></figure>
+</div>
+
+<h2 id="names">CC names</h2>
+<p>Devices named <code>MINILOG</code> or <code>NTS-1</code> carry that synth's CC list. A CTRL that follows such a device picks its CC by name, and the page shows the name.
+Other devices keep raw CC numbers.</p>
+<p>This release has the MINILOG and NTS-1 lists built in. Lists for other synths are planned.</p>
+<h3>Your own devices</h3>
+<p>On the unit you can give each of the seven device slots a channel and pick a name from the fixed list, and any CTRL can send any CC number as a raw number, so every synth works. What you can't do yet is create your own named CC list or type your own device name; that is planned for a later release.</p>
+
+<h2 id="notes">Notes</h2>
+<ul>
+<li>Pitched steps from DOOM's piano roll send the pad's note plus the step's pitch, on the pad's channel.</li>
+<li>Notes end at the step's gate instead of the sample's end. STOP and choke then send no note-off, so a note can be left hanging.</li>
+</ul>
+
+<h2 id="auto">Recording knob moves</h2>
+<p>Record your CTRL moves into a pattern and have them play back as CC. Each CTRL has its own lane of 64 points across the pattern, so slow sweeps stay smooth.</p>
+<ul>
+<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> turns recording on and off while MIDI mode is on. The page shows <code>REC</code>.</li>
+<li>While recording, a CTRL you move is written at every point the pattern passes. A CTRL you touch keeps recording its current value until you stop.</li>
+<li>The recorded moves play back as the pattern runs, with MIDI mode on or off, and stop when the sequencer stops.</li>
+<li>Turn a CTRL by hand during playback and it takes over from its lane until the pattern loops.</li>
+<li><kbd>SHIFT</kbd> + <kbd>EXIT</kbd> erases every lane and leaves MIDI mode on.</li>
+</ul>
+<div class="shots">
+<figure><img src="images/midi-rec.png" alt="MIDI page with REC shown next to the title"><figcaption>Recording on</figcaption></figure>
+</div>
+<p>All patterns share the same lanes, and they are kept in RAM only, so they are cleared when you power off.</p>
+
+<h2 id="keys">Key summary</h2>
+<div class="tbl"><table>
+<tr><th>Keys</th><th>Does</th></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI mode on, bank 1 to 6</td></tr>
+<tr><td><kbd>VALUE</kbd></td><td>Flip CTRL page 1/2, 2/2</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>MARK</kbd></td><td>Edit the CTRLs</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>Pad channel and device learn mode</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Recording on or off</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>EXIT</kbd></td><td>Erase all recorded moves</td></tr>
+<tr><td><kbd>EXIT</kbd></td><td>Leave edit or learn mode, then MIDI mode</td></tr>
+</table></div>
+
+<h2 id="limits">Limits</h2>
+<ul>
+<li>One MIDI output (DIN). USB MIDI isn't covered.</li>
+<li>Knob moves in MIDI mode don't change the SP's own effect.</li>
+<li>If a synth echoes CC back into the SP, feedback is possible. Untested.</li>
+<li>Only Roland 5.52 with DOOM OS 0.6.1-alpha (ED5E) is supported. DOOM OS is built into the patch, and the patcher refuses any file other than stock Roland 5.52, so a newer Roland or DOOM OS release can't be patched until it has been tested here.</li>
+</ul>
+
+<footer>Built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT). Not affiliated with Roland or the DOOM OS author.
+This site and repository contain no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</footer>
+</div></body></html>
