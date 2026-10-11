@@ -18,12 +18,13 @@ MIDI to the gear on the DIN output, each device on its own channel. An add-on fo
 
 - **36 MIDI CTRLs in six banks.** The CTRL knobs send CCs on any channel instead of changing the effect.
   Pick a bank with SHIFT + FX1..FX6.
-- **Edit on the unit.** SHIFT + MARK edits each CTRL's device, channel and CC. Settings are saved.
+- **Edit on the unit.** MARK edits each CTRL's device, channel and CC. Settings are saved.
+- **MIDI settings menu.** SHIFT + REMAIN opens a menu for pad channels and devices. Every screen has a title bar and a help line.
 - **Sequence your synths.** Pattern steps play out of the DIN MIDI output as notes on each pad's channel, so one
   pattern plays several synths. See the manual's "Sequence your synths".
 - **Per-pad MIDI channels.** Every pad sends notes on its own channel (a pad with no channel sends no note).
   Seven device slots with names.
-- **Named CCs** for the Korg Minilogue and NTS-1.
+- **Named CCs.** Choose your synths in the patcher (Korg Minilogue, NTS-1 and volcas, MicroMonsta 2, Behringer Grind) or load your own list from a JSON or CSV file. A CTRL then picks its CC by name.
 - **Pitched steps.** DOOM's piano roll sends the right note, with the pitch added.
 - **Record knob moves.** SHIFT + VALUE records your CTRL moves into the pattern; they play back as CC.
 - **Effect motion playback** also goes out as CC.
@@ -47,8 +48,8 @@ You can also open `patcher.html` from a downloaded copy of this repository.
 
 ## Files
 
-`releases/0.2.0-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
-image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.1.0-alpha/` is the earlier release, built on DOOM OS 0.6.1-alpha (ED5E), kept for reference.
+`releases/0.3.0-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
+image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.2.0-alpha/` and `releases/0.1.0-alpha/` are the earlier releases, kept for reference (0.1.0 was built on DOOM OS 0.6.1-alpha, ED5E).
 
 ## Credits and licence
 

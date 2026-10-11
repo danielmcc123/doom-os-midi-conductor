@@ -58,6 +58,8 @@ a.btn,a.btn:hover{color:#111}.btn.ghost,.btn.ghost:hover{color:var(--fg)}
 [hidden]{display:none!important}
 .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,400px));gap:14px;margin:18px 0}
 figure{margin:0}figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;image-rendering:pixelated}
+@media(max-width:560px){.shots{grid-template-columns:1fr}}
+.shots.wide{grid-template-columns:minmax(260px,640px)}.shots.wide img{image-rendering:auto}
 figcaption{font-size:13px;color:var(--dim);margin-top:6px}
 </style></head><body>
 <nav><div class="wrap"><b>MIDI CONDUCTOR</b><a href="index.html">Overview</a><a href="patcher.html">Patcher</a><a href="manual.html" class=on>Manual</a><span class="sp"></span><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a></div></nav>
@@ -68,35 +70,74 @@ figcaption{font-size:13px;color:var(--dim);margin-top:6px}
 running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). The patch changes a few of Roland's own routines, which adds risk of its own.
 Keep the original Roland files so you can go back. Use at your own risk.</div>
 <h2>Contents</h2>
-<p><a href="#pads">Pad channels and devices</a> (<a href="#names">CC names</a>) · <a href="#sequencing">Sequence your synths</a> · <a href="#midi">MIDI mode and banks</a> · <a href="#auto">Recording knob moves</a> · <a href="#edit">Editing a CTRL</a> · <a href="#keys">Key summary</a> · <a href="#limits">Limits</a></p>
+<p><a href="#quick">Quick start</a> · <a href="#legend">Reading the screens</a> · <a href="#menu">The MIDI SETTINGS menu</a> · <a href="#pads">Pad channels and devices</a> · <a href="#names">CC lists</a> · <a href="#sequencing">Sequence your synths</a> · <a href="#midi">MIDI mode and banks</a> · <a href="#auto">Recording knob moves</a> · <a href="#edit">Editing a CTRL</a> · <a href="#keys">Key summary</a> · <a href="#limits">Limits</a></p>
 
-<h2 id="pads">Pad channels and devices</h2>
-<p>Every pad sends its notes on its own channel. <b>A pad with no channel sends no note at all.</b>
-<kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens learn mode from any DOOM screen (MIDI mode can be off).</p>
-<h3>Pads view</h3>
-<ul><li><kbd>VALUE</kbd> picks the pad bank A to J. Tap a pad to select it.</li>
-<li><b>CTRL 1</b> sets its device or channel. <b>CTRL 3</b> clears it.</li></ul>
-<h3>Devices view (press VALUE to switch)</h3>
-<ul><li><kbd>VALUE</kbd> picks device 1 to 7.</li>
-<li><b>CTRL 1</b> sets the device's channel, <b>CTRL 2</b> its name (from a fixed list), <b>CTRL 3</b> clears it.</li></ul>
-<p><kbd>EXIT</kbd> or <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> leaves learn mode. The pad screen and MIDI page show just the device name.</p>
+<h2 id="quick">Quick start</h2>
+<ol class="steps">
+<li><b>Choose your synths in the patcher</b> (optional). The CC lists decide which synths the SP knows by name, so a CTRL knob can pick <code>CUTOFF</code> instead of a number. See <a href="#names">CC lists</a>.</li>
+<li><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens <b>MIDI SETTINGS</b>. Open <b>DEVICES</b> and give each synth a channel and a name. Open <b>PADS</b>, tap a pad and give it a device or channel.</li>
+<li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> turns MIDI mode on and picks a bank. The CTRL knobs now send CC.</li>
+<li><kbd>MARK</kbd> edits which device, channel and CC each CTRL sends.</li>
+</ol>
 
+<h2 id="legend">Reading the screens</h2>
+<p>Every MIDI screen has a title bar and a line of help at the bottom. On the help line, a name drawn on a lit box is a button or knob on the SP, and the plain words after it say what it does. For example, <b>VALUE CHANGES BANK</b> means turning the VALUE knob changes the bank. <b>C1</b>, <b>C2</b> and <b>C3</b> are the CTRL 1, 2 and 3 knobs.</p>
+
+<h2 id="menu">The MIDI SETTINGS menu</h2>
+<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens the menu from any DOOM screen. MIDI mode can be off.</p>
+<ul>
+<li>Turn <kbd>VALUE</kbd> to move the highlight, press <kbd>VALUE</kbd> to open the view.</li>
+<li>Press <kbd>VALUE</kbd> or <kbd>EXIT</kbd> inside a view to come back to the menu.</li>
+<li><kbd>EXIT</kbd> in the menu, or <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> anywhere, closes it.</li>
+</ul>
 <div class="shots">
-<figure><img src="images/learn-pads.png" alt="Pad learn screen: bank C, pad 4"><figcaption>Pads view</figcaption></figure>
-<figure><img src="images/learn-devices.png" alt="Devices screen: device 1 named MINILOG on channel 4"><figcaption>Devices view</figcaption></figure>
+<figure><img src="images/learn-menu.png" alt="MIDI SETTINGS menu with PADS highlighted and DEVICES next to it"><figcaption>MIDI SETTINGS: PADS and DEVICES</figcaption></figure>
 </div>
 
-<h3 id="names">CC names</h3>
-<p>Devices named <code>MINILOG</code> or <code>NTS-1</code> carry that synth's CC list. A CTRL that follows such a device picks its CC by name, and the page shows the name.
-Other devices keep raw CC numbers.</p>
-<p>This release has the MINILOG and NTS-1 lists built in. Lists for other synths are planned.</p>
-<h3>Your own devices</h3>
-<p>On the unit you can give each of the seven device slots a channel and pick a name from the fixed list, and any CTRL can send any CC number as a raw number, so every synth works. What you can't do yet is create your own named CC list or type your own device name; that is planned for a later release.</p>
+<h2 id="pads">Pad channels and devices</h2>
+<p>Every pad sends its notes on its own channel. <b>A pad with no channel sends no note at all.</b> A device is a named synth with a channel of its own; a pad that follows a device uses that device's channel, so changing the device's channel moves every pad that uses it.</p>
+<h3>PADS</h3>
+<ul>
+<li>Turn <kbd>VALUE</kbd> to pick the pad bank A to J. Tap a pad to select it. The square shows the bank and pad, for example <b>C4</b>.</li>
+<li><b>CTRL 1</b> sets the pad's device or channel: the knob runs through devices 1 to 7, then channels 1 to 16. <b>CTRL 3</b> clears it.</li>
+<li>The screen says <code>NOT SET</code> for a pad with nothing, <code>CH 5</code> for a plain channel, and <code>DEV MINILOG</code> for a device. A device that has no channel yet shows <code>CH NOT SET</code>.</li>
+</ul>
+<div class="shots">
+<figure><img src="images/learn-pads-wait.png" alt="Pads view before a pad is tapped: bank A, TAP A PAD"><figcaption>Before you tap a pad</figcaption></figure>
+<figure><img src="images/learn-pads-unset.png" alt="Pad C4 selected with nothing assigned: NOT SET, TURN C1 TO ASSIGN"><figcaption>A pad with nothing assigned</figcaption></figure>
+<figure><img src="images/learn-pads-ch.png" alt="Pad C4 on channel 5"><figcaption>A pad on a plain channel</figcaption></figure>
+<figure><img src="images/learn-pads.png" alt="Pad C4 following the device MINILOG"><figcaption>A pad that follows a device</figcaption></figure>
+</div>
+<h3>DEVICES</h3>
+<ul>
+<li><b>CTRL 1</b> picks the device, 1 to 7 (<kbd>VALUE</kbd> turns pick it too).</li>
+<li><b>CTRL 2</b> sets the device's name. The names are your chosen synths first, then DRUMS, BASS, KEYS, SYNTH, LEAD, PAD and FX.</li>
+<li><b>CTRL 3</b> sets its channel, 1 to 16. All the way down is <code>--</code>, no channel.</li>
+</ul>
+<div class="shots">
+<figure><img src="images/learn-devices.png" alt="Devices view: device 1 named MINILOG on channel 4"><figcaption>Device 1, MINILOG, on channel 4</figcaption></figure>
+</div>
+<p>The pad screen and the MIDI page show just the device name.</p>
+
+<h2 id="names">CC lists</h2>
+<p>A device named after one of the supported synths carries that synth's CC list. A CTRL that follows such a device picks its CC by name, and the MIDI page shows the name. Other devices, and CTRLs that don't follow a device, send raw CC numbers, so every synth works.</p>
+<p>You choose the lists in the <a href="patcher.html">patcher</a> before you build the firmware. Nothing is pre-selected: use <b>+ Add a synth</b> and pick from the list. The ✕ on a row removes it. The synths you add take the device name slots on the SP in the order shown, followed by the generic names.</p>
+<div class="tbl"><table>
+<tr><th>Maker</th><th>Synths (device name)</th></tr>
+<tr><td>Audiothingies</td><td>MicroMonsta 2 (<code>MM2</code>). For its second part, add a second device with the same name on the next channel.</td></tr>
+<tr><td>Behringer</td><td>Grind (<code>GRIND</code>). Only the ASSIGN output follows a CC, one at a time: set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
+<tr><td>Korg</td><td>Minilogue (<code>MINILOG</code>), NTS-1 (<code>NTS-1</code>), and the volcas Keys, Nubass, Beats, Sample, FM and Kick (<code>VKEYS</code>, <code>VNUBASS</code>, <code>VBEATS</code>, <code>VSAMPLE</code>, <code>VFM</code>, <code>VKICK</code>). The volcas only take CC with MIDI RX ShortMessage turned on.</td></tr>
+</table></div>
+<div class="shots wide">
+<figure><img src="images/cc-picker.png" alt="The patcher's CC lists panel with four synths added"><figcaption>The CC lists panel in the patcher</figcaption></figure>
+</div>
+<h3>Your own synth</h3>
+<p>Not on the list? Use the <b>JSON template</b> or <b>CSV template</b> links under the list, fill in your synth's CC numbers and names, and add the file in the same panel. A custom list has a device name of 1 to 7 characters and CC names of 1 to 7 characters (A to Z, 0 to 9, space and <code>- + . / #</code>). There is room for 11 device names and 250 CC names in all. <b>download this list</b> saves the current choice as a starting point.</p>
 
 <h2 id="sequencing">Sequence your synths</h2>
 <p>The SP's sequencer can play your external synths. Every pad hit in a pattern goes out of the DIN MIDI output as a note, on that pad's channel. Put different pads on different channels and one pattern plays several synths at once.</p>
 <ol class="steps">
-<li><b>Give the pad a channel.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens learn mode. Tap the pad and use <b>CTRL 1</b> to pick a channel or a named device. A pad with no channel sends no note.</li>
+<li><b>Give the pad a channel.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open PADS, tap the pad and use <b>CTRL 1</b> to pick a channel or a device. A pad with no channel sends no note.</li>
 <li><b>Make the pad playable.</b> A pad needs a sample before the sequencer will play it. To play a synth without any sound from the SP, record silence into the pad (sample with nothing coming in, or the input turned down) instead of loading a sample and muting it.</li>
 <li><b>Record or enter the pattern</b> in DOOM OS as usual. Each step sends the pad's note on the pad's channel.</li>
 <li><b>Play melodies from one pad.</b> In the piano roll, each step's pitch is added to the pad's note.</li>
@@ -105,14 +146,13 @@ Other devices keep raw CC numbers.</p>
 <p>Notes end at the step's gate, not at the end of the sample, so a short silent sample is fine. STOP and choke send no note-off yet, so a note can be left hanging; an all-notes-off or panic on the synth clears it.</p>
 
 <h2 id="midi">MIDI mode and banks</h2>
-<p>In MIDI mode the CTRL knobs send MIDI instead of changing the effect. There are 36 CTRLs in six banks of six. The MIDI page shows three CTRLs at a time.</p>
+<p>In MIDI mode the CTRL knobs send MIDI instead of changing the effect. There are 36 CTRLs in six banks of six. The MIDI page shows three CTRLs at a time: the CTRL number, its value and a bar, then the device (or channel) and the CC.</p>
 <ul>
-<li><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd> chooses bank 1 to 6 and turns MIDI mode on. The FX key of the active bank is lit.</li>
-<li>Press <kbd>VALUE</kbd> to flip between CTRL pages 1/2 and 2/2 (CTRL 1 to 3, then 4 to 6).</li>
+<li><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd> chooses bank 1 to 6 and turns MIDI mode on. The FX key of the active bank is lit. The title bar says which bank you are on.</li>
+<li>Press <kbd>VALUE</kbd> to flip between CTRL pages 1/2 and 2/2 (CTRL 1 to 3, then 4 to 6). The page number is at the right of the title bar.</li>
+<li><kbd>MARK</kbd> edits the CTRLs (below).</li>
 <li><kbd>EXIT</kbd> leaves MIDI mode and returns to DOOM OS.</li>
 </ul>
-<p>Each CTRL sends a CC on the channel and number you set.</p>
-
 <div class="shots">
 <figure><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3 with values, device and CC names"><figcaption>CTRL 1 to 3 (page 1/2)</figcaption></figure>
 <figure><img src="images/midi-page-2.png" alt="MIDI page 2/2: CTRL 4 to 6"><figcaption>CTRL 4 to 6 (page 2/2)</figcaption></figure>
@@ -128,39 +168,39 @@ Other devices keep raw CC numbers.</p>
 <li><kbd>SHIFT</kbd> + <kbd>EXIT</kbd> erases every lane and leaves MIDI mode on.</li>
 </ul>
 <div class="shots">
-<figure><img src="images/midi-rec.png" alt="MIDI page with REC shown next to the title"><figcaption>Recording on</figcaption></figure>
+<figure><img src="images/midi-rec.png" alt="MIDI page with REC shown in the title bar"><figcaption>Recording on</figcaption></figure>
 </div>
 <p>All patterns share the same lanes, and they are kept in RAM only, so they are cleared when you power off.</p>
 
 <h2 id="edit">Editing a CTRL</h2>
-<p><kbd>SHIFT</kbd> + <kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL, then use the CTRL knobs to set it:</p>
+<p><kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL; its box moves. Then use the CTRL knobs:</p>
 <ul>
 <li><b>CTRL 1</b> chooses its device or MIDI channel. The knob runs through devices 1 to 7, then channels 1 to 16.</li>
-<li><b>CTRL 2</b> chooses its CC. For a device that has a CC list (below) it picks by name.</li>
+<li><b>CTRL 2</b> chooses its CC. For a device with a CC list it picks by name.</li>
 </ul>
-<p>If a CTRL follows a device, the page shows <code>Dn CH c</code>. Changing a device's channel updates every pad and CTRL that uses it.
+<p>If a CTRL follows a device, the page shows the device's name. Changing a device's channel updates every pad and CTRL that uses it.
 All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
-
 <div class="shots">
-<figure><img src="images/midi-edit.png" alt="Edit mode: CTRL 2 is boxed"><figcaption>Edit mode, CTRL 2 selected</figcaption></figure>
+<figure><img src="images/midi-edit.png" alt="Edit mode: CTRL 2 is boxed, help line shows VALUE PICK, C1 CH, C2 CC, MARK OK"><figcaption>Edit mode, CTRL 2 selected</figcaption></figure>
 </div>
 
 <h2 id="keys">Key summary</h2>
 <div class="tbl"><table>
 <tr><th>Keys</th><th>Does</th></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>MIDI SETTINGS menu (pads and devices); again to close</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI mode on, bank 1 to 6</td></tr>
-<tr><td><kbd>VALUE</kbd></td><td>Flip CTRL page 1/2, 2/2</td></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>MARK</kbd></td><td>Edit the CTRLs</td></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>Pad channel and device learn mode</td></tr>
+<tr><td><kbd>VALUE</kbd></td><td>MIDI page: flip CTRL page 1/2, 2/2. Menu: pick and open. Pads: change bank</td></tr>
+<tr><td><kbd>MARK</kbd></td><td>MIDI page: edit the CTRLs, again to finish</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Recording on or off</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>EXIT</kbd></td><td>Erase all recorded moves</td></tr>
-<tr><td><kbd>EXIT</kbd></td><td>Leave edit or learn mode, then MIDI mode</td></tr>
+<tr><td><kbd>EXIT</kbd></td><td>Back one step: view to menu, menu closes, edit mode ends, then MIDI mode off</td></tr>
 </table></div>
 
 <h2 id="limits">Limits</h2>
 <ul>
 <li>One MIDI output (DIN). USB MIDI isn't covered.</li>
 <li>Knob moves in MIDI mode don't change the SP's own effect.</li>
+<li>11 device names and 250 CC names in total; 7 devices to give channels to.</li>
 <li>If a synth echoes CC back into the SP, feedback is possible. Untested.</li>
 <li>Only Roland 5.52 with DOOM OS 0.6.2-alpha (3824) is supported. DOOM OS is built into the patch, and the patcher refuses any file other than stock Roland 5.52, so a newer Roland or DOOM OS release can't be patched until it has been tested here.</li>
 </ul>

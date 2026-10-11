@@ -59,6 +59,14 @@ a.btn,a.btn:hover{color:#111}.btn.ghost,.btn.ghost:hover{color:var(--fg)}
 .shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,400px));gap:14px;margin:18px 0}
 figure{margin:0}figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;image-rendering:pixelated}
 figcaption{font-size:13px;color:var(--dim);margin-top:6px}
+.hashes{margin:0;padding:4px 14px 14px;border-top:1px solid var(--line)}
+.hashes>div{margin:12px 0 0}
+.hashes dt{font-size:13px;font-weight:600;color:var(--ok)}
+.hashes dd{margin:6px 0 0;display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.hashes code{font-family:ui-monospace,Menlo,monospace;font-size:12px;padding:6px 9px;border-radius:6px;background:var(--code);overflow-wrap:anywhere}
+.copy{height:30px;padding:0 12px;border:1px solid var(--line);border-radius:6px;background:none;color:var(--fg);font:inherit;font-size:12px;cursor:pointer}
+.copy:hover{border-color:var(--acc)}
+.hashes .note{margin:14px 0 0;font-size:12px;color:var(--dim)}
 </style></head><body>
 <nav><div class="wrap"><b>MIDI CONDUCTOR</b><a href="index.html">Overview</a><a href="patcher.html" class=on>Patcher</a><a href="manual.html">Manual</a><span class="sp"></span><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a></div></nav>
 <div class="wrap">
@@ -69,19 +77,19 @@ figcaption{font-size:13px;color:var(--dim);margin-top:6px}
 running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). The patch hooks a few of Roland's own routines, which the DOOM OS author has called risky.
 Keep the original Roland files so you can go back. Use at your own risk.</div>
 <div class="grid">
-<div class="card"><h3>Release</h3><p><span data-release="version">0.2.0 alpha</span></p></div>
+<div class="card"><h3>Release</h3><p><span data-release="version">0.3.0 alpha</span></p></div>
 <div class="card"><h3>For firmware</h3><p><span data-release="firmware">5.52</span></p></div>
 <div class="card"><h3>Includes</h3><p>DOOM OS 0.6.2-alpha (3824), built in. Accepts only Roland 5.52.</p></div>
-<div class="card"><h3>Released</h3><p><span data-release="released">9 October 2026</span></p></div>
+<div class="card"><h3>Released</h3><p><span data-release="released">11 October 2026</span></p></div>
 </div>
 <h2>1. Choose the file</h2>
-<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below. Keep the original <code>SP404MKII_APP0.bin</code> from the same download.</p>
+<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below. Keep the original <code>SP404MKII_APP0.bin</code> from the same download. Under <b>CC lists</b> you can add the synths you want the SP to know by name; leave it empty if you only need raw CC numbers.</p>
 <div id="patcher"></div>
 <h2>2. Install it</h2>
 <p>Download the patched <code>SP404MKII_APP1.bin</code>, keep that name, and install it with Roland's original <code>SP404MKII_APP0.bin</code> the way you install DOOM OS
 (see the <a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). To go back, install the original Roland files.</p>
-<p>Then read the <a href="manual.html">manual</a>: SHIFT + FX1..FX6 turns MIDI mode on.</p>
-<script src="releases/0.2.0-alpha/conductor-patcher.js"></script>
+<p>Then read the <a href="manual.html">manual</a>: SHIFT + REMAIN opens the MIDI settings, and SHIFT + FX1..FX6 turns MIDI mode on.</p>
+<script src="releases/0.3.0-alpha/conductor-patcher.js"></script>
 <footer>Built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT). Not affiliated with Roland or the DOOM OS author.
 This site and repository contain no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</footer>
 </div></body></html>
