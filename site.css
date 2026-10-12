@@ -61,7 +61,10 @@ kbd{display:inline-block;font:600 12.5px/1 var(--sans);letter-spacing:.03em;colo
 .top .links{display:flex;gap:24px;align-items:center;font-size:15px}
 .top .links a{color:var(--dim);text-decoration:none}
 .top .links a:hover,.top .links a[aria-current]{color:var(--fg)}
-@media(max-width:640px){.brand small{display:none}.top .wrap{gap:16px}.top .links{gap:16px;font-size:14px}}
+@media(max-width:640px){.brand small{display:none}
+  .top .wrap{gap:12px 16px;padding-block:12px}
+  .top .links{width:100%;justify-content:space-between;gap:12px;font-size:15px}
+  .top .links a.btn{height:36px;padding:0 16px}}
 
 /* buttons */
 .btn,.cta{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:48px;padding:0 24px;border-radius:999px;border:0;
