@@ -1,107 +1,100 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DOOM OS MIDI Conductor</title><meta name="description" content="Play, shape and record several external synths at once from the SP-404MKII over DIN MIDI. DOOM OS is included.">
-<style>
-:root{--bg:#0e1013;--panel:#171a1f;--line:#2a2f37;--fg:#e8eaed;--dim:#9aa3ad;--acc:#ff7a1a;--acc2:#ffb066;--ok:#5fd18a;--warn:#f2c14e;--code:#0a0c0f}
-@media (prefers-color-scheme: light){:root{--bg:#f6f4f0;--panel:#fff;--line:#ddd7cd;--fg:#1d2024;--dim:#5d6670;--acc:#d9560a;--acc2:#b5440a;--ok:#1f7a45;--warn:#8a6100;--code:#efebe4}}
-*{box-sizing:border-box}html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-a{color:var(--acc)}a:hover{color:var(--acc2)}
-.wrap{max-width:860px;margin:0 auto;padding:0 20px}
-nav{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);z-index:5}
-nav .wrap{display:flex;gap:18px;align-items:center;flex-wrap:wrap;padding:12px 20px}
-nav b{letter-spacing:.04em}nav a{text-decoration:none;color:var(--dim);font-size:14px}nav a:hover,nav a.on{color:var(--fg)}
-nav .sp{flex:1}
-h1{font-size:clamp(34px,6vw,54px);line-height:1.05;margin:56px 0 12px;letter-spacing:-.02em}
-h1 em{color:var(--acc);font-style:normal}
-h2{font-size:26px;margin:52px 0 10px;padding-top:6px;letter-spacing:-.01em}
-h3{font-size:18px;margin:28px 0 6px}
-p.lead{font-size:19px;color:var(--dim);max-width:640px}
-.warn{border:1px solid var(--warn);border-left-width:5px;background:var(--panel);padding:14px 18px;border-radius:8px;margin:28px 0}
-.warn b{color:var(--warn)}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:20px 0}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 18px}
-.card h3{margin:0 0 4px;font-size:16px;color:var(--acc)}.card p{margin:0;color:var(--dim);font-size:15px}
-pre,code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:14px}
-pre{background:var(--code);border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow-x:auto}
-code{background:var(--code);padding:1px 6px;border-radius:4px}pre code{padding:0;background:none}
-kbd{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:var(--panel);border:1px solid var(--line);border-bottom-width:2px;border-radius:5px;padding:1px 7px;white-space:nowrap}
-table{border-collapse:collapse;width:100%;margin:14px 0;font-size:15px}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--dim);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.05em}
-.tbl{overflow-x:auto}
-.tag{display:inline-block;font-size:12px;padding:1px 8px;border-radius:99px;border:1px solid var(--line);color:var(--dim);margin-left:6px;vertical-align:middle}
-.tag.ok{color:var(--ok);border-color:var(--ok)}.tag.test{color:var(--warn);border-color:var(--warn)}
-ol.steps{padding-left:22px}ol.steps li{margin:10px 0}
-footer{border-top:1px solid var(--line);margin-top:64px;padding:26px 0 48px;color:var(--dim);font-size:14px}
-.cta{display:inline-block;background:var(--acc);color:#111;text-decoration:none;font-weight:700;padding:11px 20px;border-radius:8px;margin:6px 8px 6px 0}
-.cta.alt{background:none;color:var(--fg);border:1px solid var(--line)}
-@media(max-width:560px){nav .wrap{gap:12px}h2{font-size:23px}}
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIDI Conductor</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="Play, sequence and tweak your synths from the SP-404MKII. An add-on for DOOM OS.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>for SP-404MKII</small></a>
+<nav class="links" aria-label="Site"><a href="index.html" aria-current="page">Overview</a><a href="manual.html">Manual</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html">Patch firmware</a></nav>
+</div></header>
 
-.panel{margin:20px 0;background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.drop{margin:14px;min-height:150px;padding:24px;cursor:pointer;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:2px dashed var(--line);border-radius:10px}
-.drop:hover,.drop.over{border-color:var(--acc);background:color-mix(in srgb,var(--acc) 8%,transparent)}
-.drop.bad{border-color:#e5604d}
-.drop:focus-visible{outline:2px solid var(--acc);outline-offset:2px}
-.drop .big{margin:0;font-size:18px;font-weight:600;overflow-wrap:anywhere}
-.drop .big.file{font-family:ui-monospace,Menlo,monospace;font-size:14px;font-weight:400}
-.drop .small{margin:0;font-size:13px;color:var(--dim)}
-.status{margin:0 14px;padding:12px 0;border-top:1px solid var(--line);font-family:ui-monospace,Menlo,monospace;font-size:13px;line-height:1.7;min-height:48px;color:var(--dim)}
-.status.ok{color:var(--ok)}.status.bad{color:#e5604d}
-.actions{padding:14px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
-.btn{height:44px;padding:0 22px;border:0;border-radius:8px;display:inline-flex;align-items:center;gap:10px;font:inherit;font-weight:700;background:var(--acc);color:#111;cursor:pointer;text-decoration:none}
-.btn:disabled{background:var(--line);color:var(--dim);cursor:not-allowed}
-.btn.ghost{background:none;border:1px solid var(--line);color:var(--fg);font-weight:500}
-.state{margin-left:auto;font-size:12px;color:var(--dim)}
-a.btn,a.btn:hover{color:#111}.btn.ghost,.btn.ghost:hover{color:var(--fg)}
-[hidden]{display:none!important}
-.shots{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,400px));gap:14px;margin:18px 0}
-figure{margin:0}figure img{width:100%;height:auto;border-radius:10px;border:1px solid var(--line);display:block;image-rendering:pixelated}
-figcaption{font-size:13px;color:var(--dim);margin-top:6px}
-</style></head><body>
-<nav><div class="wrap"><b>MIDI CONDUCTOR</b><a href="index.html" class=on>Overview</a><a href="patcher.html">Patcher</a><a href="manual.html">Manual</a><span class="sp"></span><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a></div></nav>
-<div class="wrap">
-<h1>Conduct your whole rig from the <em>SP-404MKII</em></h1>
-<p class="lead">Through DOOM OS, send MIDI from the SP's pads, CTRL knobs and sequencer to the synths on its DIN output, several at once. Name up to seven devices, give each its own channel, and record your knob moves into the pattern.</p>
-<a class="cta" href="patcher.html">Patch your firmware</a><a class="cta alt" href="manual.html">Read the manual</a>
-<div class="warn"><b>Experimental.</b> Flashing modified firmware can brick your SP-404MKII, and this has only been tested on one unit
-running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). The patch changes a few of Roland's own routines, which adds risk of its own.
-Keep the original Roland files so you can go back. Use at your own risk.</div>
-
-<h2>What it does</h2>
-<div class="grid">
-<div class="card"><h3>Sequence your synths</h3><p>Pattern steps play out of the DIN MIDI output as notes, each pad on its own channel. One pattern, several synths.</p></div>
-<div class="card"><h3>36 CTRLs, six banks</h3><p>The CTRL knobs send CC on any channel instead of changing the effect. SHIFT + FX1..FX6 pick the bank.</p></div>
-<div class="card"><h3>Edit on the unit</h3><p>Set each CTRL's device, channel and CC with MARK. Everything is saved to the SP.</p></div>
-<div class="card"><h3>Named devices</h3><p>Name up to seven devices. Change a device's channel once and every pad and CTRL using it follows.</p></div>
-<div class="card"><h3>Named CCs</h3><p>Pick your synths in the patcher: Minilogue, NTS-1, the volcas, MicroMonsta 2, Grind, TD-3-MO, S-1 and Digitone II, or load your own list. A CTRL then picks its CC by name.</p></div>
-<div class="card"><h3>MIDI settings menu</h3><p>SHIFT + REMAIN opens a menu for pad channels and devices, with a help line on every screen.</p></div>
-<div class="card"><h3>Record knob moves</h3><p>Record CTRL moves into a pattern and have them play back as CC. Each pattern keeps its own moves, which are saved across restarts and can be cleared per pattern.</p></div>
+<main>
+<div class="wrap hero">
+<div class="intro">
+<h1>Conduct your whole rig from the SP-404MKII</h1>
+<p class="lead">Play, sequence and tweak your synths straight from the SP. Pads play notes, CTRL knobs send CC, and patterns drive every synth on its own channel. No computer needed.</p>
+<div class="row"><a class="cta" href="patcher.html">Patch your firmware</a><a class="cta alt" href="manual.html#quick">Quick start</a></div>
+<p class="fine">Free and open source. For Roland firmware 5.52, with DOOM OS 0.6.2 built in.</p>
+</div>
+<figure class="screen glow"><img src="images/midi-page-1.png" width="804" height="420" alt="The SP's MIDI page: CTRL 1 to 3 with their values, the synth each one plays and the control it moves, by name"></figure>
 </div>
 
-<h2 id="install">Install</h2>
-<p>You need Roland's official firmware. It isn't included here: the patcher runs in your browser on your own copy, and nothing is uploaded.</p>
-<ol class="steps">
-<li>Download Roland's SP-404MKII system update <b>5.52</b> and unzip it. You need <code>SP404MKII_APP1.bin</code>, and the original <code>SP404MKII_APP0.bin</code> from the same folder.</li>
-<li>Open the <a href="patcher.html">patcher</a> and drop <code>SP404MKII_APP1.bin</code> on it. It checks the file is exactly Roland 5.52, and refuses anything else.</li>
-<li>Download the patched file and keep the name <code>SP404MKII_APP1.bin</code>. Use it with Roland's original <code>SP404MKII_APP0.bin</code>.</li>
-<li>DOOM OS is already in the patched file, so there is nothing else to download. Install it the way you install DOOM OS (see the <a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>).</li>
-<li>To go back, install the original Roland files.</li>
+<section class="band"><div class="wrap">
+<div class="head"><h2>Everything your synths need, on the SP</h2><p>DOOM OS turns the SP into a deeper sampler. MIDI Conductor turns it into the centre of your setup.</p></div>
+<div class="tour">
+
+<div class="feature">
+<div class="text"><h3>Sequence your synths</h3>
+<p>Every step of a pattern goes out as a MIDI note. Point pads at different synths and one pattern plays them all.</p>
+<ul><li>Each pad on its own synth or channel</li><li>Piano-roll pitches come with each step</li><li>Notes follow the step's gate</li></ul></div>
+<figure><div class="screen"><img src="images/learn-pads.png" width="804" height="420" alt="Pad C4 set to play the synth MINILOG" loading="lazy"></div><figcaption>Pad C4 plays the Minilogue.</figcaption></figure>
+</div>
+
+<div class="feature flip">
+<div class="text"><h3>36 knobs of CC</h3>
+<p>Switch to MIDI mode and the CTRL knobs send CC instead of moving the effect. Six banks of six, each knob set to any control on any synth.</p>
+<ul><li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> picks the bank</li><li><kbd>MARK</kbd> sets a knob's synth and control</li></ul></div>
+<figure><div class="screen"><img src="images/midi-edit.png" width="804" height="420" alt="Edit mode on the MIDI page with CTRL 2 selected" loading="lazy"></div><figcaption>Setting CTRL 2's synth and control.</figcaption></figure>
+</div>
+
+<div class="feature">
+<div class="text"><h3>Record knob moves</h3>
+<p>Sweep a filter while the pattern plays and it comes back on every loop. Each pattern keeps its own moves, saved on the SP.</p>
+<ul><li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> starts recording</li><li>64 points per knob for smooth sweeps</li><li>Grab a knob to take over live</li></ul></div>
+<figure><div class="screen"><img src="images/midi-rec.png" width="804" height="420" alt="The MIDI page with REC in the title bar" loading="lazy"></div><figcaption>Recording into the current pattern.</figcaption></figure>
+</div>
+
+<div class="feature flip">
+<div class="text"><h3>Speaks your synths' language</h3>
+<p>Choose your synths when you patch and the SP knows their controls by name. Pick <code>CUTOFF</code>, not CC 43.</p>
+<ul><li>Korg Minilogue, NTS-1 and volcas</li><li>Behringer Grind and TD-3-MO, Roland S-1</li><li>Elektron Digitone II, Audiothingies MicroMonsta 2</li><li>Or load your own list</li></ul></div>
+<figure><img src="images/cc-picker.png" alt="The patcher's synth list with four synths added" loading="lazy" class="shotimg"><figcaption>Choosing synths in the patcher.</figcaption></figure>
+</div>
+
+<div class="feature">
+<div class="text"><h3>Route synth to synth</h3>
+<p>Play one synth's keys and another plays along. Map one synth's knobs onto another's controls. The SP sits in the middle, so a single keyboard can drive the whole rig.</p>
+<ul><li>Notes, CC, pitch bend and aftertouch, each on or off per route</li><li>Turn a knob to map it</li></ul></div>
+<figure><div class="screen"><img src="images/learn-ccmap.png" alt="CC map from the Minilogue to the NTS-1: CUTOFF to RESO and LFO RT to LFO RT" width="804" height="420" loading="lazy"></div><figcaption>The Minilogue's cutoff knob moves the NTS-1's resonance.</figcaption></figure>
+</div>
+
+<div class="feature flip">
+<div class="text"><h3>Set up on the unit</h3>
+<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens MIDI SETTINGS: your synths, your pads, your routes. Every screen has a help line, and everything is saved.</p></div>
+<figure><div class="screen"><img src="images/learn-menu.png" width="804" height="420" alt="The MIDI SETTINGS menu: PADS, DEVICES, ROUTES and PATTERN" loading="lazy"></div><figcaption>The MIDI SETTINGS menu.</figcaption></figure>
+</div>
+
+</div></div></section>
+
+<section><div class="wrap">
+<div class="head"><h2>By the numbers</h2></div>
+<dl class="specs">
+<div><dt>36</dt><dd>CTRL knobs in six banks</dd></div>
+<div><dt>7</dt><dd>synths, each on its own channel</dd></div>
+<div><dt>160</dt><dd>patterns, each with its own knob moves</dd></div>
+<div><dt>64</dt><dd>points per knob, per pattern</dd></div>
+<div><dt>64</dt><dd>knob-to-control pairs between synths</dd></div>
+<div><dt>250</dt><dd>controls known by name</dd></div>
+</dl>
+</div></section>
+
+<section class="band" id="install"><div class="wrap">
+<div class="head"><h2>Up and running</h2><p>From Roland's download to a synth playing from a pad.</p></div>
+<ol class="steps4">
+<li><h3>Get Roland's firmware</h3><p>Download the SP-404MKII system update 5.52 from Roland and unzip it.</p></li>
+<li><h3>Patch it</h3><p>Drop <code>SP404MKII_APP1.bin</code> on the <a href="patcher.html">patcher</a> and pick your synths. Nothing is uploaded.</p></li>
+<li><h3>Install it</h3><p>Install it with Roland's <code>SP404MKII_APP0.bin</code>, the same way as <a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS</a>. DOOM OS is already inside.</p></li>
+<li><h3>Play</h3><p>The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a knob in five steps.</p></li>
 </ol>
-<p><a class="cta" href="patcher.html">Open the patcher</a></p>
-
-<h2>Screens</h2>
-<p>This is how the patch draws its pages on the SP's display (rendered from the patch's own drawing code).</p>
-<div class="shots">
-<figure><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3 with their values, device names and CC names"><figcaption>MIDI page, CTRL 1 to 3</figcaption></figure>
-<figure><img src="images/midi-edit.png" alt="MIDI page in edit mode with CTRL 2 selected"><figcaption>Edit mode</figcaption></figure>
-<figure><img src="images/learn-menu.png" alt="MIDI SETTINGS menu with PADS and DEVICES"><figcaption>MIDI SETTINGS menu</figcaption></figure>
-<figure><img src="images/learn-pads.png" alt="Pads view: pad C4 following the device MINILOG"><figcaption>Pad channels and devices</figcaption></figure>
-</div>
-<p><a href="manual.html">The manual</a> has all the screens.</p>
-
-</div>
-<footer>Built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT). Not affiliated with Roland or the DOOM OS author.
-This site and repository contain no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</footer>
-</div></body></html>
+<div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52 and DOOM OS 0.6.2-alpha (build 3824). Keep Roland's original files so you can go back.</p></div>
+</div></section>
+</main>
+<footer><div class="wrap">
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT) and is free and open source.</p>
+<p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
+</div></footer>
+</body></html>

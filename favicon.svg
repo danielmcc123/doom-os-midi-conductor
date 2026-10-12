@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2a2c32"/><stop offset="1" stop-color="#15161a"/></linearGradient>
+    <filter id="glow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="2.4"/></filter>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#body)" stroke="#3a3d45" stroke-width="1.5"/>
+  <g fill="#30333a">
+    <rect x="26.5" y="11.5" width="11" height="11" rx="3"/><rect x="41.5" y="11.5" width="11" height="11" rx="3"/>
+    <rect x="11.5" y="26.5" width="11" height="11" rx="3"/><rect x="41.5" y="26.5" width="11" height="11" rx="3"/>
+    <rect x="11.5" y="41.5" width="11" height="11" rx="3"/><rect x="26.5" y="41.5" width="11" height="11" rx="3"/>
+  </g>
+  <g fill="#ffa62b" opacity=".8" filter="url(#glow)">
+    <rect x="11.5" y="11.5" width="11" height="11" rx="3"/><rect x="26.5" y="26.5" width="11" height="11" rx="3"/><rect x="41.5" y="41.5" width="11" height="11" rx="3"/>
+  </g>
+  <g fill="#ffa62b">
+    <rect x="11.5" y="11.5" width="11" height="11" rx="3"/><rect x="26.5" y="26.5" width="11" height="11" rx="3"/><rect x="41.5" y="41.5" width="11" height="11" rx="3"/>
+  </g>
+</svg>

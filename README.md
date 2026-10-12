@@ -1,59 +1,46 @@
 # DOOM OS MIDI Conductor
 
-Play, shape and record your synths from the SP-404MKII, several at once. Pads, CTRL knobs and the sequencer send
-MIDI to the gear on the DIN output, each device on its own channel. An add-on for
-[DOOM OS](https://klangfeldlabs.com/doom-os/), included in the patch.
+Play, sequence and tweak your synths from the SP-404MKII. Pads play notes, CTRL dials send CC, and patterns drive
+every synth on its own channel. Built on [DOOM OS](https://klangfeldlabs.com/doom-os/), which is included.
 
 **Guide and patcher: https://danielmcc123.github.io/doom-os-midi-conductor/**
 
-> **DOOM OS is included.** The patcher turns Roland's stock 5.52 into one firmware file that contains DOOM OS
-> 0.6.2-alpha (build 3824) and the MIDI Conductor together. You don't patch DOOM OS separately, and the patcher
-> only accepts Roland's stock file, so it won't touch a file that already has a different DOOM OS in it.
->
-> **Experimental. Use at your own risk.** Flashing modified firmware can brick a unit. This is only tested on
-> one SP-404MKII running Roland 5.52 with DOOM OS 0.6.2-alpha (build 3824). It changes a few of Roland's own
-> routines, which adds risk of its own. Keep your original Roland files so you can go back.
+> **Experimental.** Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52
+> and DOOM OS 0.6.2-alpha (build 3824), and it changes some of Roland's own routines. Keep Roland's original files
+> so you can go back.
 
-## What you get
+## What it does
 
-- **36 MIDI CTRLs in six banks.** The CTRL knobs send CCs on any channel instead of changing the effect.
-  Pick a bank with SHIFT + FX1..FX6.
-- **Edit on the unit.** MARK edits each CTRL's device, channel and CC. Settings are saved.
-- **MIDI settings menu.** SHIFT + REMAIN opens a menu for pad channels and devices. Every screen has a title bar and a help line.
-- **Sequence your synths.** Pattern steps play out of the DIN MIDI output as notes on each pad's channel, so one
-  pattern plays several synths. See the manual's "Sequence your synths".
-- **Per-pad MIDI channels.** Every pad sends notes on its own channel (a pad with no channel sends no note).
-  Seven device slots with names.
-- **Named CCs.** Choose your synths in the patcher (Korg Minilogue, NTS-1 and volcas, MicroMonsta 2, Behringer Grind and TD-3-MO, Roland S-1, Elektron Digitone II) or load your own list from a JSON or CSV file. A CTRL then picks its CC by name.
-- **Pitched steps.** DOOM's piano roll sends the right note, with the pitch added.
-- **Record knob moves.** SHIFT + VALUE records your CTRL moves into the pattern; they play back as CC. Every pattern keeps its own moves (saved across restarts), and DEL, SHIFT + DEL + FX, or MIDI SETTINGS > PATTERN clear them for the current pattern only.
-- **Effect motion playback** also goes out as CC.
+- **Sequence your synths.** Pattern steps go out as MIDI notes, each pad on its own synth. Piano-roll pitches come along.
+- **36 dials of CC.** Six banks of six CTRLs, each sending any CC to any synth. SHIFT + FX1..FX6 picks the bank.
+- **Record dial moves.** SHIFT + VALUE records CTRL moves into the pattern. Each pattern keeps its own, saved on the SP.
+- **Knows your synths.** Pick `CUTOFF`, not CC 43. Built-in lists for the Korg Minilogue, NTS-1 and volcas,
+  Behringer Grind and TD-3-MO, Roland S-1, Elektron Digitone II and Audiothingies MicroMonsta 2, or load your own.
+- **Route synth to synth.** Play one synth's keys and another plays along; map one synth's dials onto another's controls.
+- **All on the unit.** SHIFT + REMAIN sets up synths, pads and routes, with a help line on every screen.
+- **Effect motion** from DOOM OS goes out as CC too.
 
-See the [manual](https://danielmcc123.github.io/doom-os-midi-conductor/manual.html) for every key combo.
+## Up and running
 
-## Install
+1. Download Roland's SP-404MKII system update **5.52** and unzip it. It isn't in this repository.
+2. Drop `SP404MKII_APP1.bin` on the [patcher](https://danielmcc123.github.io/doom-os-midi-conductor/patcher.html)
+   and pick your synths. It runs in your browser, uploads nothing, and refuses anything but Roland's stock 5.52.
+3. Keep the name `SP404MKII_APP1.bin` and install it with Roland's original `SP404MKII_APP0.bin`, the same way as
+   DOOM OS ([DOOM OS manual](https://klangfeldlabs.com/doom-os/manual/)). DOOM OS is already inside.
+4. Follow the [quick start](https://danielmcc123.github.io/doom-os-midi-conductor/manual.html#quick): a synth on a
+   pad and a dial in five steps.
 
-You need Roland's official 5.52 firmware. This repository doesn't include or distribute it.
-
-1. Download Roland's SP-404MKII system update 5.52 and unzip it.
-2. Open the [patcher](https://danielmcc123.github.io/doom-os-midi-conductor/patcher.html) and drop
-   `SP404MKII_APP1.bin` on it. It runs in your browser and uploads nothing. It checks the file is exactly
-   Roland 5.52 and refuses anything else.
-3. Download the patched file, keep the name `SP404MKII_APP1.bin`, and use it with Roland's original
-   `SP404MKII_APP0.bin`.
-4. DOOM OS is already inside the patched file, so there's nothing else to download. Install it the way you install DOOM OS (see the [DOOM OS guide](https://klangfeldlabs.com/doom-os/manual/)).
-   To go back, install the original Roland files.
-
-You can also open `patcher.html` from a downloaded copy of this repository.
+To go back, install Roland's original files. `patcher.html` also works from a downloaded copy of this repository.
 
 ## Files
 
-`releases/0.4.1-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
-image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.4.0-alpha/`, `releases/0.3.0-alpha/`, `releases/0.2.0-alpha/` and `releases/0.1.0-alpha/` are the earlier releases, kept for reference (0.1.0 was built on DOOM OS 0.6.1-alpha, ED5E).
+`releases/<version>/` holds each release's patcher script and `checksums.txt`, with the SHA-256 of the stock and
+patched images so you can check your file. Older releases are kept for reference; 0.1.0 was built on DOOM OS
+0.6.1-alpha (ED5E).
 
 ## Credits and licence
 
 - **DOOM OS** by Quintus Oostendorp (MIT), the foundation of everything here:
-  [klangfeld-labs/doom-os](https://github.com/klangfeld-labs/doom-os). `LICENSE-DOOM-OS` is its licence.
-- This project is MIT licensed, see `LICENSE`. Third-party notes are in `NOTICE.md`.
+  [klangfeld-labs/doom-os](https://github.com/klangfeld-labs/doom-os). Its licence is `LICENSE-DOOM-OS`.
+- This project is MIT licensed (`LICENSE`). Third-party notes are in `NOTICE.md`.
 - Not affiliated with Roland or the DOOM OS author.
