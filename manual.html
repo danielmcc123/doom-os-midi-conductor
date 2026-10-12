@@ -13,7 +13,7 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#pads">Devices and pads</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI mode</a></li><li><a href="#edit">Editing a CTRL</a></li><li><a href="#routes">Routing</a></li><li><a href="#auto">Recording knob moves</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li></ol></aside>
+<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#pads">Devices and pads</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#edit">Editing a CTRL</a></li><li><a href="#routes">Routing</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li></ol></aside>
 <main>
 <h1>Manual</h1>
 <p class="lead">How to play, sequence, route and record your synths from the SP-404MKII.</p>
@@ -21,24 +21,24 @@
 <h2 id="quick">Quick start</h2>
 <p>Five steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
 <ol class="steps">
-<li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Note the channel your synth listens on.</li>
+<li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
 <li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. <b>CTRL 2</b> names device 1, <b>CTRL 3</b> sets its channel to your synth's.</li>
 <li><b>Give it a pad.</b> <kbd>EXIT</kbd>, open <b>PADS</b>, tap a pad and turn <b>CTRL 1</b> to device 1. The pad needs a sample: record a second of silence into it. Hit the pad and the synth plays.</li>
-<li><b>Turn its knobs.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI mode on. Press <kbd>MARK</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>MARK</kbd> again. Now CTRL 1 moves that control on the synth.</li>
-<li><b>Record a sweep.</b> Start a pattern, press <kbd>SHIFT</kbd> + <kbd>VALUE</kbd> and turn the knob. It plays back on every loop.</li>
+<li><b>Turn its dials.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI Controls on. Press <kbd>MARK</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>MARK</kbd> again. Now CTRL 1 moves that control on the synth.</li>
+<li><b>Record a sweep.</b> Start a pattern, press <kbd>SHIFT</kbd> + <kbd>VALUE</kbd> and turn the dial. It plays back on every loop.</li>
 </ol>
 
 <h2 id="legend">Reading the screens</h2>
 <p>Every MIDI screen has a title bar and a help line at the bottom. On the help line, a word on a lit box is a control on the SP and the plain words after it are what it does: <b>VALUE CHANGES BANK</b> means turn VALUE to change bank. <b>C1</b>, <b>C2</b> and <b>C3</b> are CTRL 1, 2 and 3.</p>
 
 <h2 id="menu">MIDI SETTINGS</h2>
-<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens the MIDI SETTINGS menu from any DOOM screen, in or out of MIDI mode.</p>
+<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens the MIDI SETTINGS menu from any DOOM screen, with MIDI Controls on or off.</p>
 <div class="tbl"><table>
 <tr><th>Entry</th><th>For</th></tr>
 <tr><td><b>PADS</b></td><td>Which synth or channel each pad plays</td></tr>
 <tr><td><b>DEVICES</b></td><td>Your synths: name and channel</td></tr>
 <tr><td><b>ROUTES</b></td><td>Pass MIDI from one synth to another</td></tr>
-<tr><td><b>PATTERN</b></td><td>Clear the current pattern's recorded knob moves</td></tr>
+<tr><td><b>PATTERN</b></td><td>Clear the current pattern's recorded dial moves</td></tr>
 </table></div>
 <p>Turn <kbd>VALUE</kbd> to pick, press it to open. <kbd>EXIT</kbd> goes back a level; in the menu it closes it.</p>
 <div class="shots">
@@ -93,16 +93,16 @@
 <li><b>The pad needs a sample</b> or the sequencer skips it. To hear only the synth, record silence into the pad; don't mute a sample.</li>
 <li><b>Melodies:</b> in the piano roll, each step's pitch is added to the pad's note.</li>
 <li><b>Note length</b> follows the step's gate, not the sample, so a short silent sample is fine.</li>
-<li><b>Movement:</b> <a href="#auto">record knob moves</a> into the same pattern.</li>
+<li><b>Movement:</b> <a href="#auto">record dial moves</a> into the same pattern.</li>
 </ul>
 <p>STOP and choke don't send note-off yet, so a note can hang. All-notes-off or panic on the synth clears it.</p>
 
-<h2 id="midi">MIDI mode</h2>
-<p>In MIDI mode the CTRL knobs send CC instead of changing the effect. There are 36 CTRLs: six banks of six.</p>
+<h2 id="midi">MIDI Controls</h2>
+<p>With MIDI Controls on, the CTRL dials send CC instead of changing the effect. There are 36 CTRLs: six banks of six.</p>
 <ul>
-<li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> turns MIDI mode on at that bank. The bank's FX key lights and the title bar shows it.</li>
+<li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> turns MIDI Controls on at that bank. The bank's FX key lights and the title bar shows it.</li>
 <li><kbd>VALUE</kbd> flips between CTRL 1 to 3 (page 1/2) and CTRL 4 to 6 (page 2/2).</li>
-<li><kbd>EXIT</kbd> leaves MIDI mode.</li>
+<li><kbd>EXIT</kbd> turns MIDI Controls off.</li>
 </ul>
 <p>Each row shows the CTRL, its value as a number and a bar, then its device or channel and its CC.</p>
 <div class="shots">
@@ -122,7 +122,7 @@
 </div>
 
 <h2 id="routes">Routing</h2>
-<p>Play one synth's keys and another plays along. Turn a knob on one and a control moves on another. The SP takes MIDI in on its MIDI input and USB and sends it out of its MIDI output, so a single keyboard can drive your whole rig.</p>
+<p>Play one synth's keys and another plays along. Turn a dial on one and a control moves on another. The SP takes MIDI in on its MIDI input and USB and sends it out of its MIDI output, so a single keyboard can drive your whole rig.</p>
 <p>Routing works between <a href="#pads">devices</a>, so set up a device for every synth involved. The SP tells synths apart by channel and re-sends each message on the receiving device's channel.</p>
 
 <h3>The ROUTES grid</h3>
@@ -141,22 +141,22 @@
 
 <div class="shots"><figure><div class="screen"><img src="images/learn-route.png" alt="Route MINILOG to NTS-1 with CC and BEND on and two CC map pairs" width="804" height="420" loading="lazy"></div><figcaption>NOTES picked; CC and BEND on</figcaption></figure></div>
 <h3>The CC map</h3>
-<p>Synths rarely share CC numbers, so CC to another synth passes only through the route's <b>CC map</b>: pairs of <b>FROM</b> knob and <b>TO</b> control. CC to the SP passes as it is.</p>
+<p>Synths rarely share CC numbers, so CC to another synth passes only through the route's <b>CC map</b>: pairs of <b>FROM</b> dial and <b>TO</b> control. CC to the SP passes as it is.</p>
 <ul>
 <li>On the route screen, press <b>CC</b> to open the map (or <kbd>MARK</kbd> at any time).</li>
-<li><b>Turn the knob on the sending synth</b> to fill in FROM, then set TO with <b>CTRL 2</b>. Or set both by hand with <b>CTRL 1</b> and <b>CTRL 2</b>.</li>
+<li><b>Turn the dial on the sending synth</b> to fill in FROM, then set TO with <b>CTRL 2</b>. Or set both by hand with <b>CTRL 1</b> and <b>CTRL 2</b>.</li>
 <li>Do it on <b>+ ADD</b> to make a new pair. Turn <kbd>VALUE</kbd> to move between pairs.</li>
 <li><kbd>SHIFT</kbd> + <kbd>DEL</kbd> removes a pair. <b>CLEAR ALL</b>, under + ADD, removes them all after asking.</li>
 </ul>
-<p>Controls are named for a synth with a CC list. One knob can drive several controls: add a pair for each. Once a route has pairs, <b>CC</b> on the route screen switches them on and off without losing them; an empty map switches CC off. There is room for 64 pairs in all.</p>
+<p>Controls are named for a synth with a CC list. One dial can drive several controls: add a pair for each. Once a route has pairs, <b>CC</b> on the route screen switches them on and off without losing them; an empty map switches CC off. There is room for 64 pairs in all.</p>
 <div class="shots"><figure><div class="screen"><img src="images/learn-ccmap.png" alt="CC map: CUTOFF to RESO and LFO RT to LFO RT" width="804" height="420" loading="lazy"></div><figcaption>The Minilogue's cutoff moves the NTS-1's resonance</figcaption></figure><figure><div class="screen"><img src="images/learn-ccmap-clear.png" alt="CLEAR CC MAP? with NO and YES" width="804" height="420" loading="lazy"></div><figcaption>CLEAR ALL asks first</figcaption></figure></div>
 <p>Routes and pairs are saved on the SP as you go.</p>
 
-<h2 id="auto">Recording knob moves</h2>
+<h2 id="auto">Recording dial moves</h2>
 <p>Record CTRL moves into a pattern and they play back as CC on every loop. Each CTRL gets 64 points per pattern, so slow sweeps stay smooth.</p>
 <ul>
-<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> starts and stops recording in MIDI mode. The title bar shows <code>REC</code>.</li>
-<li>Moves play back whenever the pattern runs, in or out of MIDI mode.</li>
+<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> starts and stops recording with MIDI Controls on. The title bar shows <code>REC</code>.</li>
+<li>Moves play back whenever the pattern runs, with MIDI Controls on or off.</li>
 <li>Grab a CTRL during playback and you take over until the pattern loops.</li>
 <li>An <b>A</b> next to a CTRL means it has moves in this pattern.</li>
 </ul>
@@ -178,24 +178,46 @@
 <figure><div class="screen"><img src="images/learn-pattern-done.png" alt="AUTOMATION DELETED" width="804" height="420" loading="lazy"></div><figcaption>Done</figcaption></figure>
 </div>
 
+<h2 id="rig">Bigger setups</h2>
+<p>The SP has one MIDI input and one MIDI output. Two small boxes take it from one synth to a whole rig: a <b>thru box</b> to reach more synths, and a <b>merger</b> to play the SP from more than one.</p>
+<figure class="diagram"><svg viewBox="0 0 600 472" class="rig" role="img" aria-labelledby="rg-title"><title id="rg-title">Example rig. A Minilogue on channel 4 and a controller keyboard on channel 6 go into a MIDI merger, which feeds the SP-404MKII MIDI input. The SP MIDI output goes into a MIDI thru box, which feeds an NTS-1 on channel 5, a volca keys on channel 1 and the Minilogue.</title><defs><marker id="rg-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="rg-head"/></marker></defs><path d="M195 62 C195 86.0 270 86.0 270 108" class="rg-w" marker-end="url(#rg-a)"/><path d="M405 62 C405 86.0 330 86.0 330 108" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 162 C300 186.0 300 186.0 300 208" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 262 C300 286.0 300 286.0 300 308" class="rg-w" marker-end="url(#rg-a)"/><path d="M270 362 C270 386.0 105 386.0 105 408" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 362 C300 386.0 300 386.0 300 408" class="rg-w" marker-end="url(#rg-a)"/><path d="M330 362 C330 386.0 495 386.0 495 408" class="rg-w" marker-end="url(#rg-a)"/><rect x="110" y="10" width="170" height="52" rx="10" class="rg-box"/><text x="195.0" y="33" class="rg-t">MINILOG</text><text x="195.0" y="51" class="rg-s">MIDI OUT · channel 4</text><rect x="320" y="10" width="170" height="52" rx="10" class="rg-box"/><text x="405.0" y="33" class="rg-t">Controller</text><text x="405.0" y="51" class="rg-s">MIDI OUT · channel 6</text><rect x="215" y="110" width="170" height="52" rx="10" class="rg-box acc"/><text x="300.0" y="133" class="rg-t">MIDI merger</text><text x="300.0" y="151" class="rg-s">2 in, 1 out</text><rect x="190" y="210" width="220" height="52" rx="10" class="rg-box sp"/><text x="300.0" y="233" class="rg-t">SP-404MKII</text><text x="300.0" y="251" class="rg-s">routes and sends</text><rect x="215" y="310" width="170" height="52" rx="10" class="rg-box acc"/><text x="300.0" y="333" class="rg-t">MIDI thru box</text><text x="300.0" y="351" class="rg-s">1 in, 3 out</text><rect x="20" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="105.0" y="433" class="rg-t">NTS-1</text><text x="105.0" y="451" class="rg-s">MIDI IN · channel 5</text><rect x="215" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="300.0" y="433" class="rg-t">volca keys</text><text x="300.0" y="451" class="rg-s">MIDI IN · channel 1</text><rect x="410" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="495.0" y="433" class="rg-t">MINILOG</text><text x="495.0" y="451" class="rg-s">MIDI IN · channel 4</text><text x="312" y="190" class="rg-l" text-anchor="start">into MIDI IN</text><text x="312" y="290" class="rg-l" text-anchor="start">from MIDI OUT</text></svg><figcaption>An example rig. The Minilogue appears twice: its MIDI OUT feeds the merger, and its MIDI IN takes the SP's output.</figcaption></figure>
+
+<h3>Cables</h3>
+<p>The SP's MIDI sockets are 3.5 mm TRS jacks, Type A. Most synths have 5-pin DIN sockets, so you need a TRS-to-DIN adaptor or cable for each SP socket you use. Make sure it is <b>Type A</b>: a Type B adaptor is wired differently and won't pass anything. A synth with its own Type A TRS jacks takes a plain TRS-to-TRS cable.</p>
+
+<h3>More synths: a MIDI thru box</h3>
+<p>Everything the SP sends leaves from its one output, each synth's part on its own channel. A thru box, also called a MIDI splitter, copies that stream to several outputs, one cable per synth. Every synth hears everything and plays only its own channel.</p>
+<ul>
+<li><b>Daisy-chaining</b> works too: SP to synth A, synth A's MIDI THRU to synth B. It's fine for two or three synths. Each hop adds a little delay, so for more synths a thru box keeps timing tight.</li>
+<li><b>Synths with only a MIDI IN</b>, like the volcas, can't pass MIDI on. Give them a thru box output, or put them last in a chain.</li>
+<li><b>Set every synth to its own channel</b>, matching its device in <a href="#pads">DEVICES</a>. Two synths on one channel both play.</li>
+</ul>
+
+<h3>More players: a MIDI merger</h3>
+<p>To <a href="#routes">route</a> synths through the SP, their MIDI outputs have to reach its one input. A merger combines two or more MIDI streams into one. Keep each synth on its own channel: that's how the ROUTES grid tells them apart.</p>
+<ul>
+<li>MIDI over USB from a computer or phone is a second input, routed the same way, so you may not need a merger for that.</li>
+<li>Only send what you route. A synth that streams a lot of CC, such as every dial move, shares the merger's bandwidth with the others.</li>
+</ul>
+
 <h2 id="keys">Key summary</h2>
 <div class="tbl"><table>
 <tr><th>Keys</th><th>Does</th></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>Open or close MIDI SETTINGS</td></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI mode on, bank 1 to 6</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI Controls on, bank 1 to 6</td></tr>
 <tr><td><kbd>VALUE</kbd></td><td>MIDI page: CTRL page 1/2, 2/2. Menus: pick and open</td></tr>
 <tr><td><kbd>MARK</kbd></td><td>MIDI page: edit CTRLs. Route: open the CC map</td></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Record knob moves on or off</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Record dial moves on or off</td></tr>
 <tr><td><kbd>DEL</kbd> + turn a CTRL</td><td>Clear that CTRL's moves in this pattern</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>DEL</kbd> + <kbd>FX1..FX6</kbd></td><td>Clear that bank's moves in this pattern</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>DEL</kbd></td><td>CC map: remove a pair</td></tr>
-<tr><td><kbd>EXIT</kbd></td><td>Back one level; from the MIDI page, MIDI mode off</td></tr>
+<tr><td><kbd>EXIT</kbd></td><td>Back one level; from the MIDI page, MIDI Controls off</td></tr>
 </table></div>
 
 <h2 id="limits">Limits</h2>
 <ul>
 <li>MIDI goes out of the MIDI output only. USB MIDI out isn't supported; routing takes MIDI in from both.</li>
-<li>In MIDI mode the CTRL knobs don't move the SP's own effect.</li>
+<li>With MIDI Controls on, the CTRL dials don't move the SP's own effect.</li>
 <li>7 devices, 11 synth names, 250 CC names, 64 CC map pairs.</li>
 <li>Two devices on one channel look like one synth to the router.</li>
 <li>Routing passes notes, CC, bend, aftertouch and program change. Clock, start/stop and SysEx stay with the SP.</li>

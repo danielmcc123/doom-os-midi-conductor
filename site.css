@@ -221,3 +221,15 @@ main.tool{padding-block:72px 96px}
 main.tool .lead{margin-top:20px}
 .top .links a.btn{color:var(--on-acc)}
 .top .links a.btn:hover{color:var(--on-acc)}
+
+/* rig diagram */
+figure.diagram{margin:28px 0 8px;padding:24px;background:var(--panel);border:1px solid var(--line);border-radius:20px}
+figure.diagram svg{display:block;width:100%;max-width:600px;height:auto;margin:0 auto}
+.rig .rg-box{fill:var(--bg2);stroke:var(--line);stroke-width:1.5}
+.rig .rg-box.acc{stroke:var(--acc)}
+.rig .rg-box.sp{fill:var(--bg);stroke:var(--fg);stroke-width:2}
+.rig .rg-t{fill:var(--fg);font:600 15px var(--sans);text-anchor:middle}
+.rig .rg-s{fill:var(--dim);font:400 12px var(--sans);text-anchor:middle}
+.rig .rg-l{fill:var(--dim);font:400 12px var(--sans)}
+.rig .rg-w{fill:none;stroke:var(--acc);stroke-width:1.75}
+.rig .rg-head{fill:var(--acc)}
