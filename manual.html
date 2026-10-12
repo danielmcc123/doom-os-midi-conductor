@@ -91,7 +91,7 @@ Keep the original Roland files so you can go back. Use at your own risk.</div>
 <li><kbd>EXIT</kbd> in the menu, or <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> anywhere, closes it.</li>
 </ul>
 <div class="shots">
-<figure><img src="images/learn-menu.png" alt="MIDI SETTINGS menu with PADS highlighted and DEVICES next to it"><figcaption>MIDI SETTINGS: PADS and DEVICES</figcaption></figure>
+<figure><img src="images/learn-menu.png" alt="MIDI SETTINGS menu with PADS highlighted, DEVICES and PATTERN next to it"><figcaption>MIDI SETTINGS: PADS, DEVICES and PATTERN</figcaption></figure>
 </div>
 
 <h2 id="pads">Pad channels and devices</h2>
@@ -125,8 +125,10 @@ Keep the original Roland files so you can go back. Use at your own risk.</div>
 <div class="tbl"><table>
 <tr><th>Maker</th><th>Synths (device name)</th></tr>
 <tr><td>Audiothingies</td><td>MicroMonsta 2 (<code>MM2</code>). For its second part, add a second device with the same name on the next channel.</td></tr>
-<tr><td>Behringer</td><td>Grind (<code>GRIND</code>). Only the ASSIGN output follows a CC, one at a time: set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
+<tr><td>Behringer</td><td>TD-3-MO (<code>TD-3-MO</code>): cutoff and accent only. Grind (<code>GRIND</code>). Only the ASSIGN output follows a CC, one at a time: set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
+<tr><td>Elektron</td><td>Digitone II (<code>DT2</code>). The synth pages are numbered (SYN 1A to 4H) because what they do depends on the machine; the filter is shown as Multi-Mode. Each track has its own channel.</td></tr>
 <tr><td>Korg</td><td>Minilogue (<code>MINILOG</code>), NTS-1 (<code>NTS-1</code>), and the volcas Keys, Nubass, Beats, Sample, FM and Kick (<code>VKEYS</code>, <code>VNUBASS</code>, <code>VBEATS</code>, <code>VSAMPLE</code>, <code>VFM</code>, <code>VKICK</code>). The volcas only take CC with MIDI RX ShortMessage turned on.</td></tr>
+<tr><td>Roland</td><td>S-1 Tweak Synth (<code>S-1</code>). Its default MIDI channel is 3.</td></tr>
 </table></div>
 <div class="shots wide">
 <figure><img src="images/cc-picker.png" alt="The patcher's CC lists panel with four synths added"><figcaption>The CC lists panel in the patcher</figcaption></figure>
@@ -165,12 +167,25 @@ Keep the original Roland files so you can go back. Use at your own risk.</div>
 <li>While recording, a CTRL you move is written at every point the pattern passes. A CTRL you touch keeps recording its current value until you stop.</li>
 <li>The recorded moves play back as the pattern runs, with MIDI mode on or off, and stop when the sequencer stops.</li>
 <li>Turn a CTRL by hand during playback and it takes over from its lane until the pattern loops.</li>
-<li><kbd>SHIFT</kbd> + <kbd>EXIT</kbd> erases every lane and leaves MIDI mode on.</li>
 </ul>
 <div class="shots">
 <figure><img src="images/midi-rec.png" alt="MIDI page with REC shown in the title bar"><figcaption>Recording on</figcaption></figure>
+<figure><img src="images/midi-page-1.png" alt="MIDI page with an A beside CTRL 1 and CTRL 2"><figcaption>An <b>A</b> marks a CTRL that has recorded moves</figcaption></figure>
 </div>
-<p>All patterns share the same lanes, and they are kept in RAM only, so they are cleared when you power off.</p>
+<h3>Every pattern has its own moves</h3>
+<p>The recorded moves belong to the pattern you are on (A1 to J16). Switch pattern and that pattern's moves are the ones that play, and the <b>A</b> marks follow. Moves are saved to the SP a moment after you change them, so they survive a power off.</p>
+<h3>Clearing moves</h3>
+<ul>
+<li><kbd>DEL</kbd> + turn a CTRL erases that CTRL's moves in the current pattern.</li>
+<li><kbd>SHIFT</kbd> + <kbd>DEL</kbd> + <kbd>FX1..FX6</kbd> erases the six CTRLs of that bank in the current pattern.</li>
+<li><b>PATTERN</b> in the MIDI SETTINGS menu clears all of the current pattern's moves. It asks first (NO is picked to start with) and then shows <b>AUTOMATION DELETED</b>.</li>
+</ul>
+<div class="shots">
+<figure><img src="images/learn-pattern.png" alt="The PATTERN view with CLEAR AUTOMATION"><figcaption>PATTERN view</figcaption></figure>
+<figure><img src="images/learn-pattern-ask.png" alt="Confirmation: CLEAR THIS PATTERN? with NO and YES"><figcaption>The question</figcaption></figure>
+<figure><img src="images/learn-pattern-done.png" alt="AUTOMATION DELETED with OK"><figcaption>Confirmation</figcaption></figure>
+</div>
+<p>Other patterns are never touched by any of these.</p>
 
 <h2 id="edit">Editing a CTRL</h2>
 <p><kbd>MARK</kbd> turns edit mode on and off on the MIDI page. In edit mode, turn <kbd>VALUE</kbd> to pick the CTRL; its box moves. Then use the CTRL knobs:</p>
@@ -187,12 +202,13 @@ All settings are saved in DOOM OS's settings file and survive a power cycle.</p>
 <h2 id="keys">Key summary</h2>
 <div class="tbl"><table>
 <tr><th>Keys</th><th>Does</th></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>MIDI SETTINGS menu (pads and devices); again to close</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>MIDI SETTINGS menu (pads, devices, pattern); again to close</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI mode on, bank 1 to 6</td></tr>
 <tr><td><kbd>VALUE</kbd></td><td>MIDI page: flip CTRL page 1/2, 2/2. Menu: pick and open. Pads: change bank</td></tr>
 <tr><td><kbd>MARK</kbd></td><td>MIDI page: edit the CTRLs, again to finish</td></tr>
 <tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Recording on or off</td></tr>
-<tr><td><kbd>SHIFT</kbd> + <kbd>EXIT</kbd></td><td>Erase all recorded moves</td></tr>
+<tr><td><kbd>DEL</kbd> + turn a CTRL</td><td>Erase that CTRL's recorded moves in this pattern</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>DEL</kbd> + <kbd>FX1..FX6</kbd></td><td>Erase that bank's recorded moves in this pattern</td></tr>
 <tr><td><kbd>EXIT</kbd></td><td>Back one step: view to menu, menu closes, edit mode ends, then MIDI mode off</td></tr>
 </table></div>
 
