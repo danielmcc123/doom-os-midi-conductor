@@ -121,20 +121,20 @@ Keep the original Roland files so you can go back. Use at your own risk.</div>
 
 <h2 id="names">CC lists</h2>
 <p>A device named after one of the supported synths carries that synth's CC list. A CTRL that follows such a device picks its CC by name, and the MIDI page shows the name. Other devices, and CTRLs that don't follow a device, send raw CC numbers, so every synth works.</p>
-<p>You choose the lists in the <a href="patcher.html">patcher</a> before you build the firmware. Nothing is pre-selected: use <b>+ Add a synth</b> and pick from the list. The ✕ on a row removes it. The synths you add take the device name slots on the SP in the order shown, followed by the generic names.</p>
+<p>You choose the lists in the <a href="patcher.html">patcher</a> before you build the firmware. Nothing is pre-selected: use <b>+ Add a synth</b> and pick from the list. The ✕ on a row removes it. The synths you add take the device name slots on the SP in the order shown, followed by the generic names. The first seven are also set up as devices 1 to 7, with their channel if they have one (the S-1 comes on channel 3). This only fills a device that has no name and no channel yet, so a device you have already set up is left alone.</p>
 <div class="tbl"><table>
 <tr><th>Maker</th><th>Synths (device name)</th></tr>
 <tr><td>Audiothingies</td><td>MicroMonsta 2 (<code>MM2</code>). For its second part, add a second device with the same name on the next channel.</td></tr>
 <tr><td>Behringer</td><td>TD-3-MO (<code>TD-3-MO</code>): cutoff and accent only. Grind (<code>GRIND</code>). Only the ASSIGN output follows a CC, one at a time: set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
 <tr><td>Elektron</td><td>Digitone II (<code>DT2</code>). The synth pages are numbered (SYN 1A to 4H) because what they do depends on the machine; the filter is shown as Multi-Mode. Each track has its own channel.</td></tr>
 <tr><td>Korg</td><td>Minilogue (<code>MINILOG</code>), NTS-1 (<code>NTS-1</code>), and the volcas Keys, Nubass, Beats, Sample, FM and Kick (<code>VKEYS</code>, <code>VNUBASS</code>, <code>VBEATS</code>, <code>VSAMPLE</code>, <code>VFM</code>, <code>VKICK</code>). The volcas only take CC with MIDI RX ShortMessage turned on.</td></tr>
-<tr><td>Roland</td><td>S-1 Tweak Synth (<code>S-1</code>). Its default MIDI channel is 3.</td></tr>
+<tr><td>Roland</td><td>S-1 Tweak Synth (<code>S-1</code>), set up on its default MIDI channel 3.</td></tr>
 </table></div>
 <div class="shots wide">
 <figure><img src="images/cc-picker.png" alt="The patcher's CC lists panel with four synths added"><figcaption>The CC lists panel in the patcher</figcaption></figure>
 </div>
 <h3>Your own synth</h3>
-<p>Not on the list? Use the <b>JSON template</b> or <b>CSV template</b> links under the list, fill in your synth's CC numbers and names, and add the file in the same panel. A custom list has a device name of 1 to 7 characters and CC names of 1 to 7 characters (A to Z, 0 to 9, space and <code>- + . / #</code>). There is room for 11 device names and 250 CC names in all. <b>download this list</b> saves the current choice as a starting point.</p>
+<p>Not on the list? Use the <b>JSON template</b> or <b>CSV template</b> links under the list, fill in your synth's CC numbers and names, and add the file in the same panel. A device can also have a default <b>channel</b> (1 to 16): <code>"channel": 3</code> in the JSON file, or a fourth CSV column, once per device. Without one the device has no channel until you set it. A custom list has a device name of 1 to 7 characters and CC names of 1 to 7 characters (A to Z, 0 to 9, space and <code>- + . / #</code>). There is room for 11 device names and 250 CC names in all. <b>download this list</b> saves the current choice as a starting point.</p>
 
 <h2 id="sequencing">Sequence your synths</h2>
 <p>The SP's sequencer can play your external synths. Every pad hit in a pattern goes out of the DIN MIDI output as a note, on that pad's channel. Put different pads on different channels and one pattern plays several synths at once.</p>

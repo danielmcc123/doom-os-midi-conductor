@@ -48,8 +48,8 @@ You can also open `patcher.html` from a downloaded copy of this repository.
 
 ## Files
 
-`releases/0.4.0-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
-image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.3.0-alpha/`, `releases/0.2.0-alpha/` and `releases/0.1.0-alpha/` are the earlier releases, kept for reference (0.1.0 was built on DOOM OS 0.6.1-alpha, ED5E).
+`releases/0.4.1-alpha/` holds the patcher script and the checksums of the stock and patched images. The patched
+image's SHA-256 is in `checksums.txt`, so you can confirm that what you download matches. `releases/0.4.0-alpha/`, `releases/0.3.0-alpha/`, `releases/0.2.0-alpha/` and `releases/0.1.0-alpha/` are the earlier releases, kept for reference (0.1.0 was built on DOOM OS 0.6.1-alpha, ED5E).
 
 ## Credits and licence
 
