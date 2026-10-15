@@ -18,6 +18,8 @@ every synth on its own channel. Built on [DOOM OS](https://klangfeldlabs.com/doo
   Behringer Grind and TD-3-MO, Roland S-1, Elektron Digitone II and Audiothingies MicroMonsta 2, or load your own.
 - **Route synth to synth.** Play one synth's keys and another plays along; map one synth's dials onto another's controls.
 - **All on the unit.** SHIFT + REMAIN sets up synths, pads and routes, with a help line on every screen.
+- **Play and record the SP from a keyboard.** Notes routed to the SP play the pad of DOOM OS's current track, pitched,
+  and are recorded in record mode with their pitch and velocity.
 - **Effect motion** from DOOM OS goes out as CC too.
 
 ## Up and running
