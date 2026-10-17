@@ -23,7 +23,7 @@
 <ol class="steps">
 <li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
 <li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. <b>CTRL 2</b> names device 1, <b>CTRL 3</b> sets its channel to your synth's.</li>
-<li><b>Give it a pad.</b> <kbd>EXIT</kbd>, open <b>PADS</b>, tap a pad and turn <b>CTRL 1</b> to device 1. The pad needs a sample: record a second of silence into it. Hit the pad and the synth plays.</li>
+<li><b>Give it a pad.</b> <kbd>EXIT</kbd>, open <b>PADS</b>, tap a pad and turn <b>CTRL 1</b> to device 1. Hit the pad and the synth plays.</li>
 <li><b>Turn its dials.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI Controls on. Press <kbd>MARK</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>MARK</kbd> again. Now CTRL 1 moves that control on the synth.</li>
 <li><b>Record a sweep.</b> Start a pattern, press <kbd>SHIFT</kbd> + <kbd>VALUE</kbd> and turn the dial. It plays back on every loop.</li>
 </ol>
@@ -79,6 +79,7 @@
 <tr><td>Behringer</td><td>TD-3-MO (<code>TD-3-MO</code>): cutoff and accent only. Grind (<code>GRIND</code>): only the ASSIGN output follows CC, one at a time; set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
 <tr><td>Elektron</td><td>Digitone II (<code>DT2</code>). Synth pages are numbered SYN 1A to 4H because they depend on the machine. Each track has its own channel.</td></tr>
 <tr><td>Korg</td><td>Minilogue (<code>MINILOG</code>), NTS-1 (<code>NTS-1</code>), volca Keys, Nubass, Beats, Sample, FM and Kick (<code>VKEYS</code>, <code>VNUBASS</code>, <code>VBEATS</code>, <code>VSAMPLE</code>, <code>VFM</code>, <code>VKICK</code>). Volcas need MIDI RX ShortMessage on to take CC.</td></tr>
+<tr><td>Novation</td><td>Bass Station II (<code>BS2</code>): every control that has a CC number. Waveforms, envelope modes and the mod wheel can only be set by NRPN, so they are not listed.</td></tr>
 <tr><td>Roland</td><td>S-1 Tweak Synth (<code>S-1</code>), on channel 3.</td></tr>
 </table></div>
 <div class="shots wide">
@@ -90,9 +91,8 @@
 <h2 id="sequencing">Sequencing synths</h2>
 <p>Every pad hit in a pattern goes out as a note on that pad's channel. Put pads on different synths and one pattern plays them all.</p>
 <ul>
-<li><b>The pad needs a sample</b> or the sequencer skips it. To hear only the synth, record silence into the pad; don't mute a sample.</li>
 <li><b>Melodies:</b> in the piano roll, each step's pitch is added to the pad's note.</li>
-<li><b>Note length</b> follows the step's gate, not the sample, so a short silent sample is fine.</li>
+<li><b>Note length</b> follows the step's gate.</li>
 <li><b>Movement:</b> <a href="#auto">record dial moves</a> into the same pattern.</li>
 </ul>
 <p>STOP and choke don't send note-off yet, so a note can hang. All-notes-off or panic on the synth clears it.</p>
@@ -122,8 +122,8 @@
 </div>
 
 <h2 id="routes">Routing</h2>
-<p>Play one synth's keys and another plays along. Turn a dial on one and a control moves on another. The SP takes MIDI in on its MIDI input and USB and sends it out of its MIDI output, so a single keyboard can drive your whole rig.</p>
-<p>Routing works between <a href="#pads">devices</a>, so set up a device for every synth involved. The SP tells synths apart by channel and re-sends each message on the receiving device's channel.</p>
+<p>One keyboard can play every synth in your rig. Notes and CC messages can be passed to and from any device with a MIDI DIN connection.</p>
+<p>The SP sits in the middle. It receives MIDI on its MIDI input and sends it on from its MIDI output. Add each synth as a <a href="#pads">device</a>, then use routes to choose which device feeds which.</p>
 
 <h3>The ROUTES grid</h3>
 <p>Rows are the synths that send (FROM, devices 1 to 7). Columns are where it goes (TO, devices 1 to 7, then <b>SP</b>). A lit cell is a route that's on.</p>
