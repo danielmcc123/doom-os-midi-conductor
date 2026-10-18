@@ -208,14 +208,26 @@
 </table></div>
 <ul>
 <li><b>CTRL 1</b> to <b>CTRL 3</b> set the three settings on screen. The one you turn lights up.</li>
+<li>A VCO's <b>PITCH</b> moves one cent a step either side of the middle, out to 50 cents, then in whole semitones up to an octave.</li>
 <li><kbd>VALUE</kbd> flips between page 1/2 and 2/2. <kbd>ROLL</kbd> + the same FX key does too.</li>
-<li><kbd>MARK</kbd> opens SETUP: GHOST's LEVEL and its BUS (DRY, BUS 1 or BUS 2). <kbd>MARK</kbd> again goes back.</li>
+<li><kbd>MARK</kbd> opens SETUP: GHOST's LEVEL, its BUS (DRY, BUS 1 or BUS 2) and VOICES (how many notes it plays at once, 1 to 4). It is one page. <kbd>MARK</kbd> again goes back.</li>
+<li><kbd>RECORD SETTING</kbd> opens <a href="#programs">GHOST PROGRAMS</a>.</li>
 <li><kbd>EXIT</kbd> goes back to DOOM OS. <kbd>SHIFT</kbd> + <kbd>FX</kbd> goes to MIDI Controls.</li>
 </ul>
 <p>VCO 2 starts silent: turn up its <b>LEVEL</b> on page 2/2 to hear it.</p>
 <div class="shots"><figure><div class="screen"><img src="images/ghost-vco1.png" alt="GHOST VCO 1, page 1/2: WAVE, OCTAVE, SHAPE" width="804" height="420" loading="lazy"></div><figcaption>VCO 1</figcaption></figure><figure><div class="screen"><img src="images/ghost-vco2.png" alt="GHOST VCO 2, page 2/2: PITCH, LEVEL, MOD set to SYNC" width="804" height="420" loading="lazy"></div><figcaption>VCO 2, page 2/2: MOD just turned to SYNC</figcaption></figure></div>
 <div class="shots"><figure><div class="screen"><img src="images/ghost-filter.png" alt="GHOST FILTER: CUTOFF, RESO, EG INT" width="804" height="420" loading="lazy"></div><figcaption>FILTER, with CUTOFF turned</figcaption></figure><figure><div class="screen"><img src="images/ghost-lfo.png" alt="GHOST LFO: WAVE, RATE, INT" width="804" height="420" loading="lazy"></div><figcaption>LFO</figcaption></figure></div>
-<div class="shots"><figure><div class="screen"><img src="images/ghost-setup.png" alt="GHOST SETUP: LEVEL 100, BUS 1, PROGRAM --" width="804" height="420" loading="lazy"></div><figcaption>SETUP</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-setup.png" alt="GHOST SETUP: LEVEL 100, BUS 1, VOICES 4" width="804" height="420" loading="lazy"></div><figcaption>SETUP</figcaption></figure></div>
+<h3 id="programs">Programs</h3>
+<p>A program is a whole sound: every GHOST setting and its VOICES. GHOST comes with 20 and has room for 16 of yours. Press <kbd>RECORD SETTING</kbd> on a GHOST screen to open <b>GHOST PROGRAMS</b>. <kbd>VALUE</kbd> picks an entry, <kbd>MARK</kbd> opens it and <kbd>EXIT</kbd> goes back. <kbd>RECORD SETTING</kbd> again closes it.</p>
+<ul>
+<li><b>LOAD PROGRAM:</b> turn <kbd>VALUE</kbd> and each program loads and plays as you pass it, so you can hear it while you choose. <kbd>MARK</kbd> keeps the one you are on. <kbd>EXIT</kbd> puts your own sound back.</li>
+<li><b>SAVE PROGRAM:</b> pick one of the 16 slots and press <kbd>MARK</kbd> to name it. The name starts as the slot (<code>U01</code>). <kbd>VALUE</kbd> turns the letter, pressing it moves on, <b>CTRL 1</b> moves along the name, <b>CTRL 2</b> changes the letter and <kbd>DEL</kbd> rubs one out. <kbd>MARK</kbd> saves and <kbd>EXIT</kbd> cancels. Saving over a slot that is in use asks first.</li>
+<li><b>PERSIST PATCH CHANGES:</b> GHOST starts up with the sound it has now, every time you turn the SP on. Until you choose this, GHOST starts with its own default sound. Loading a program or turning a dial doesn't change what is kept until you choose this again.</li>
+</ul>
+<p>Your programs are saved on the SP and are the same in every project.</p>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-programs.png" alt="GHOST PROGRAMS: PERSIST PATCH CHANGES, SAVE PROGRAM, LOAD PROGRAM" width="804" height="420" loading="lazy"></div><figcaption>GHOST PROGRAMS</figcaption></figure><figure><div class="screen"><img src="images/ghost-load.png" alt="LOAD PROGRAM with PAD picked, 4 of 20" width="804" height="420" loading="lazy"></div><figcaption>LOAD PROGRAM</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-save.png" alt="SAVE PROGRAM: 16 slots, U01 to U05 shown" width="804" height="420" loading="lazy"></div><figcaption>SAVE PROGRAM</figcaption></figure><figure><div class="screen"><img src="images/ghost-name.png" alt="NAME PROGRAM: U01 with the cursor after it" width="804" height="420" loading="lazy"></div><figcaption>Naming a program</figcaption></figure></div>
 <h3>Recording its dials</h3>
 <p>GHOST records dial moves the way <a href="#auto">MIDI Controls</a> does, against the pattern, so a sound can change as the pattern plays.</p>
 <ul>
@@ -265,13 +277,14 @@
 <tr><td><kbd>EXIT</kbd></td><td>Back one level; from the MIDI page, MIDI Controls off; from GHOST, back to DOOM OS</td></tr>
 <tr><td><kbd>ROLL</kbd> + <kbd>REVERSE</kbd></td><td>Wake GHOST in this project, or let it rest</td></tr>
 <tr><td><kbd>ROLL</kbd> + <kbd>FX1..FX6</kbd></td><td>GHOST's settings, bank 1 to 6</td></tr>
+<tr><td><kbd>RECORD SETTING</kbd></td><td>On a GHOST screen: GHOST PROGRAMS (persist, save, load)</td></tr>
 </table></div>
 
 <h2 id="limits">Limits</h2>
 <ul>
 <li>MIDI goes out of the MIDI output only. USB MIDI out isn't supported; routing takes MIDI in from both.</li>
 <li>With MIDI Controls on, the CTRL dials don't move the SP's own effect.</li>
-<li>GHOST plays one note at a time for now, and its screens open from DOOM OS's page only.</li>
+<li>GHOST plays up to four notes at once, and its screens open from DOOM OS's page only.</li>
 <li>7 devices, 10 synth names of your own plus GHOST, 250 CC names, 64 CC map pairs.</li>
 <li>Two devices on one channel look like one synth to the router.</li>
 <li>Routing passes notes, CC, bend, aftertouch and program change. Clock, start/stop and SysEx stay with the SP.</li>
