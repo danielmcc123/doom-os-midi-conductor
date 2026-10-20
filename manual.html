@@ -142,7 +142,7 @@
 
 <div class="shots"><figure><div class="screen"><img src="images/learn-route.png" alt="Route MINILOG to NTS-1 with CC and BEND on and two CC map pairs" width="804" height="420" loading="lazy"></div><figcaption>NOTES picked; CC and BEND on</figcaption></figure></div>
 <h3>The CC map</h3>
-<p>Synths rarely share CC numbers, so CC to another synth passes only through the route's <b>CC map</b>: pairs of <b>FROM</b> dial and <b>TO</b> control. CC to the SP goes through a map too, to DOOM OS's mixer: each track's <b>LVL</b>, <b>PAN</b> and <b>BUS</b>, for tracks 1 to 16. CC that isn't in the SP's map passes to it as it is.</p>
+<p>Synths rarely share CC numbers, so CC to another synth passes only through the route's <b>CC map</b>: pairs of <b>FROM</b> dial and <b>TO</b> control. CC to the SP goes through a map too, to DOOM OS's mixer: each track's <b>LVL</b>, <b>PAN</b>, <b>BUS</b>, <b>MUTE</b> and <b>SOLO</b>, for tracks 1 to 16. MUTE and SOLO switch on at 64 and above and off below it. SOLO mutes every other track; switching it off clears all mutes. CC that isn't in the SP's map passes to it as it is.</p>
 <ul>
 <li>On the route screen, press <b>CC</b> to open the map (or <kbd>MARK</kbd> at any time).</li>
 <li><b>Turn the dial on the sending synth</b> to fill in FROM, then set TO with <b>CTRL 2</b>. Or set both by hand with <b>CTRL 1</b> and <b>CTRL 2</b>.</li>
@@ -184,15 +184,16 @@
 <h3>Waking it</h3>
 <ul>
 <li>On DOOM OS's page, press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd>. GHOST wakes up.</li>
-<li>Press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd> again to let it rest. While it rests it makes no sound, and <kbd>ROLL</kbd> + <kbd>FX</kbd> does what it does on the SP.</li>
+<li>Press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd> again to let it rest. While it rests it makes no sound, any note it was holding is let go, and <kbd>ROLL</kbd> + <kbd>FX</kbd> does what it does on the SP.</li>
 <li>GHOST is awake or resting <b>per project</b>, and the SP remembers it, so it is still there after a restart. Load a project where you never woke it and GHOST is resting.</li>
 </ul>
 <h3>Playing it</h3>
 <p>GHOST is a <a href="#pads">device</a> named <code>GHOST</code>. A fresh setup has it as device 7. To add it yourself, name a device GHOST in DEVICES: it needs no channel, so its channel shows a dash. Then:</p>
 <ul>
 <li><b>Pads:</b> set a pad to GHOST in PADS. Play the pad live or <a href="#sequencing">sequence</a> it in a pattern.</li>
-<li><b>Dials:</b> set CTRLs to GHOST in <a href="#edit">MIDI Controls</a>. GHOST has its own <a href="#names">CC list</a>, with the Minilogue's CC numbers.</li>
+<li><b>Dials:</b> set CTRLs to GHOST in <a href="#edit">MIDI Controls</a>. GHOST has its own <a href="#names">CC list</a>, with the Minilogue's CC numbers. It also has <b>LEVEL</b> (CC 7), so a dial can set its volume.</li>
 <li><b>Other synths:</b> <a href="#routes">route</a> a synth or keyboard to GHOST. Its CC goes through the CC map, like any other synth.</li>
+<li><b>Muting:</b> a muted pad sends no notes from a pattern, to GHOST or to any synth. Notes you play live are not muted.</li>
 </ul>
 <p>GHOST plays into BUS 1, so DOOM OS's bus effects reach it. If you rename the GHOST device, GHOST goes with the name.</p>
 <h3>Its screens</h3>
