@@ -1,6 +1,12 @@
+# Licences
+
+This project's own work is under the PolyForm Shield License 1.0.0 (`LICENSE`). The third-party material below keeps
+its own licence. Releases up to 0.6.4 were published under MIT.
+
 # Third-party material
 
-**DOOM OS** is by Quintus Oostendorp, released under the MIT licence (`LICENSE-DOOM-OS`). This project is an
+**DOOM OS** is by Quintus Oostendorp and is used with his permission. `LICENSE-DOOM-OS` is the MIT licence DOOM OS
+had when this project began, on 0.6.1-alpha; DOOM OS has its own licence now, published with it. This project is an
 add-on built on DOOM OS 0.6.2-alpha (build 3824):
 
 - The patch in `releases/` carries the DOOM OS changes to Roland's firmware together with this project's

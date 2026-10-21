@@ -42,7 +42,10 @@ patched images so you can check your file. Older releases are kept for reference
 
 ## Credits and licence
 
-- **DOOM OS** by Quintus Oostendorp (MIT), the foundation of everything here:
-  [klangfeld-labs/doom-os](https://github.com/klangfeld-labs/doom-os). Its licence is `LICENSE-DOOM-OS`.
-- This project is MIT licensed (`LICENSE`). Third-party notes are in `NOTICE.md`.
+- **DOOM OS** by Quintus Oostendorp, the foundation of everything here, used with permission:
+  [klangfeld-labs/doom-os](https://github.com/klangfeld-labs/doom-os). `LICENSE-DOOM-OS` is the MIT licence it had on 0.6.1-alpha; its current licence is in its repository.
+- MIDI Conductor's own work is licensed under the PolyForm Shield License 1.0.0 (`LICENSE`). In plain words: it is free to use,
+  including for making music, and you are welcome to link to the patcher page. It is free and meant to stay that way, so the licence
+  doesn't let anyone else sell it or build a rival product from it. DOOM OS is used with permission from Quintus Oostendorp
+  (see `NOTICE.md`). Releases up to 0.6.4 were published under MIT. Third-party notes are in `NOTICE.md`.
 - Not affiliated with Roland or the DOOM OS author.

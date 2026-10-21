@@ -13,14 +13,15 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#pads">Devices and pads</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#edit">Editing a CTRL</a></li><li><a href="#routes">Routing</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#ghost">GHOST</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li></ol></aside>
+<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#spset">SP settings</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#pads">Devices and pads</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#edit">Editing a CTRL</a></li><li><a href="#routes">Routing</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#ghost">GHOST</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li><li><a href="#support">Support</a></li></ol></aside>
 <main>
 <h1>Manual</h1>
 <p class="lead">How to play, sequence, route and record your synths from the SP-404MKII.</p>
 <div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52 and DOOM OS 0.6.2-alpha (build 3824), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
 <h2 id="quick">Quick start</h2>
-<p>Five steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
+<p>Six steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
 <ol class="steps">
+<li><b>Set up the SP.</b> Set MIDI Mode to A and turn MIDI Through off. See <a href="#spset">SP settings</a>.</li>
 <li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
 <li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. <b>CTRL 2</b> names device 1, <b>CTRL 3</b> sets its channel to your synth's.</li>
 <li><b>Give it a pad.</b> <kbd>EXIT</kbd>, open <b>PADS</b>, tap a pad and turn <b>CTRL 1</b> to device 1. Hit the pad and the synth plays.</li>
@@ -28,6 +29,13 @@
 <li><b>Record a sweep.</b> Start a pattern, press <kbd>SHIFT</kbd> + <kbd>VALUE</kbd> and turn the dial. It plays back on every loop.</li>
 </ol>
 
+<h2 id="spset">SP settings</h2>
+<p>Two settings in the SP's own SYSTEM settings change how MIDI Conductor behaves. Set them before you start.</p>
+<h3>MIDI Mode: set it to A (essential)</h3>
+<p>In mode B the SP spreads the banks over a keyboard range, so each bank sends higher notes than the one before and bank E sounds several octaves too high on a synth. In mode A every bank sends the same 16 notes. Switch to mode A and the problem goes away.</p>
+<p>The SP sends a pad's note by its position in the bank and not by its number, so notes rise along a row and each row down is lower: pads 1 to 4 send 48 to 51, pads 5 to 8 send 44 to 47, pads 9 to 12 send 40 to 43 and pads 13 to 16 send 36 to 39. That is how the SP does it, and the patch doesn't change it.</p>
+<h3>MIDI Through: turn it off (recommended)</h3>
+<p>With MIDI Through on, the SP also passes what it receives straight to its MIDI output. That is in addition to anything the patch <a href="#routes">routes</a> or plays, so a synth can hear the same notes twice, and a synth that echoes MIDI back can set up a loop. Turn it off and let the ROUTES grid decide what goes where.</p>
 <h2 id="legend">Reading the screens</h2>
 <p>Every MIDI screen has a title bar and a help line at the bottom. On the help line, a word on a lit box is a control on the SP and the plain words after it are what it does: <b>VALUE CHANGES BANK</b> means turn VALUE to change bank. <b>C1</b>, <b>C2</b> and <b>C3</b> are CTRL 1, 2 and 3.</p>
 
@@ -197,7 +205,7 @@
 </ul>
 <p>GHOST plays into BUS 1, so DOOM OS's bus effects reach it. If you rename the GHOST device, GHOST goes with the name.</p>
 <h3>Its screens</h3>
-<p><kbd>ROLL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> opens a bank of settings. The oscilloscope at the top shows what GHOST is playing.</p>
+<p><kbd>ROLL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> opens a bank of settings. The oscilloscope fills the top of the screen and shows what GHOST is playing. It keeps one scale, so you see how loud it is as well as its shape: the wave swells and fades with the envelope and shrinks as you turn LEVEL down. The bank's name and the page number sit in its corners, and the three settings are below it. When a screen opens or turns over, the keys that work on it show over the bottom of the scope for a few seconds.</p>
 <div class="tbl"><table>
 <tr><th>Bank</th><th>Page 1/2</th><th>Page 2/2</th></tr>
 <tr><td><kbd>FX1</kbd> VCO 1</td><td>WAVE, OCTAVE, SHAPE</td><td>PITCH, LEVEL, NOISE</td></tr>
@@ -216,7 +224,7 @@
 <li><kbd>EXIT</kbd> goes back to DOOM OS. <kbd>SHIFT</kbd> + <kbd>FX</kbd> goes to MIDI Controls.</li>
 </ul>
 <p>VCO 2 starts silent: turn up its <b>LEVEL</b> on page 2/2 to hear it.</p>
-<div class="shots"><figure><div class="screen"><img src="images/ghost-vco1.png" alt="GHOST VCO 1, page 1/2: WAVE, OCTAVE, SHAPE" width="804" height="420" loading="lazy"></div><figcaption>VCO 1</figcaption></figure><figure><div class="screen"><img src="images/ghost-vco2.png" alt="GHOST VCO 2, page 2/2: PITCH, LEVEL, MOD set to SYNC" width="804" height="420" loading="lazy"></div><figcaption>VCO 2, page 2/2: MOD just turned to SYNC</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-vco1.png" alt="GHOST VCO 1, page 1/2: WAVE, OCTAVE, SHAPE, with the key legend VALUE PAGE MARK SETUP EXIT BACK over the bottom of the scope" width="804" height="420" loading="lazy"></div><figcaption>VCO 1, just opened: the keys show for a few seconds</figcaption></figure><figure><div class="screen"><img src="images/ghost-vco2.png" alt="GHOST VCO 2, page 2/2: PITCH, LEVEL, MOD set to SYNC" width="804" height="420" loading="lazy"></div><figcaption>VCO 2, page 2/2: MOD just turned to SYNC</figcaption></figure></div>
 <div class="shots"><figure><div class="screen"><img src="images/ghost-filter.png" alt="GHOST FILTER: CUTOFF, RESO, EG INT" width="804" height="420" loading="lazy"></div><figcaption>FILTER, with CUTOFF turned</figcaption></figure><figure><div class="screen"><img src="images/ghost-lfo.png" alt="GHOST LFO: WAVE, RATE, INT" width="804" height="420" loading="lazy"></div><figcaption>LFO</figcaption></figure></div>
 <div class="shots"><figure><div class="screen"><img src="images/ghost-setup.png" alt="GHOST SETUP: LEVEL 100, BUS 1, VOICES 4" width="804" height="420" loading="lazy"></div><figcaption>SETUP</figcaption></figure></div>
 <h3 id="programs">Programs</h3>
@@ -232,14 +240,14 @@
 <h3>Recording its dials</h3>
 <p>GHOST records dial moves the way <a href="#auto">MIDI Controls</a> does, against the pattern, so a sound can change as the pattern plays.</p>
 <ul>
-<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> on a GHOST screen switches recording on or off. <b>REC</b> shows in the title bar while it is on.</li>
+<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> on a GHOST screen switches recording on or off. A <b>REC</b> label shows beside the page number while it is on.</li>
 <li>Turn a dial while recording and it is recorded from then on, until you switch recording off. Turn it when you aren't recording and it holds your value until the pattern comes round again.</li>
 <li>An <b>A</b> beside a setting means it has recorded moves in this pattern.</li>
 <li><kbd>DEL</kbd> + turn a dial clears that setting's moves in this pattern. <kbd>ROLL</kbd> + <kbd>DEL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> clears that bank's.</li>
 <li>Recorded moves play whether or not a GHOST screen is open. Leaving the screen, or letting GHOST rest, stops recording.</li>
 <li>They are saved on the SP a moment after you stop recording, one file for each pattern in each project, so they are still there after a restart. SETUP isn't recorded.</li>
 </ul>
-<div class="shots"><figure><div class="screen"><img src="images/ghost-rec.png" alt="GHOST FILTER while recording: REC in the title bar, CUTOFF turned, an A beside it" width="804" height="420" loading="lazy"></div><figcaption>Recording CUTOFF</figcaption></figure><figure><div class="screen"><img src="images/ghost-auto.png" alt="GHOST FILTER with recorded moves: an A beside CUTOFF" width="804" height="420" loading="lazy"></div><figcaption>Recorded: the A</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-rec.png" alt="GHOST FILTER while recording: a REC label beside the page number, CUTOFF turned, an A beside it" width="804" height="420" loading="lazy"></div><figcaption>Recording CUTOFF</figcaption></figure><figure><div class="screen"><img src="images/ghost-auto.png" alt="GHOST FILTER with recorded moves: an A beside CUTOFF" width="804" height="420" loading="lazy"></div><figcaption>Recorded: the A</figcaption></figure></div>
 
 <h2 id="rig">Bigger setups</h2>
 <p>The SP has one MIDI input and one MIDI output. Two small boxes take it from one synth to a whole rig: a <b>thru box</b> to reach more synths, and a <b>merger</b> to play the SP from more than one.</p>
@@ -292,10 +300,13 @@
 <li>A synth that echoes CC back, or a routing loop, may cause feedback. Untested.</li>
 <li>Works only with Roland 5.52 and DOOM OS 0.6.2-alpha (3824), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
 </ul>
+<h2 id="support">Support</h2>
+<p>MIDI Conductor is free to use. If it's useful to you, you can support its development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
 </main>
 </div>
 <footer><div class="wrap">
-<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT) and is free and open source.</p>
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
+<p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
 <p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
 </div></footer>
 </body></html>
