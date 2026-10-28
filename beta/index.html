@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIDI Conductor 0.7 Beta</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="description" content="The MIDI Conductor 0.7 beta for testers: patch Roland's 5.52 firmware and make your DEVICES.CSV, in your browser. Nothing is uploaded.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../site.css?v=a4b7d38d">
+<style>
+.devs{display:grid;gap:14px;margin-top:18px}
+.devs .row{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.devs .notes{margin:0;padding-left:20px;color:var(--warn)}
+.devs .err{color:var(--bad)}
+.devs output{display:block;font:400 13px/1.5 var(--mono);white-space:pre-wrap;background:var(--code);border:1px solid var(--line);border-radius:10px;padding:12px 14px;max-height:260px;overflow:auto}
+.new{margin:14px 0 0;padding-left:20px}
+.new li{margin:6px 0}
+#ccpicker .order{display:none}
+</style>
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>0.7 beta</small></a>
+<nav class="links" aria-label="Site"><a href="index.html" aria-current="page">Beta</a><a href="manual.html">Manual</a><a href="../index.html">Current release</a><a class="btn small" href="#get">Patch firmware</a></nav>
+</div></header>
+
+<main class="wrap tool">
+<h1>MIDI Conductor 0.7 beta</h1>
+<p class="lead">A test version for a few people before the next release. It is built on DOOM OS 0.7 and brings MIDI tracks, MIDI FX, a new device setup and a lot more. Thank you for trying it.</p>
+<div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back.</p></div>
+<div class="release">
+<div><h3>Release</h3><p><span data-release="version">0.7.0 beta</span></p></div>
+<div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
+<div><h3>DOOM OS</h3><p>0.7 (975C), built in</p></div>
+<div><h3>Released</h3><p><span data-release="released">28 October 2026</span></p></div>
+</div>
+
+<h2>What's new since 0.6</h2>
+<ul class="new">
+<li><b>DOOM OS 0.7</b> underneath.</li>
+<li><b>MIDI tracks:</b> pick <b>MIDI</b> in DOOM OS's instrument picker and a pad plays your synth, with its own page to choose the synth. The old PADS screen is gone.</li>
+<li><b>Devices:</b> new DEVICES screens with names, CC names, INPUT ONLY and USAGE, and a <code>DEVICES.CSV</code> file to bring your synths in (make it below).</li>
+<li><b>MIDI FX:</b> eleven effects on each MIDI or GHOST track (Harmonize, Echo, Scale, Chance, Randomize, Dispatch, Euclid, Loop Stretch, LFO, ENV, Time Elastic), the CHAIN page to switch, reorder and route them.</li>
+<li><b>The CC MAP:</b> ranges, and a synth's dials can move a track's mixer, its MIDI FX and its EQ.</li>
+<li><b>GHOST:</b> programs, and it follows DOOM OS's mixer and EQ.</li>
+<li><b>Per project:</b> your devices, routes, CTRLs and MIDI tracks belong to each project.</li>
+<li><b>Recording dial moves</b> is now <kbd>MARK</kbd> + <kbd>REC</kbd>. <kbd>MARK</kbd> held is catch on every screen.</li>
+</ul>
+<p>The <a href="manual.html">beta manual</a> covers all of it.</p>
+
+<h2 id="get">1. Patch</h2>
+<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one or an earlier MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
+<div id="patcher"></div>
+
+<h2 id="devices">2. Your synths</h2>
+<p>Synths are no longer built into the firmware. Pick yours here, download <code>DEVICES.CSV</code> and load it on the SP. You can make a new one at any time without patching again.</p>
+<div class="devs">
+<div id="ccpicker"></div>
+<div class="row"><button class="btn" id="save" type="button" disabled>Download DEVICES.CSV</button><span id="dstatus" role="status"></span></div>
+<ul class="notes" id="dnotes" hidden></ul>
+<output id="dout" hidden></output>
+</div>
+<p>Up to six synths, as devices 1 to 6 in the order shown (device 7 is GHOST). The file holds their names and CC names; set each device's MIDI channel on the SP afterwards.</p>
+<ol class="steps">
+<li>Copy <code>DEVICES.CSV</code> to the top level of the SD card, next to the <code>IMPORT</code> and <code>EXPORT</code> folders.</li>
+<li>On the SP: <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>, press <kbd>MARK</kbd>, pick <b>IMPORT</b> and press <kbd>VALUE</kbd>. Turn <kbd>VALUE</kbd> to YES and press it.</li>
+<li>Still on DEVICES, turn <kbd>VALUE</kbd> to each device and set its channel with <b>CTRL 3</b>.</li>
+</ol>
+<p>The devices belong to the project you import them into. For another project, import the file there too.</p>
+
+<h2>3. Install</h2>
+<p>Download the patched <code>SP404MKII_APP1.bin</code> and keep that name. Install it with Roland's original <code>SP404MKII_APP0.bin</code>, the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). To go back, install Roland's original files, or a release from the <a href="../patcher.html">current patcher</a>.</p>
+<p><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as MIDI tracks (see the <a href="manual.html#tracks">manual</a>).</p>
+
+<h2>4. Testing</h2>
+<p>Everything new is worth a go. The parts that most need real hands on them:</p>
+<ul class="new">
+<li>MIDI tracks: making them, picking the synth, deleting them, and the notes they send from the pattern.</li>
+<li>MIDI FX on your synths and on GHOST, the CHAIN page (moving effects, SOURCE PAD), and recording dial moves with <kbd>MARK</kbd> + <kbd>REC</kbd>.</li>
+<li>Importing <code>DEVICES.CSV</code>, and switching between projects.</li>
+<li>The CC MAP from a controller to your synths and to the SP's mixer, MIDI FX and EQ.</li>
+</ul>
+<p><b>Known:</b> the Arp is left out of MIDI FX in this beta while it is reworked. GHOST's device shows its channel as CH 17.</p>
+<p>When something goes wrong, note what you pressed and what you expected, and send it over with a photo or video of the screen if you can.</p>
+</main>
+
+<script src="releases/0.7.0-beta/conductor-patcher.js?v=33c74609"></script>
+<script src="cc-catalog.js?v=4c5dea5b"></script>
+<script src="cc_picker.js?v=149e8ae5"></script>
+<script src="devices-convert.js?v=2652dc76"></script>
+<script>
+(function () {
+  var $ = function (i) { return document.getElementById(i); }, csv = "";
+  var picker = createPicker($("ccpicker"), window.CC_CATALOG, update, 5);
+  var intro = $("ccpicker").querySelector(".ccpick p");
+  if (intro) intro.textContent = "Add the synths you use. Each one comes with its CC names, so a CTRL dial picks \"CUTOFF\" instead of a number. Add your own with a JSON or CSV file.";
+  function update() {
+    var notes = $("dnotes"), out = $("dout"), st = $("dstatus");
+    notes.hidden = out.hidden = true; notes.textContent = ""; st.className = ""; st.textContent = ""; $("save").disabled = true; csv = "";
+    if (picker && picker.problem()) { st.textContent = "Fix the list first: " + picker.problem(); st.className = "err"; return; }
+    var list;
+    try { list = picker ? picker.devices() : []; } catch (e) { st.textContent = e.message; st.className = "err"; return; }
+    if (!list.length) { st.textContent = "Add a synth to make the file."; return; }
+    var json = { devices: list.map(function (d, i) { return { device: i + 1, name: d[0], ccs: d[1] }; }) };
+    try {
+      var r = DevicesConvert.convert(JSON.stringify(json));
+      csv = r.csv; out.textContent = csv; out.hidden = false; $("save").disabled = false;
+      st.textContent = r.devices + " device" + (r.devices === 1 ? "" : "s") + ", " + r.ccs + " CC name" + (r.ccs === 1 ? "" : "s");
+      r.warnings.forEach(function (w) { var li = document.createElement("li"); li.textContent = w; notes.appendChild(li); });
+      notes.hidden = !r.warnings.length;
+    } catch (e) { st.textContent = e.message; st.className = "err"; }
+  }
+  update();
+  $("save").addEventListener("click", function () {
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    a.download = "DEVICES.CSV"; document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+})();
+</script>
+<footer><div class="wrap">
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a> by Quintus Oostendorp (MIT) and is free and open source.</p>
+<p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
+<p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
+</div></footer>
+</body></html>
