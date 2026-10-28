@@ -27,8 +27,7 @@ every synth on its own channel. Built on [DOOM OS](https://klangfeldlabs.com/doo
 1. Download Roland's SP-404MKII system update **5.52** and unzip it. It isn't in this repository.
 2. Drop `SP404MKII_APP1.bin` on the [patcher](https://danielmcc123.github.io/doom-os-midi-conductor/patcher.html)
    and pick your synths. It runs in your browser, uploads nothing, and refuses anything but Roland's stock 5.52.
-3. Keep the name `SP404MKII_APP1.bin` and install it with Roland's original `SP404MKII_APP0.bin`, the same way as
-   DOOM OS ([DOOM OS manual](https://klangfeldlabs.com/doom-os/manual/)). DOOM OS is already inside.
+3. Keep the name `SP404MKII_APP1.bin` and install it the same way as DOOM OS ([DOOM OS manual](https://klangfeldlabs.com/doom-os/manual/)). DOOM OS is already inside.
 4. Follow the [quick start](https://danielmcc123.github.io/doom-os-midi-conductor/manual.html#quick): a synth on a
    pad and a dial in five steps.
 
