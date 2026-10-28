@@ -262,8 +262,8 @@
 <tr><td><b>DISPATCH</b></td><td>Shares notes out over up to three synths: in turn, a chord's notes split, or at random.</td><td>MODE (ROUND, CHORD, RANDOM), TO 1, TO 2, TO 3 (THIS track's synth or a device)</td></tr>
 <tr><td><b>EUCLID</b></td><td>Plays held notes in an even rhythm of hits over steps. NOTE plays the held note, a shift of it, or a note of its own (a drum, say). Set the Euclids after the first to SOURCE PAD and they layer into a polyrhythm from one key.</td><td>RATE, STEPS (1–32), HITS, ROTATE, GATE, NOTE (HELD, a shift, or a fixed note)</td></tr>
 <tr><td><b>LOOP STRETCH</b></td><td>Replays the track's own pattern at another length, so it drifts against the others and meets them again.</td><td>REPEAT (OFF, ON), LENGTH (1/32 to 2 BARS), DIR (FORWARD, REVERSE, PINGPNG)</td></tr>
-<tr><td><b>LFO</b></td><td>A wave that moves a CC on the track's synth, or a setting of another slot.</td><td>DEST, PARAM, RATE (1/16 to 8 BARS), SHAPE (SINE, TRI, SAW, SQUARE, RANDOM, DRIFT), DEPTH, CENTER</td></tr>
-<tr><td><b>ENV</b></td><td>An envelope started by each note, moving a CC or a setting of another slot.</td><td>DEST, PARAM, DEPTH, ATTACK, DECAY, SUSTAIN, RELEASE, CENTER</td></tr>
+<tr><td><b>LFO</b></td><td>A wave that moves a CC on the track's synth, or a setting of another slot.</td><td>RATE (1/16 to 8 BARS), SHAPE (SINE, TRI, SAW, SQUARE, RANDOM, DRIFT), DEPTH, CENTER, and its TARGET</td></tr>
+<tr><td><b>ENV</b></td><td>An envelope started by each note, moving a CC or a setting of another slot.</td><td>DEPTH, ATTACK, DECAY, SUSTAIN, RELEASE, CENTER, and its TARGET</td></tr>
 <tr><td><b>TIME ELASTIC</b></td><td>Plays the track's pattern faster or slower than the tempo, falling back into step every few bars. Press <kbd>VALUE</kbd> to put it back in step now.</td><td>SPEED (±50 %), FINE, RESYNC (NEVER, 1 to 16 BARS)</td></tr>
 </table></div>
 <p>Rates run from 1/32 to 1/2, with triplets and dotted values. Percentages show as plain numbers, as the SP's font has no % sign.</p>
@@ -273,10 +273,15 @@
 <figure><div class="screen"><img src="images/fx-elastic.png" alt="TIME ELASTIC: SPEED -6, RESYNC 4 BARS, SYNC IN 43" width="804" height="420" loading="lazy"></div><figcaption>Time Elastic at 94 % of the tempo</figcaption></figure>
 </div>
 <h3>LFO and ENV</h3>
-<p><b>DEST CC</b> sends a CC to the track's own synth; <b>PARAM</b> picks the CC. <b>DEST FX1</b>..<b>FX6</b> moves a setting of another slot on the same track, such as a Euclid's HITS or an Echo's DECAY; PARAM then names the setting. DEPTH goes both ways: a negative depth moves the other way.</p>
+<p>What an LFO or ENV moves is its <b>TARGET</b>: a CC on the track's own synth, or a setting of another slot on the same track (FX1..FX6), such as a Euclid's HITS or an Echo's DECAY. The first page has the wave and the dials; the second names the TARGET above its last dials.</p>
+<p>To change it, press <b>RECORD SETTING</b>: the TARGET list opens. Turn <b>VALUE</b> to pick CC or a slot and press it to open its list (the synth's named CCs, or the slot's settings), then turn and press again to set it. <b>EXIT</b> steps back. Nothing changes while you browse, so a playing LFO keeps moving what it moved until you press.</p>
+<p>DEPTH goes both ways: a negative depth moves the other way.</p>
 <p>To spare the MIDI cable, an LFO or ENV sends at most about a hundred CCs a second to a synth, and only when the value changes. A large jump still goes at once. To GHOST it sends every step, as GHOST is inside the SP.</p>
 <div class="shots">
-<figure><div class="screen"><img src="images/fx-lfo.png" alt="LFO: DEST CC, PARAM CC74, RATE 1 BAR, with a sine wave" width="804" height="420" loading="lazy"></div><figcaption>An LFO on CC 74, once a bar</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-lfo.png" alt="LFO: RATE 1 BAR, SHAPE SINE, DEPTH +50, with a sine wave" width="804" height="420" loading="lazy"></div><figcaption>An LFO, once a bar</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-env-target.png" alt="ENV page 2: TARGET FX2 ECHO DECAY, RSET CHANGE TARGET, SUSTAIN, RELEASE, CENTER" width="804" height="420" loading="lazy"></div><figcaption>An ENV's second page: its TARGET is an Echo's DECAY</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-target.png" alt="TARGET: CC TO DEVICE, FX1 THIS, FX2 ECHO, FX3 --, FX4 --" width="804" height="420" loading="lazy"></div><figcaption>The TARGET list: the synth's CCs or another slot</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-target-2.png" alt="TARGET FX2 ECHO: RATE, REPEATS, DECAY, PITCH, GATE" width="804" height="420" loading="lazy"></div><figcaption>An Echo's settings, one level down</figcaption></figure>
 </div>
 <h3>Controlling them from a synth</h3>
 <p>Any MIDI FX setting can be turned from a dial on another synth or controller: see <a href="#ccmap">the CC MAP</a>.</p>
