@@ -14,7 +14,7 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#spset">SP settings</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#tracks">MIDI tracks</a></li><li><a href="#devices">Devices</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#fx">MIDI FX</a></li><li><a href="#routes">Routing</a></li><li><a href="#ccmap">The CC MAP</a></li><li><a href="#ghost">GHOST</a></li><li><a href="#projects">Projects</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li><li><a href="#support">Support</a></li></ol></aside>
+<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#spset">SP settings</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#tracks">MIDI Instruments</a></li><li><a href="#devices">Devices</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#fx">MIDI FX</a></li><li><a href="#routes">Routing</a></li><li><a href="#ccmap">The CC MAP</a></li><li><a href="#ghost">GHOST</a></li><li><a href="#projects">Projects</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li><li><a href="#support">Support</a></li></ol></aside>
 <main>
 <h1>Beta manual</h1>
 <p class="lead">How to play, sequence, shape, route and record your synths from the SP-404MKII.</p>
@@ -26,11 +26,11 @@
 <li><b>Set up the SP.</b> Set MIDI Mode to A and turn MIDI Through off. See <a href="#spset">SP settings</a>.</li>
 <li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
 <li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. On device 1, turn <b>CTRL 3</b> to your synth's channel. Press <kbd>VALUE</kbd> and open <b>NAME</b> to give it a name.</li>
-<li><b>Make a MIDI track.</b> Open DOOM OS's instrument picker as you would to add a drum, pick <b>MIDI</b> and tap a free pad. The pad lights blue and the MIDI INSTRUMENT page opens: turn <kbd>VALUE</kbd> to your synth and press it. Hit the pad and the synth plays.</li>
+<li><b>Make a MIDI Instrument.</b> Open DOOM OS's instrument picker as you would to add a drum, pick <b>MIDI</b> and tap a free pad. The pad lights blue and the MIDI INSTRUMENT page opens: turn <kbd>VALUE</kbd> to your synth and press it. Hit the pad and the synth plays.</li>
 <li><b>Turn its dials.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI Controls on. Press <kbd>RECORD SETTING</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>RECORD SETTING</kbd> again. Now CTRL 1 moves that control on the synth.</li>
 <li><b>Record a sweep.</b> Start a pattern, hold <kbd>MARK</kbd> and press <kbd>REC</kbd>, then turn the dial. It plays back on every loop.</li>
 </ol>
-<p>Then add an arpeggio or a chord with <a href="#fx">MIDI FX</a>: <kbd>REVERSE</kbd> + <kbd>FX1</kbd> on the MIDI track.</p>
+<p>Then add a chord, an echo or a rhythm with <a href="#fx">MIDI FX</a>: <kbd>REVERSE</kbd> + <kbd>FX1</kbd> on its track.</p>
 
 <h2 id="spset">SP settings</h2>
 <p>Two settings in the SP's own SYSTEM settings change how MIDI Conductor behaves. Set them before you start.</p>
@@ -64,8 +64,8 @@
 <figure><div class="screen"><img src="images/menu-07.png" alt="MIDI SETTINGS menu: DEVICES, ROUTES and PATTERN" width="804" height="420" loading="lazy"></div><figcaption>The MIDI SETTINGS menu</figcaption></figure>
 </div>
 
-<h2 id="tracks">MIDI tracks</h2>
-<p>A MIDI track is a pad that plays a synth instead of a sample. You make one the way you make a DOOM OS instrument, and it sits in the pattern like any other track.</p>
+<h2 id="tracks">MIDI Instruments</h2>
+<p>A MIDI Instrument is a pad that plays a synth instead of a sample. You make one the way you make a DOOM OS instrument, and it gets a track in the pattern like any other.</p>
 <h3>Making one</h3>
 <ul>
 <li>Open DOOM OS's instrument picker. <b>MIDI</b> sits after the instruments and before the kits; its description reads DEVICE OR CHANNEL.</li>
@@ -87,7 +87,7 @@
 <figure><div class="screen"><img src="images/inst-page-raw.png" alt="MIDI INSTRUMENT page with RAW channel 12 picked" width="804" height="420" loading="lazy"></div><figcaption>A RAW channel, no device</figcaption></figure>
 </div>
 <h3>Removing one</h3>
-<p>Delete the pad's sample on the SP and the pad stops being a MIDI track. REPLACE can't turn a pad into a MIDI track yet; it shows NOT POSSIBLE.</p>
+<p>Delete the pad's sample on the SP and the pad stops being a MIDI Instrument. REPLACE can't turn a pad into a MIDI Instrument yet; it shows NOT POSSIBLE.</p>
 
 <h2 id="devices">Devices</h2>
 <p>A <b>device</b> is one of your synths: a channel, a name and, if you like, names for its CCs. Point pads, CTRLs and routes at a device rather than a bare channel, and when the synth's channel changes you change it once. There are seven devices.</p>
@@ -159,7 +159,7 @@
 <p>Add names on the SP in <a href="#devices">CC NAMES</a>, or write a <code>DEVICES.CSV</code> and <a href="#devfiles">import</a> it. On the beta page you can also add a <b>JSON</b> or <b>CSV</b> list of your own, from the templates under the list. Names are 1 to 7 characters. There is room for 251 CC names in all.</p>
 
 <h2 id="sequencing">Sequencing synths</h2>
-<p>Every step of a MIDI track goes out as a note to the track's synth. Put tracks on different synths and one pattern plays them all.</p>
+<p>Every step of a MIDI Instrument's track goes out as a note to the track's synth. Put tracks on different synths and one pattern plays them all.</p>
 <ul>
 <li><b>Melodies:</b> in the piano roll, each step's pitch is added to the pad's note.</li>
 <li><b>Note length</b> follows the step's gate.</li>
@@ -214,8 +214,8 @@
 </ul>
 
 <h2 id="fx">MIDI FX</h2>
-<p>MIDI FX change the notes a track plays before they reach the synth: add a chord, turn it into a rhythm, keep it in key, echo it, drop notes at random, or move a synth's controls in time with the music. Each MIDI or GHOST track has a chain of six slots, FX1 to FX6, run in order, so one slot's notes feed the next: Harmonize then Euclid plays the chord in a rhythm.</p>
-<p>MIDI FX work on MIDI tracks and GHOST tracks: notes from the pattern, from the pads, and from a synth <a href="#routes">routed</a> to the track's device. They don't change sample tracks.</p>
+<p>MIDI FX change the notes a track plays before they reach the synth: add a chord, turn it into a rhythm, keep it in key, echo it, drop notes at random, or move a synth's controls in time with the music. Each MIDI Instrument or GHOST track has a chain of six slots, FX1 to FX6, run in order, so one slot's notes feed the next: Harmonize then Euclid plays the chord in a rhythm.</p>
+<p>MIDI FX work on the tracks of MIDI Instruments and GHOST: notes from the pattern, from the pads, and from a synth <a href="#routes">routed</a> to the track's device. They don't change sample tracks.</p>
 <h3>Using them</h3>
 <ul>
 <li>On DOOM OS's page, hold <kbd>REVERSE</kbd> and press <kbd>FX1</kbd>..<kbd>FX6</kbd>: that slot of the current track. The title reads pad, slot and effect: <code>C6 MIDI FX1 HARMONIZE</code>.</li>
@@ -301,7 +301,7 @@
 <p>Notes routed to the <b>SP</b> play the track DOOM OS is on (turn <kbd>VALUE</kbd> on DOOM's page to pick another).</p>
 <ul>
 <li><b>A sample track:</b> the pad plays, pitched like the SP's own keyboard. The SP only takes notes C2 to C4 (36 to 60), so notes outside that are moved by octaves to fit.</li>
-<li><b>A MIDI or GHOST track:</b> the note goes to that track's synth as played, through the track's <a href="#fx">MIDI FX</a>. Your keyboard plays whichever synth the current track plays.</li>
+<li><b>A MIDI Instrument or GHOST track:</b> the note goes to that track's synth as played, through the track's <a href="#fx">MIDI FX</a>. Your keyboard plays whichever synth the current track plays.</li>
 <li>While DOOM OS is recording or rehearsing, the note is recorded on that track, at the pitch and velocity you played, with the length you held it.</li>
 </ul>
 
@@ -339,7 +339,7 @@
 <p>Routes, mappings and ranges are saved with the project as you go.</p>
 
 <h2 id="ghost">GHOST</h2>
-<p>There is a small synth inside the SP. It's called GHOST. It plays through DOOM OS's mixer like a pad, and you play it the way you play any other synth: from MIDI tracks, patterns, MIDI Controls, MIDI FX and routes.</p>
+<p>There is a small synth inside the SP. It's called GHOST. It plays through DOOM OS's mixer like a pad, and you play it the way you play any other synth: from MIDI Instruments, patterns, MIDI Controls, MIDI FX and routes.</p>
 <h3>Waking it</h3>
 <ul>
 <li>On DOOM OS's page, press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd>. GHOST wakes up and becomes a device, device 7 if that is free.</li>
@@ -348,7 +348,7 @@
 </ul>
 <h3>Playing it</h3>
 <ul>
-<li><b>Tracks:</b> make a <a href="#tracks">MIDI track</a> and pick GHOST on its MIDI INSTRUMENT page.</li>
+<li><b>Tracks:</b> make a <a href="#tracks">MIDI Instrument</a> and pick GHOST on its MIDI INSTRUMENT page.</li>
 <li><b>Dials:</b> set CTRLs to GHOST in <a href="#edit">MIDI Controls</a>. GHOST's controls use the Minilogue's CC numbers.</li>
 <li><b>Other synths:</b> <a href="#routes">route</a> a synth or keyboard to GHOST.</li>
 <li><b>MIDI FX</b> work on GHOST tracks too.</li>
@@ -391,7 +391,7 @@
 <p>Your MIDI setup belongs to the project, like its samples and patterns. Load another project and you get its own:</p>
 <ul>
 <li>devices: channels, names, INPUT ONLY, RAW CCS and CC names;</li>
-<li>MIDI tracks and which synth each plays;</li>
+<li>MIDI Instruments and which synth each plays;</li>
 <li>MIDI Controls' CTRL assignments and recorded moves;</li>
 <li>routes, CC MAP mappings and ranges;</li>
 <li>MIDI FX chains and their recorded moves;</li>

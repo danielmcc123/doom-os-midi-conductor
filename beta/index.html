@@ -16,6 +16,12 @@
 .new{margin:14px 0 0;padding-left:20px}
 .new li{margin:6px 0}
 #ccpicker .order{display:none}
+.have{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:16px 18px;display:grid;gap:10px}
+.have h3{margin:0}
+.dropin{display:block;border:1px dashed var(--line);border-radius:10px;padding:18px;text-align:center;color:var(--dim);cursor:pointer;background:var(--bg2)}
+.dropin.over{border-color:var(--acc);color:var(--fg)}
+.dropin input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none}
+.jmsg{margin:0}.jmsg.ok{color:var(--ok)}.jmsg.bad{color:var(--bad)}
 </style>
 </head><body>
 <header class="top"><div class="wrap">
@@ -25,7 +31,7 @@
 
 <main class="wrap tool">
 <h1>MIDI Conductor 0.7 beta</h1>
-<p class="lead">A test version for a few people before the next release. It is built on DOOM OS 0.7 and brings MIDI tracks, MIDI FX, a new device setup and a lot more. Thank you for trying it.</p>
+<p class="lead">A test version before the next full release. It is built on DOOM OS 0.7 and brings MIDI Instruments, MIDI FX, a new device setup and a lot more. Thank you for trying it.</p>
 <div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back.</p></div>
 <div class="release">
 <div><h3>Release</h3><p><span data-release="version">0.7.0 beta</span></p></div>
@@ -37,12 +43,12 @@
 <h2>What's new since 0.6</h2>
 <ul class="new">
 <li><b>DOOM OS 0.7</b> underneath.</li>
-<li><b>MIDI tracks:</b> pick <b>MIDI</b> in DOOM OS's instrument picker and a pad plays your synth, with its own page to choose the synth. The old PADS screen is gone.</li>
+<li><b>MIDI Instruments:</b> pick <b>MIDI</b> in DOOM OS's instrument picker and a pad plays your synth, with its own page to choose the synth. The old PADS screen is gone.</li>
 <li><b>Devices:</b> new DEVICES screens with names, CC names, INPUT ONLY and USAGE, and a <code>DEVICES.CSV</code> file to bring your synths in (make it below).</li>
 <li><b>MIDI FX:</b> eleven effects on each MIDI or GHOST track (Harmonize, Echo, Scale, Chance, Randomize, Dispatch, Euclid, Loop Stretch, LFO, ENV, Time Elastic), the CHAIN page to switch, reorder and route them.</li>
 <li><b>The CC MAP:</b> ranges, and a synth's dials can move a track's mixer, its MIDI FX and its EQ.</li>
 <li><b>GHOST:</b> programs, and it follows DOOM OS's mixer and EQ.</li>
-<li><b>Per project:</b> your devices, routes, CTRLs and MIDI tracks belong to each project.</li>
+<li><b>Per project:</b> your devices, routes, CTRLs and MIDI Instruments belong to each project.</li>
 <li><b>Recording dial moves</b> is now <kbd>MARK</kbd> + <kbd>REC</kbd>. <kbd>MARK</kbd> held is catch on every screen.</li>
 </ul>
 <p>The <a href="manual.html">beta manual</a> covers all of it.</p>
@@ -54,6 +60,12 @@
 <h2 id="devices">2. Your synths</h2>
 <p>Synths are no longer built into the firmware. Pick yours here, download <code>DEVICES.CSV</code> and load it on the SP. You can make a new one at any time without patching again.</p>
 <div class="devs">
+<div class="have">
+<h3>Already have a JSON file?</h3>
+<p>Drop the JSON (or CSV) file you made for the patcher before, or one from the device converter, and its synths are added to the list below. Device-numbered files from the converter go straight to <code>DEVICES.CSV</code>.</p>
+<label class="dropin" id="jdrop"><input type="file" id="jfile" accept=".json,.csv,application/json,text/csv,text/plain"><span>Drop your file here, or click to choose</span></label>
+<p class="jmsg" id="jmsg" role="status" hidden></p>
+</div>
 <div id="ccpicker"></div>
 <div class="row"><button class="btn" id="save" type="button" disabled>Download DEVICES.CSV</button><span id="dstatus" role="status"></span></div>
 <ul class="notes" id="dnotes" hidden></ul>
@@ -69,12 +81,12 @@
 
 <h2>3. Install</h2>
 <p>Download the patched <code>SP404MKII_APP1.bin</code> and keep that name. Install it with Roland's original <code>SP404MKII_APP0.bin</code>, the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). To go back, install Roland's original files, or a release from the <a href="../patcher.html">current patcher</a>.</p>
-<p><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as MIDI tracks (see the <a href="manual.html#tracks">manual</a>).</p>
+<p><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as MIDI Instruments (see the <a href="manual.html#tracks">manual</a>).</p>
 
 <h2>4. Testing</h2>
 <p>Everything new is worth a go. The parts that most need real hands on them:</p>
 <ul class="new">
-<li>MIDI tracks: making them, picking the synth, deleting them, and the notes they send from the pattern.</li>
+<li>MIDI Instruments: making them, picking the synth, deleting them, and the notes they send from the pattern.</li>
 <li>MIDI FX on your synths and on GHOST, the CHAIN page (moving effects, SOURCE PAD), and recording dial moves with <kbd>MARK</kbd> + <kbd>REC</kbd>.</li>
 <li>Importing <code>DEVICES.CSV</code>, and switching between projects.</li>
 <li>The CC MAP from a controller to your synths and to the SP's mixer, MIDI FX and EQ.</li>
@@ -110,6 +122,40 @@
     } catch (e) { st.textContent = e.message; st.className = "err"; }
   }
   update();
+  // A file the testers already have: the patcher's own CC list format (JSON or CSV) joins the picker's list; a
+  // device-numbered JSON (the device converter's) becomes DEVICES.CSV as it is
+  function jsay(text, cls) { var m = $("jmsg"); m.textContent = text; m.className = "jmsg " + (cls || ""); m.hidden = !text; }
+  function take(f) {
+    if (!f) return;
+    if (f.size > 200000) { jsay(f.name + " is too big for a CC list (200 KB at most).", "bad"); return; }
+    f.text().then(function (text) {
+      var first = "";
+      try {
+        ccParseFile(f.name, text);                         // (throws if it is not the patcher's format)
+        var input = $("ccpicker").querySelector('input[type=file]'), dt = new DataTransfer();
+        dt.items.add(f); input.files = dt.files; input.dispatchEvent(new Event("change"));
+        jsay("Added the synths from " + f.name + " to the list below. Check it, then download DEVICES.CSV.", "ok");
+        return;
+      } catch (e) { first = e.message; }
+      try {
+        var r = DevicesConvert.convert(text);
+        if (!r.devices) throw new Error("no devices in it");
+        csv = r.csv; $("dout").textContent = csv; $("dout").hidden = false; $("save").disabled = false;
+        $("dstatus").className = ""; $("dstatus").textContent = r.devices + " device" + (r.devices === 1 ? "" : "s") + ", " + r.ccs + " CC names, from " + f.name;
+        var notes = $("dnotes"); notes.textContent = "";
+        r.warnings.forEach(function (w) { var li = document.createElement("li"); li.textContent = w; notes.appendChild(li); });
+        notes.hidden = !r.warnings.length;
+        jsay(f.name + " is ready as DEVICES.CSV below.", "ok");
+      } catch (e2) {
+        jsay(f.name + ": " + first + " (and as a device file: " + e2.message + ")", "bad");
+      }
+    });
+  }
+  $("jfile").addEventListener("change", function () { take(this.files[0]); this.value = ""; });
+  var dz = $("jdrop");
+  ["dragenter", "dragover"].forEach(function (t) { dz.addEventListener(t, function (e) { e.preventDefault(); dz.classList.add("over"); }); });
+  ["dragleave", "drop"].forEach(function (t) { dz.addEventListener(t, function (e) { e.preventDefault(); dz.classList.remove("over"); }); });
+  dz.addEventListener("drop", function (e) { take(e.dataTransfer.files[0]); });
   $("save").addEventListener("click", function () {
     var a = document.createElement("a");
     a.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
