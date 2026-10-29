@@ -95,7 +95,7 @@
 <p>The devices sit side by side, numbered 1 to 7 along the top. Under the current one it says what uses it: <code>2 PADS 1 CTRL</code>, <code>1 ROUTE</code> or <code>NOT USED</code>.</p>
 <ul>
 <li>Turn <kbd>VALUE</kbd> (or <b>CTRL 1</b>) to pick a device.</li>
-<li><b>CTRL 3</b> sets its channel, 1 to 16. All the way down is <code>NO CH</code>. A new channel reaches every pad and CTRL that uses the device.</li>
+<li><b>CTRL 3</b> sets its channel, 1 to 16. All the way down is <code>NO CH</code>. A new channel reaches every pad and CTRL that uses the device. A device at <code>NO CH</code> counts as unused: it isn't offered in the CTRL device dial or the MIDI INSTRUMENT list until it has a channel.</li>
 <li>Press <kbd>VALUE</kbd> for the device's menu. <kbd>MARK</kbd> opens DEVICE FILES.</li>
 <li>An arrow beside CH marks an input only device. A padlock after the name means it can't be renamed (GHOST).</li>
 </ul>
@@ -134,8 +134,8 @@
 <h3 id="devfiles">Device files</h3>
 <p><kbd>MARK</kbd> on DEVICES opens DEVICE FILES: <b>IMPORT</b> or <b>EXPORT</b> <code>DEVICES.CSV</code> on the SD card. Each asks first, starting on NO: turn <kbd>VALUE</kbd> to YES and press it.</p>
 <ul>
-<li>EXPORT writes all seven devices: name, INPUT ONLY, RAW CCS and CC names. Channels aren't in the file.</li>
-<li>IMPORT replaces each device that is in the file and leaves the others alone.</li>
+<li>EXPORT writes all seven devices: name, INPUT ONLY, RAW CCS, CC names and channel.</li>
+<li>IMPORT replaces each device that is in the file and leaves the others alone. A device line with a channel (the <code>CH</code> column, 1 to 16) puts the device on it; without one the device keeps the channel it had.</li>
 <li>The file is plain CSV, one line per device and one per CC name. The <a href="index.html#devices">beta page</a> makes one from the synths you pick.</li>
 </ul>
 <div class="shots">
@@ -273,13 +273,13 @@
 <figure><div class="screen"><img src="images/fx-elastic.png" alt="TIME ELASTIC: SPEED -6, RESYNC 4 BARS, SYNC IN 43" width="804" height="420" loading="lazy"></div><figcaption>Time Elastic at 94 % of the tempo</figcaption></figure>
 </div>
 <h3>LFO and ENV</h3>
-<p>What an LFO or ENV moves is its <b>TARGET</b>: a CC on the track's own synth, or a setting of another slot on the same track (FX1..FX6), such as a Euclid's HITS or an Echo's DECAY. The first page has the wave and the dials; the second names the TARGET above its last dials.</p>
-<p>To change it, press <b>RECORD SETTING</b>: the TARGET list opens. Turn <b>VALUE</b> to pick CC or a slot and press it to open its list (the synth's named CCs, or the slot's settings), then turn and press again to set it. <b>EXIT</b> steps back. Nothing changes while you browse, so a playing LFO keeps moving what it moved until you press.</p>
+<p>What an LFO or ENV moves is its <b>TARGET</b>: a CC on the track's own synth, or a setting of another slot on the same track (FX1..FX6), such as a Euclid's HITS or an Echo's DECAY. Both pages show the wave, with the TARGET named under it, for example <b>TARGET MS2000 CUTOFF</b> or <b>TARGET FX2 ECHO DECAY</b>.</p>
+<p>A new LFO or ENV has no TARGET (<b>NO TARGET</b> shows) and moves nothing until you set one. To set or change it, press <b>RECORD SETTING</b>: the TARGET list opens. Turn <b>VALUE</b> to pick CC or a slot and press it to open its list (the synth's named CCs, or the slot's settings), then turn and press again to set it. <b>EXIT</b> steps back. Nothing changes while you browse, so a playing LFO keeps moving what it moved until you press.</p>
 <p>DEPTH goes both ways: a negative depth moves the other way.</p>
 <p>To spare the MIDI cable, an LFO or ENV sends at most about a hundred CCs a second to a synth, and only when the value changes. A large jump still goes at once. To GHOST it sends every step, as GHOST is inside the SP.</p>
 <div class="shots">
-<figure><div class="screen"><img src="images/fx-lfo.png" alt="LFO: RATE 1 BAR, SHAPE SINE, DEPTH +50, with a sine wave" width="804" height="420" loading="lazy"></div><figcaption>An LFO, once a bar</figcaption></figure>
-<figure><div class="screen"><img src="images/fx-env-target.png" alt="ENV page 2: TARGET FX2 ECHO DECAY, RSET CHANGE TARGET, SUSTAIN, RELEASE, CENTER" width="804" height="420" loading="lazy"></div><figcaption>An ENV's second page: its TARGET is an Echo's DECAY</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-lfo.png" alt="LFO: a sine wave, TARGET MS2000 CC74, RATE 1 BAR, SHAPE SINE, DEPTH +50" width="804" height="420" loading="lazy"></div><figcaption>An LFO, once a bar</figcaption></figure>
+<figure><div class="screen"><img src="images/fx-env-target.png" alt="ENV page 2: the envelope, TARGET FX2 ECHO DECAY, SUSTAIN, RELEASE, CENTER" width="804" height="420" loading="lazy"></div><figcaption>An ENV's second page: its TARGET is an Echo's DECAY</figcaption></figure>
 <figure><div class="screen"><img src="images/fx-target.png" alt="TARGET: CC TO DEVICE, FX1 THIS, FX2 ECHO, FX3 --, FX4 --" width="804" height="420" loading="lazy"></div><figcaption>The TARGET list: the synth's CCs or another slot</figcaption></figure>
 <figure><div class="screen"><img src="images/fx-target-2.png" alt="TARGET FX2 ECHO: RATE, REPEATS, DECAY, PITCH, GATE" width="804" height="420" loading="lazy"></div><figcaption>An Echo's settings, one level down</figcaption></figure>
 </div>
@@ -462,7 +462,7 @@
 <li>Two devices on one channel look like one synth to the router.</li>
 <li>Routing passes notes, CC, bend and aftertouch. Clock, start/stop and SysEx stay with the SP.</li>
 <li>A synth that echoes CC back, or a routing loop, may cause feedback. Untested.</li>
-<li>Works only with Roland 5.52 and DOOM OS 0.7 (975C), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
+<li>Works only with Roland 5.52 and DOOM OS 0.7 (0D8C), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
 </ul>
 <h2 id="support">Support</h2>
 <p>MIDI Conductor is free and open source. If it's useful to you, you can support its development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>

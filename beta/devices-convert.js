@@ -1,7 +1,7 @@
 /* Turns a JSON device mapping into DEVICES.CSV, the file the SP reads (DEVICE FILES: MARK on the DEVICES screen, IMPORT).
    Runs in the browser, nothing is uploaded. Also loads in Node (tests): require("./devices-convert.js").convert(text).
 
-   JSON: {"devices": [{"device": 1, "name": "MS-20", "input_only": false, "raw_ccs": "hide",
+   JSON: {"devices": [{"device": 1, "name": "MS-20", "channel": 3, "input_only": false, "raw_ccs": "hide",
                        "ccs": [{"cc": 74, "name": "CUTOFF"}, [71, "RESO"], {"7": "VOLUME"}]}]}
    "devices" may also be an object keyed by device number, or the whole file a list of devices. Only "device" is needed. */
 (function (root) {
@@ -69,13 +69,19 @@
         seen[cc] = ccs.length; ccs.push([cc, nm]);
       });
       if (ccs.length && !name) warnings.push("Device " + n + " has CC names but no name: the SP only keeps CC names for a named device.");
-      devices[n] = { name: name, input: input === true || /^y/i.test(String(input || "")), rawShow: rawShow, ccs: ccs };
+      var chv = d.channel != null ? d.channel : d.ch, ch = "";
+      if (chv != null && String(chv).trim() !== "" && Number(chv) !== 0) {
+        var c = Number(chv);
+        if (Number.isInteger(c) && c >= 1 && c <= 16) ch = c;
+        else warnings.push("Device " + n + ": channel " + chv + " left out (channels are 1 to 16); set it on the SP.");
+      }
+      devices[n] = { name: name, input: input === true || /^y/i.test(String(input || "")), rawShow: rawShow, ccs: ccs, ch: ch };
     });
-    var lines = ["DEVICE,NAME,INPUT ONLY,RAW CCS,CC,CC NAME"], total = 0;
+    var lines = ["DEVICE,NAME,INPUT ONLY,RAW CCS,CC,CC NAME,CH"], total = 0;
     Object.keys(devices).map(Number).sort(function (a, b) { return a - b; }).forEach(function (n) {
       var d = devices[n];
-      lines.push([n, d.name, d.input ? "YES" : "NO", d.rawShow ? "SHOW" : "HIDE", "", ""].join(","));
-      d.ccs.sort(function (a, b) { return a[0] - b[0]; }).forEach(function (c) { lines.push([n, "", "", "", c[0], c[1]].join(",")); total++; });
+      lines.push([n, d.name, d.input ? "YES" : "NO", d.rawShow ? "SHOW" : "HIDE", "", "", d.ch].join(","));
+      d.ccs.sort(function (a, b) { return a[0] - b[0]; }).forEach(function (c) { lines.push([n, "", "", "", c[0], c[1], ""].join(",")); total++; });
     });
     if (total > CC_CAP) warnings.push("That is " + total + " CC names: the SP keeps " + CC_CAP + " in all, the rest are left out when it imports.");
     if (!Object.keys(devices).length) warnings.push("No devices found.");
