@@ -20,7 +20,7 @@ new device screens and a setup that belongs to each project.
 - **LFO and ENV** move a synth's controls, or the SP's mixer and MIDI FX settings, in time with the music. Pick the
   TARGET from a list with RECORD SETTING.
 - **New DEVICES screens**: channel, name, CC names, INPUT ONLY and USAGE (what uses a device). **DEVICES.CSV** brings your
-  synths in with their CC names and channels, and exports them again. The [devices page](devices.html) makes one from the
+  synths in with their CC names and channels, and exports them again. The [patcher page](patcher.html#devices) makes one from the
   synths you pick.
 - **The CC MAP**: map a controller's or a synth's dials to another synth, or to a track's mixer, MIDI FX and EQ, each with
   a range (backwards to invert).
@@ -30,6 +30,8 @@ new device screens and a setup that belongs to each project.
 - **MIDI Conductor settings** in the DOOM OS settings tab: START ANIM, PICKUP and CTRL VIEW (dials or bars).
 
 ### Changed
+- **Synths aren't built into the firmware any more.** Pick them on the patcher page, download `DEVICES.CSV` and import it
+  on the SP. Change them at any time without patching again.
 - Recording dial moves is now **MARK + REC** (SHIFT + VALUE goes back to DOOM OS). Holding **MARK** catches a dial on
   MIDI Controls, GHOST and MIDI FX.
 - Setting a CTRL's synth and control on the MIDI Controls page is **RECORD SETTING** (MARK is catch).

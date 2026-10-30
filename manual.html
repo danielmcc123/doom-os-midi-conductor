@@ -135,7 +135,7 @@
 <ul>
 <li>EXPORT writes all seven devices: name, INPUT ONLY, RAW CCS, CC names and channel.</li>
 <li>IMPORT replaces each device that is in the file and leaves the others alone. A device line with a channel (the <code>CH</code> column, 1 to 16) puts the device on it; without one the device keeps the channel it had.</li>
-<li>The file is plain CSV, one line per device and one per CC name. Make one from the synths you pick, or from a JSON or CSV list, on the <a href="devices.html">devices page</a>.</li>
+<li>The file is plain CSV, one line per device and one per CC name. Make one from the synths you pick, or from a JSON or CSV list, on the <a href="patcher.html#devices">patcher page</a>.</li>
 </ul>
 <div class="shots">
 <figure><div class="screen"><img src="images/device-files.png" alt="DEVICE FILES: IMPORT DEVICES.CSV and EXPORT DEVICES.CSV" width="804" height="420" loading="lazy"></div><figcaption>DEVICE FILES</figcaption></figure>
@@ -144,7 +144,7 @@
 
 <h2 id="names">CC lists</h2>
 <p>Name a device after a synth the SP knows and it comes with its CC names. Any other synth still works with CC numbers, or with names you add in <a href="#devices">CC NAMES</a>.</p>
-<p>Choose the synths in the <a href="patcher.html">patcher</a> before you build: <b>+ Add a synth</b>, ✕ to remove. In a new project the first six become devices 1 to 6, with their usual channel where they have one (device 7 is GHOST's). To change them later without patching again, make a <code>DEVICES.CSV</code> on the <a href="devices.html">devices page</a> and <a href="#devfiles">import</a> it.</p>
+<p>Pick your synths on the <a href="patcher.html#devices">patcher page</a>: <b>+ Add a synth</b>, ✕ to remove. It makes a <code>DEVICES.CSV</code> with their names, CC names and channels; <a href="#devfiles">import</a> it on DEVICES. Make a new one whenever your synths change, without patching again.</p>
 <div class="tbl"><table>
 <tr><th>Maker</th><th>Synths (device name)</th></tr>
 <tr><td>Audiothingies</td><td>MicroMonsta 2 (<code>MM2</code>). For its second part, add a second <code>MM2</code> device on the next channel.</td></tr>
@@ -156,7 +156,7 @@
 <tr><td>Yamaha</td><td>MODX M (<code>MODX</code>): the CCs it receives, including the assignable knobs at their factory numbers and Super Knob. Most of its sound parameters are NRPN or sysex only, so they are not listed.</td></tr>
 </table></div>
 <h3>Your own synth</h3>
-<p>Add names on the SP in <a href="#devices">CC NAMES</a>, or write a <code>DEVICES.CSV</code> and <a href="#devfiles">import</a> it. In the patcher you can also add a <b>JSON</b> or <b>CSV</b> list from the templates under the list. Names are 1 to 7 characters. There is room for 251 CC names in all.</p>
+<p>Add names on the SP in <a href="#devices">CC NAMES</a>, or write a <code>DEVICES.CSV</code> and <a href="#devfiles">import</a> it. On the <a href="patcher.html#devices">patcher page</a> you can also add a <b>JSON</b> or <b>CSV</b> list of your own, from the templates under the list. Names are 1 to 7 characters. There is room for 251 CC names in all.</p>
 
 <h2 id="sequencing">Sequencing synths</h2>
 <p>Every step of a MIDI Instrument's track goes out as a note to the track's synth. Put tracks on different synths and one pattern plays them all.</p>
