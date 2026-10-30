@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIDI Conductor Changelog</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml"><link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="apple-touch-icon.png"><meta name="description" content="What changed in each MIDI Conductor release.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="site.css?v=a4b7d38d">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>for SP-404MKII</small></a>
+<nav class="links" aria-label="Site"><a href="index.html">Overview</a><a href="manual.html">Manual</a><a href="changelog.html" aria-current="page">Changelog</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html">Patch firmware</a></nav>
+</div></header>
+
+<div class="wrap doc">
+<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
+<main>
+<h1>Changelog</h1>
+<p class="lead">What changed in each release.</p>
+<h2 id="v0-7-0">0.7.0 (30 October 2026)</h2>
+<p>Built on <strong>DOOM OS 0.7.2 (build 359C)</strong> for Roland firmware 5.52. The biggest release yet: MIDI Instruments, MIDI FX,
+new device screens and a setup that belongs to each project.</p>
+<h3>New</h3>
+<ul>
+<li><strong>DOOM OS 0.7.2 underneath</strong>, with its instrument switching on the fly.</li>
+<li><strong>MIDI Instruments.</strong> Pick <strong>MIDI</strong> in DOOM OS's instrument picker and tap a pad: it plays your synth, gets a track in
+  the pattern, lights blue, and has its own MIDI INSTRUMENT page to choose the synth or a raw channel. This replaces the
+  PADS screen.</li>
+<li><strong>MIDI FX.</strong> Six slots on every track, run in order: Harmonize, Echo, Scale, Chance, Randomize, Dispatch, Euclid,
+  Loop Stretch, LFO, ENV and Time Elastic. Open them with <strong>PITCH/SPEED + FX1..FX6</strong>. The CHAIN page
+  (<strong>PITCH/SPEED + RECORD SETTING</strong>) switches, reorders and removes effects, and sets each slot's SOURCE (the chain or the
+  pad's own note) so Euclids can layer into polyrhythms.</li>
+<li><strong>MIDI FX on samples and DOOM OS instruments.</strong> The same chains work on sample tracks and on DOOM OS's own instruments:
+  repeats, rhythms, chance and, on chromatic pads, chords and scales.</li>
+<li><strong>Euclid TIE.</strong> Euclid's GATE goes one past 100%: each hit rings until the next, which suits samples.</li>
+<li><strong>LFO and ENV</strong> move a synth's controls, or the SP's mixer and MIDI FX settings, in time with the music. Pick the
+  TARGET from a list with RECORD SETTING.</li>
+<li><strong>New DEVICES screens</strong>: channel, name, CC names, INPUT ONLY and USAGE (what uses a device). <strong>DEVICES.CSV</strong> brings your
+  synths in with their CC names and channels, and exports them again. The <a href="devices.html">devices page</a> makes one from the
+  synths you pick.</li>
+<li><strong>The CC MAP</strong>: map a controller's or a synth's dials to another synth, or to a track's mixer, MIDI FX and EQ, each with
+  a range (backwards to invert).</li>
+<li><strong>GHOST</strong> follows DOOM OS's mixer and EQ: level, pan, bus and EQ like a sample track.</li>
+<li><strong>Per project.</strong> Devices, routes, CTRLs, MIDI Instruments and MIDI FX belong to each project. Deleting a project deletes
+  its MIDI setup too.</li>
+<li><strong>MIDI Conductor settings</strong> in the DOOM OS settings tab: START ANIM, PICKUP and CTRL VIEW (dials or bars).</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li>Recording dial moves is now <strong>MARK + REC</strong> (SHIFT + VALUE goes back to DOOM OS). Holding <strong>MARK</strong> catches a dial on
+  MIDI Controls, GHOST and MIDI FX.</li>
+<li>Setting a CTRL's synth and control on the MIDI Controls page is <strong>RECORD SETTING</strong> (MARK is catch).</li>
+<li>MIDI SETTINGS (SHIFT + REMAIN) has DEVICES, ROUTES and PATTERN. Pads are set up as MIDI Instruments instead.</li>
+<li>Device pickers leave out devices with no channel and input-only devices.</li>
+</ul>
+<h3>Coming from 0.6</h3>
+<p>Your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are
+cleared after a few seconds: make them again as MIDI Instruments (see the manual). The Arp is left out of MIDI FX in this
+release while it is reworked.</p>
+<h2 id="v0-6-5-and-earlier">0.6.5 and earlier</h2>
+<p>Alpha releases built on DOOM OS 0.6.x (0.6.5: DOOM OS 0.6.2-alpha, build 3824). 0.6.5 can still be patched from
+<strong>Previous versions</strong> on the <a href="patcher.html?v=0.6.5">patcher</a>, and its manual is kept at
+<a href="releases/0.6.5-alpha/manual.html">releases/0.6.5-alpha/manual.html</a>.</p>
+</main>
+</div>
+<footer><div class="wrap">
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
+<p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
+<p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
+</div></footer>
+</body></html>

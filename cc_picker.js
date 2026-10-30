@@ -387,7 +387,7 @@ function createPicker(host, catalog, onChange, reserve) {
 
   root.append(el('h3', '', 'CC lists'),
     el('p', '', 'The synths whose CC names the SP knows, so a CTRL dial can pick "CUTOFF" instead of a number. '
-      + 'They take the device name slots on the SP in the order shown, and the first seven are set up as devices 1 to 7 (with their channel, if they have one) the first time the SP starts.'));
+      + 'They take the device name slots on the SP in the order shown, and in a new project the first six become devices 1 to 6, with their channel if they have one (device 7 is GHOST\'s).'));
   const listEl = el('div');
   const add = el('div', 'add');
   const addBtn = button('mini', '+ Add a synth');

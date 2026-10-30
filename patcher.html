@@ -6,31 +6,66 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
 <link rel="stylesheet" href="site.css?v=a4b7d38d">
+<style>
+.prev{border:1px solid var(--line);border-radius:var(--r);background:var(--panel);padding:18px 20px;display:grid;gap:8px}
+.prev h3{margin:0}
+.prev p{margin:0;color:var(--dim)}
+.old{margin-top:24px}
+[data-for]{display:none}
+body[data-v="0.7.0"] [data-for~="0.7.0"],body[data-v="0.6.5"] [data-for~="0.6.5"]{display:revert}
+</style>
+<script>
+// Which release this page patches: the current one, or 0.6.5 from Previous versions (patcher.html?v=0.6.5)
+(function () {
+  var RELEASES = {
+    "0.7.0": "releases/0.7.0/conductor-patcher.js?v=f54380e3",
+    "0.6.5": "releases/0.6.5-alpha/conductor-patcher.js?v=513ca1a2"
+  };
+  var v = new URLSearchParams(location.search).get("v");
+  if (!RELEASES[v]) v = "0.7.0";
+  window.PATCHER_VERSION = v;
+  window.PATCHER_SCRIPT = RELEASES[v];
+})();
+</script>
 </head><body>
+<script>document.body.dataset.v = window.PATCHER_VERSION;</script>
 <header class="top"><div class="wrap">
 <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>for SP-404MKII</small></a>
-<nav class="links" aria-label="Site"><a href="index.html">Overview</a><a href="manual.html">Manual</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html" aria-current="page">Patch firmware</a></nav>
+<nav class="links" aria-label="Site"><a href="index.html">Overview</a><a href="manual.html">Manual</a><a href="changelog.html">Changelog</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html" aria-current="page">Patch firmware</a></nav>
 </div></header>
 
 <main class="wrap tool">
 <h1>Patch your firmware</h1>
 <p class="lead">Turn Roland's 5.52 firmware into DOOM OS with MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
+<div class="warn spaced old" data-for="0.6.5"><p><b>This is an older release, MIDI Conductor 0.6.5</b>, on DOOM OS 0.6.2. It has none of 0.7's features. Its manual is <a href="releases/0.6.5-alpha/manual.html">kept here</a>. <a href="patcher.html">Back to the current release</a>.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.6.5 alpha</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.0</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
-<div><h3>DOOM OS</h3><p>0.6.2-alpha (3824), built in</p></div>
-<div><h3>Released</h3><p><span data-release="released">21 October 2026</span></p></div>
+<div><h3>DOOM OS</h3><p><span data-for="0.7.0">0.7.2 (359C), built in</span><span data-for="0.6.5">0.6.2-alpha (3824), built in</span></p></div>
+<div><h3>Released</h3><p><span data-release="released">30 October 2026</span></p></div>
 </div>
 <h2>1. Patch</h2>
-<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one. Under <b>CC lists</b>, add your synths so the SP knows their controls by name. Skip it and the dials use CC numbers.</p>
+<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one or an earlier MIDI Conductor. Under <b>CC lists</b>, add your synths so the SP knows their controls by name. Skip it and the dials use CC numbers.</p>
 <div id="patcher"></div>
+<p data-for="0.7.0">You can change your synths later without patching again: make a <code>DEVICES.CSV</code> on the <a href="devices.html">devices page</a> and import it on the SP.</p>
 <h2>2. Install</h2>
 <p>Download the patched <code>SP404MKII_APP1.bin</code> and keep that name. Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). To go back, install Roland's original files.</p>
+<p data-for="0.7.0"><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as <a href="manual.html#tracks">MIDI Instruments</a>. See the <a href="changelog.html">changelog</a> for everything that's new.</p>
 <h2>3. Play</h2>
-<p>The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in five steps.</p>
-<div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, and it hooks some of Roland's own routines, which the DOOM OS author has called risky. Keep Roland's original files so you can go back.</p></div>
+<p data-for="0.7.0">The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in six steps.</p>
+<p data-for="0.6.5">The <a href="releases/0.6.5-alpha/manual.html#quick">0.6.5 quick start</a> puts a synth on a pad and a dial in five steps.</p>
+<div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, and it hooks some of Roland's own routines, which the DOOM OS author has called risky. Back up your SD card and keep Roland's original files so you can go back.</p></div>
+<h2 id="previous" data-for="0.7.0">Previous versions</h2><h2 data-for="0.6.5">Current version</h2>
+<div class="prev" data-for="0.7.0">
+<h3>0.6.5 alpha</h3>
+<p>The last release on DOOM OS 0.6.2-alpha (3824), from 21 October 2026, for anyone who wants to stay on it. <a href="patcher.html?v=0.6.5#patcher">Patch 0.6.5</a> · <a href="releases/0.6.5-alpha/manual.html">its manual</a></p>
+</div>
+<div class="prev" data-for="0.6.5">
+<h3>0.7.0</h3>
+<p>The current release, on DOOM OS 0.7.2 (359C). <a href="patcher.html">Patch 0.7.0</a> · <a href="manual.html">the manual</a></p>
+</div>
 </main>
-<script src="releases/0.6.5-alpha/conductor-patcher.js?v=513ca1a2"></script>
+<script>document.write('<script src="' + window.PATCHER_SCRIPT + '"><\/script>');</script>
 <footer><div class="wrap">
 <p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
 <p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>

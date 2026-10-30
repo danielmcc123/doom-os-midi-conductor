@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIDI Conductor 0.6.5 Manual</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../../favicon.svg" type="image/svg+xml"><link rel="icon" href="../../favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../../apple-touch-icon.png"><meta name="description" content="How to play, sequence, route and record your synths from the SP-404MKII with MIDI Conductor.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../../site.css?v=a4b7d38d">
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="../../index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>for SP-404MKII</small></a>
+<nav class="links" aria-label="Site"><a href="../../index.html">Overview</a><a href="../../manual.html">Manual</a><a href="../../changelog.html">Changelog</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="../../patcher.html">Patch firmware</a></nav>
+</div></header>
+
+<div class="wrap doc">
+<aside class="rail"><p>Contents</p><ol><li><a href="#quick">Quick start</a></li><li><a href="#spset">SP settings</a></li><li><a href="#legend">Reading the screens</a></li><li><a href="#menu">MIDI SETTINGS</a></li><li><a href="#pads">Devices and pads</a></li><li><a href="#names">CC lists</a></li><li><a href="#sequencing">Sequencing synths</a></li><li><a href="#midi">MIDI Controls</a></li><li><a href="#edit">Editing a CTRL</a></li><li><a href="#routes">Routing</a></li><li><a href="#auto">Recording dial moves</a></li><li><a href="#ghost">GHOST</a></li><li><a href="#rig">Bigger setups</a></li><li><a href="#keys">Key summary</a></li><li><a href="#limits">Limits</a></li><li><a href="#support">Support</a></li></ol></aside>
+<main>
+<h1>Manual for 0.6.5</h1>
+<div class="warn"><p>This is the manual for MIDI Conductor 0.6.5 (DOOM OS 0.6.2). For the current release, see the <a href="../../manual.html">manual</a>. To patch 0.6.5, use <a href="../../patcher.html?v=0.6.5">Previous versions</a> on the patcher.</p></div>
+<p class="lead">How to play, sequence, route and record your synths from the SP-404MKII.</p>
+<div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52 and DOOM OS 0.6.2-alpha (build 3824), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
+<h2 id="quick">Quick start</h2>
+<p>Six steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="../../patcher.html">patcher</a>.</p>
+<ol class="steps">
+<li><b>Set up the SP.</b> Set MIDI Mode to A and turn MIDI Through off. See <a href="#spset">SP settings</a>.</li>
+<li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
+<li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. <b>CTRL 2</b> names device 1, <b>CTRL 3</b> sets its channel to your synth's.</li>
+<li><b>Give it a pad.</b> <kbd>EXIT</kbd>, open <b>PADS</b>, tap a pad and turn <b>CTRL 1</b> to device 1. Hit the pad and the synth plays.</li>
+<li><b>Turn its dials.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI Controls on. Press <kbd>MARK</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>MARK</kbd> again. Now CTRL 1 moves that control on the synth.</li>
+<li><b>Record a sweep.</b> Start a pattern, press <kbd>SHIFT</kbd> + <kbd>VALUE</kbd> and turn the dial. It plays back on every loop.</li>
+</ol>
+
+<h2 id="spset">SP settings</h2>
+<p>Two settings in the SP's own SYSTEM settings change how MIDI Conductor behaves. Set them before you start.</p>
+<h3>MIDI Mode: set it to A (essential)</h3>
+<p>In mode B the SP spreads the banks over a keyboard range, so each bank sends higher notes than the one before and bank E sounds several octaves too high on a synth. In mode A every bank sends the same 16 notes. Switch to mode A and the problem goes away.</p>
+<p>The SP sends a pad's note by its position in the bank and not by its number, so notes rise along a row and each row down is lower: pads 1 to 4 send 48 to 51, pads 5 to 8 send 44 to 47, pads 9 to 12 send 40 to 43 and pads 13 to 16 send 36 to 39. That is how the SP does it, and the patch doesn't change it.</p>
+<h3>MIDI Through: turn it off (recommended)</h3>
+<p>With MIDI Through on, the SP also passes what it receives straight to its MIDI output. That is in addition to anything the patch <a href="#routes">routes</a> or plays, so a synth can hear the same notes twice, and a synth that echoes MIDI back can set up a loop. Turn it off and let the ROUTES grid decide what goes where.</p>
+<h2 id="legend">Reading the screens</h2>
+<p>Every MIDI screen has a title bar and a help line at the bottom. On the help line, a word on a lit box is a control on the SP and the plain words after it are what it does: <b>VALUE CHANGES BANK</b> means turn VALUE to change bank. <b>C1</b>, <b>C2</b> and <b>C3</b> are CTRL 1, 2 and 3.</p>
+
+<h2 id="menu">MIDI SETTINGS</h2>
+<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens the MIDI SETTINGS menu from any DOOM screen, with MIDI Controls on or off.</p>
+<div class="tbl"><table>
+<tr><th>Entry</th><th>For</th></tr>
+<tr><td><b>PADS</b></td><td>Which synth or channel each pad plays</td></tr>
+<tr><td><b>DEVICES</b></td><td>Your synths: name and channel</td></tr>
+<tr><td><b>ROUTES</b></td><td>Pass MIDI from one synth to another</td></tr>
+<tr><td><b>PATTERN</b></td><td>Clear the current pattern's recorded dial moves</td></tr>
+</table></div>
+<p>Turn <kbd>VALUE</kbd> to pick, press it to open. <kbd>EXIT</kbd> goes back a level; in the menu it closes it.</p>
+<div class="shots">
+<figure><div class="screen"><img src="images/learn-menu.png" alt="MIDI SETTINGS menu: PADS, DEVICES, ROUTES and PATTERN" width="804" height="420" loading="lazy"></div><figcaption>The MIDI SETTINGS menu</figcaption></figure>
+</div>
+
+<h2 id="pads">Devices and pads</h2>
+<p>A <b>device</b> is one of your synths: a name and a channel. Point pads and CTRLs at a device rather than a bare channel, and when you change the synth's channel you change it once, in DEVICES. There are seven devices.</p>
+<h3>DEVICES</h3>
+<ul>
+<li><b>CTRL 1</b> (or <kbd>VALUE</kbd>) picks the device, 1 to 7.</li>
+<li><b>CTRL 2</b> names it: your synths from the <a href="#names">CC lists</a> first, then DRUMS, BASS, KEYS, SYNTH, LEAD, PAD and FX.</li>
+<li><b>CTRL 3</b> sets the channel, 1 to 16. All the way down is <code>--</code>, no channel.</li>
+</ul>
+<div class="shots">
+<figure><div class="screen"><img src="images/learn-devices.png" alt="Devices view: device 1 named MINILOG on channel 4" width="804" height="420" loading="lazy"></div><figcaption>Device 1, MINILOG, on channel 4</figcaption></figure>
+</div>
+<h3>PADS</h3>
+<p>Each pad sends its notes on its own channel. <b>A pad with no channel sends nothing.</b></p>
+<ul>
+<li>Turn <kbd>VALUE</kbd> to pick the bank, A to J, and tap a pad. The square shows which, for example <b>C4</b>.</li>
+<li><b>CTRL 1</b> assigns it: devices 1 to 7 first, then channels 1 to 16. <b>CTRL 3</b> clears it.</li>
+<li>The screen shows <code>DEV MINILOG</code>, <code>CH 5</code> or <code>NOT SET</code>. <code>CH NOT SET</code> means the pad's device has no channel yet.</li>
+</ul>
+<div class="shots">
+<figure><div class="screen"><img src="images/learn-pads-wait.png" alt="Pads view before a pad is tapped" width="804" height="420" loading="lazy"></div><figcaption>Waiting for a pad</figcaption></figure>
+<figure><div class="screen"><img src="images/learn-pads-unset.png" alt="Pad C4 with nothing assigned" width="804" height="420" loading="lazy"></div><figcaption>Nothing assigned</figcaption></figure>
+<figure><div class="screen"><img src="images/learn-pads-ch.png" alt="Pad C4 on channel 5" width="804" height="420" loading="lazy"></div><figcaption>A plain channel</figcaption></figure>
+<figure><div class="screen"><img src="images/learn-pads.png" alt="Pad C4 following the device MINILOG" width="804" height="420" loading="lazy"></div><figcaption>Following a device</figcaption></figure>
+</div>
+
+<h2 id="names">CC lists</h2>
+<p>Name a device after a synth the SP knows and its CTRLs pick controls by name, <code>CUTOFF</code> instead of <code>CC 43</code>. Any other synth still works with CC numbers.</p>
+<p>Choose the synths in the <a href="../../patcher.html">patcher</a> before you build: <b>+ Add a synth</b>, ✕ to remove. They take the device name slots in that order. The first seven also fill devices 1 to 7, with their usual channel where they have one, unless you have set that device up already.</p>
+<div class="tbl"><table>
+<tr><th>Maker</th><th>Synths (device name)</th></tr>
+<tr><td>Audiothingies</td><td>MicroMonsta 2 (<code>MM2</code>). For its second part, add a second <code>MM2</code> device on the next channel.</td></tr>
+<tr><td>Behringer</td><td>TD-3-MO (<code>TD-3-MO</code>): cutoff and accent only. Grind (<code>GRIND</code>): only the ASSIGN output follows CC, one at a time; set ASSIGN mode 13 to 16 for CC 1, 2, 4 or 7.</td></tr>
+<tr><td>Elektron</td><td>Digitone II (<code>DT2</code>). Synth pages are numbered SYN 1A to 4H because they depend on the machine. Each track has its own channel.</td></tr>
+<tr><td>Korg</td><td>Minilogue (<code>MINILOG</code>), MS2000, MS2000R, MS2000B and MS2000BR (<code>MS2000</code>), NTS-1 (<code>NTS-1</code>), volca Keys, Nubass, Beats, Sample, FM and Kick (<code>VKEYS</code>, <code>VNUBASS</code>, <code>VBEATS</code>, <code>VSAMPLE</code>, <code>VFM</code>, <code>VKICK</code>). Volcas need MIDI RX ShortMessage on to take CC.</td></tr>
+<tr><td>Novation</td><td>Bass Station II (<code>BS2</code>): every control that has a CC number. Waveforms, envelope modes and the mod wheel can only be set by NRPN, so they are not listed.</td></tr>
+<tr><td>Yamaha</td><td>MODX M (<code>MODX</code>): the CCs it receives, including the assignable knobs at their factory numbers and Super Knob. Most of its sound parameters are NRPN or sysex only, so they are not listed.</td></tr>
+<tr><td>Roland</td><td>S-1 Tweak Synth (<code>S-1</code>), on channel 3.</td></tr>
+</table></div>
+<div class="shots wide">
+<figure><img class="shotimg" src="images/cc-picker.png" alt="The patcher's CC lists panel with four synths added"><figcaption>CC lists in the patcher</figcaption></figure>
+</div>
+<h3>Your own synth</h3>
+<p>Download the <b>JSON</b> or <b>CSV template</b> under the list, fill in your synth's CCs and add the file. Names are 1 to 7 characters: A to Z, 0 to 9, space and <code>- + . / #</code>. Add a default channel with <code>"channel": 3</code> in JSON or a fourth CSV column. There is room for 10 synth names of your own (the 11th is GHOST's) and 250 CC names. <b>download this list</b> saves your current choice to start from.</p>
+
+<h2 id="sequencing">Sequencing synths</h2>
+<p>Every pad hit in a pattern goes out as a note on that pad's channel. Put pads on different synths and one pattern plays them all.</p>
+<ul>
+<li><b>Melodies:</b> in the piano roll, each step's pitch is added to the pad's note.</li>
+<li><b>Note length</b> follows the step's gate.</li>
+<li><b>Movement:</b> <a href="#auto">record dial moves</a> into the same pattern.</li>
+</ul>
+<p>STOP and choke don't send note-off yet, so a note can hang. All-notes-off or panic on the synth clears it.</p>
+
+<h2 id="midi">MIDI Controls</h2>
+<p>With MIDI Controls on, the CTRL dials send CC instead of changing the effect. There are 36 CTRLs: six banks of six.</p>
+<ul>
+<li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> turns MIDI Controls on at that bank. The bank's FX key lights and the title bar shows it.</li>
+<li><kbd>VALUE</kbd> flips between CTRL 1 to 3 (page 1/2) and CTRL 4 to 6 (page 2/2).</li>
+<li><kbd>EXIT</kbd> turns MIDI Controls off.</li>
+</ul>
+<p>Each row shows the CTRL, its value as a number and a bar, then its device or channel and its CC.</p>
+<div class="shots">
+<figure><div class="screen"><img src="images/midi-page-1.png" alt="MIDI page 1/2: CTRL 1 to 3" width="804" height="420" loading="lazy"></div><figcaption>CTRL 1 to 3</figcaption></figure>
+<figure><div class="screen"><img src="images/midi-page-2.png" alt="MIDI page 2/2: CTRL 4 to 6" width="804" height="420" loading="lazy"></div><figcaption>CTRL 4 to 6</figcaption></figure>
+</div>
+
+<h2 id="edit">Editing a CTRL</h2>
+<p><kbd>MARK</kbd> on the MIDI page starts editing. Turn <kbd>VALUE</kbd> to pick a CTRL, then:</p>
+<ul>
+<li><b>CTRL 1</b> sets its device (1 to 7) or channel (1 to 16).</li>
+<li><b>CTRL 2</b> sets its CC, by name for a synth with a CC list.</li>
+</ul>
+<p><kbd>MARK</kbd> again to finish. Settings are saved in DOOM OS's settings file.</p>
+<div class="shots">
+<figure><div class="screen"><img src="images/midi-edit.png" alt="Edit mode with CTRL 2 boxed" width="804" height="420" loading="lazy"></div><figcaption>Editing CTRL 2</figcaption></figure>
+</div>
+
+<h2 id="routes">Routing</h2>
+<p>One keyboard can play every synth in your rig. Notes and CC messages can be passed to and from any device with a MIDI DIN connection.</p>
+<p>The SP sits in the middle. It receives MIDI on its MIDI input and sends it on from its MIDI output. Add each synth as a <a href="#pads">device</a>, then use routes to choose which device feeds which.</p>
+
+<h3>The ROUTES grid</h3>
+<p>Rows are the synths that send (FROM, devices 1 to 7). Columns are where it goes (TO, devices 1 to 7, then <b>SP</b>). A lit cell is a route that's on.</p>
+<ul>
+<li>Turn <kbd>VALUE</kbd> to move cell by cell, or pick the row with <b>CTRL 1</b> and the column with <b>CTRL 2</b>.</li>
+<li><b>CTRL 3</b> switches the cell on (up) or off (down).</li>
+<li>Play a synth and the cursor jumps to its row.</li>
+<li>Press <kbd>VALUE</kbd> to choose what the route passes. This also switches it on.</li>
+</ul>
+<div class="shots"><figure><div class="screen"><img src="images/learn-routes.png" alt="ROUTES grid: MINILOG to NTS-1 under the cursor, MINILOG to the SP and NTS-1 to MINILOG lit" width="804" height="420" loading="lazy"></div><figcaption>MINILOG plays the NTS-1 and the SP</figcaption></figure></div>
+<p>Light several cells in a row to send one synth to several. A synth with no routes plays the SP as normal. Once it has a route, the SP only hears it if the <b>SP</b> cell is lit too.</p>
+
+<h3>What a route passes</h3>
+<p>Four switches: <b>NOTES</b>, <b>CC</b>, <b>BEND</b> and <b>PRES</b> (aftertouch). Turn <kbd>VALUE</kbd> to pick, press to switch. A new route to a synth passes notes only, so a stray mod wheel doesn't reach it. A new route to the SP passes everything, program change included. Switch everything off and the route goes off.</p>
+<p>Notes routed to the <b>SP</b> play the pad of the track DOOM OS is on (A11, say; turn <kbd>VALUE</kbd> on DOOM's page to pick another), pitched like the SP's own keyboard. The SP only takes notes C2 to C4 (36 to 60), so notes outside that are moved by octaves to fit. While DOOM OS is recording or rehearsing, the note is recorded too: it lands on the track DOOM is on, at the pitch you played (C3 is the sample as it was) and with the velocity you played, as if you had hit that pad. Hold it and release it for the note length. This applies to every device routed to the SP.</p>
+
+<div class="shots"><figure><div class="screen"><img src="images/learn-route.png" alt="Route MINILOG to NTS-1 with CC and BEND on and two CC map pairs" width="804" height="420" loading="lazy"></div><figcaption>NOTES picked; CC and BEND on</figcaption></figure></div>
+<h3>The CC map</h3>
+<p>Synths rarely share CC numbers, so CC to another synth passes only through the route's <b>CC map</b>: pairs of <b>FROM</b> dial and <b>TO</b> control. CC to the SP goes through a map too, to DOOM OS's mixer: each track's <b>LVL</b>, <b>PAN</b>, <b>BUS</b>, <b>MUTE</b> and <b>SOLO</b>, for tracks 1 to 16. MUTE and SOLO switch on at 64 and above and off below it. SOLO mutes every other track; switching it off clears all mutes. CC that isn't in the SP's map passes to it as it is.</p>
+<ul>
+<li>On the route screen, press <b>CC</b> to open the map (or <kbd>MARK</kbd> at any time).</li>
+<li><b>Turn the dial on the sending synth</b> to fill in FROM, then set TO with <b>CTRL 2</b>. Or set both by hand with <b>CTRL 1</b> and <b>CTRL 2</b>.</li>
+<li>Do it on <b>+ ADD</b> to make a new pair. Turn <kbd>VALUE</kbd> to move between pairs.</li>
+<li><kbd>SHIFT</kbd> + <kbd>DEL</kbd> removes a pair. <b>CLEAR ALL</b>, under + ADD, removes them all after asking.</li>
+</ul>
+<p>Controls are named for a synth with a CC list. One dial can drive several controls: add a pair for each. Once a route has pairs, <b>CC</b> on the route screen switches them on and off without losing them; an empty map switches CC off. There is room for 64 pairs in all.</p>
+<div class="shots"><figure><div class="screen"><img src="images/learn-ccmap.png" alt="CC map: CUTOFF to RESO and LFO RT to LFO RT" width="804" height="420" loading="lazy"></div><figcaption>The Minilogue's cutoff moves the NTS-1's resonance</figcaption></figure><figure><div class="screen"><img src="images/learn-ccmap-clear.png" alt="CLEAR CC MAP? with NO and YES" width="804" height="420" loading="lazy"></div><figcaption>CLEAR ALL asks first</figcaption></figure></div>
+<p>Routes and pairs are saved on the SP as you go.</p>
+
+<h2 id="auto">Recording dial moves</h2>
+<p>Record CTRL moves into a pattern and they play back as CC on every loop. Each CTRL gets 64 points per pattern, so slow sweeps stay smooth.</p>
+<ul>
+<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> starts and stops recording with MIDI Controls on. The title bar shows <code>REC</code>.</li>
+<li>Moves play back whenever the pattern runs, with MIDI Controls on or off.</li>
+<li>Grab a CTRL during playback and you take over until the pattern loops.</li>
+<li>An <b>A</b> next to a CTRL means it has moves in this pattern.</li>
+</ul>
+<div class="shots">
+<figure><div class="screen"><img src="images/midi-rec.png" alt="MIDI page with REC in the title bar" width="804" height="420" loading="lazy"></div><figcaption>Recording</figcaption></figure>
+<figure><div class="screen"><img src="images/midi-page-1.png" alt="MIDI page with an A beside CTRL 1 and CTRL 2" width="804" height="420" loading="lazy"></div><figcaption><b>A</b>: this CTRL has moves</figcaption></figure>
+</div>
+<p>Every pattern (A1 to J16) keeps its own moves, saved on the SP so they survive a power off.</p>
+<h3>Clearing moves</h3>
+<p>All of these clear the current pattern only.</p>
+<ul>
+<li><kbd>DEL</kbd> + turn a CTRL: that CTRL.</li>
+<li><kbd>SHIFT</kbd> + <kbd>DEL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd>: that bank's six CTRLs.</li>
+<li><b>PATTERN</b> in MIDI SETTINGS: everything, after asking.</li>
+</ul>
+<div class="shots">
+<figure><div class="screen"><img src="images/learn-pattern.png" alt="The PATTERN view" width="804" height="420" loading="lazy"></div><figcaption>PATTERN</figcaption></figure>
+<figure><div class="screen"><img src="images/learn-pattern-ask.png" alt="CLEAR THIS PATTERN? with NO and YES" width="804" height="420" loading="lazy"></div><figcaption>Asks first</figcaption></figure>
+<figure><div class="screen"><img src="images/learn-pattern-done.png" alt="AUTOMATION DELETED" width="804" height="420" loading="lazy"></div><figcaption>Done</figcaption></figure>
+</div>
+
+<h2 id="ghost">GHOST</h2>
+<p>There is a small synth inside the SP. It's called GHOST. It plays through DOOM OS's mixer like a pad, and you play it the way you play any other synth: from pads, patterns, MIDI Controls and routes.</p>
+<h3>Waking it</h3>
+<ul>
+<li>On DOOM OS's page, press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd>. GHOST wakes up.</li>
+<li>Press <kbd>ROLL</kbd> + <kbd>REVERSE</kbd> again to let it rest. While it rests it makes no sound, any note it was holding is let go, and <kbd>ROLL</kbd> + <kbd>FX</kbd> does what it does on the SP.</li>
+<li>GHOST is awake or resting <b>per project</b>, and the SP remembers it, so it is still there after a restart. Load a project where you never woke it and GHOST is resting.</li>
+</ul>
+<h3>Playing it</h3>
+<p>GHOST is a <a href="#pads">device</a> named <code>GHOST</code>. A fresh setup has it as device 7. To add it yourself, name a device GHOST in DEVICES: it needs no channel, so its channel shows a dash. Then:</p>
+<ul>
+<li><b>Pads:</b> set a pad to GHOST in PADS. Play the pad live or <a href="#sequencing">sequence</a> it in a pattern.</li>
+<li><b>Dials:</b> set CTRLs to GHOST in <a href="#edit">MIDI Controls</a>. GHOST has its own <a href="#names">CC list</a>, with the Minilogue's CC numbers. It also has <b>LEVEL</b> (CC 7), so a dial can set its volume.</li>
+<li><b>Other synths:</b> <a href="#routes">route</a> a synth or keyboard to GHOST. Its CC goes through the CC map, like any other synth.</li>
+<li><b>Muting:</b> a muted pad sends no notes from a pattern, to GHOST or to any synth. Notes you play live are not muted.</li>
+</ul>
+<p>GHOST plays into BUS 1, so DOOM OS's bus effects reach it. If you rename the GHOST device, GHOST goes with the name.</p>
+<h3>Its screens</h3>
+<p><kbd>ROLL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> opens a bank of settings. The oscilloscope fills the top of the screen and shows what GHOST is playing. It keeps one scale, so you see how loud it is as well as its shape: the wave swells and fades with the envelope and shrinks as you turn LEVEL down. The bank's name and the page number sit in its corners, and the three settings are below it. When a screen opens or turns over, the keys that work on it show over the bottom of the scope for a few seconds.</p>
+<div class="tbl"><table>
+<tr><th>Bank</th><th>Page 1/2</th><th>Page 2/2</th></tr>
+<tr><td><kbd>FX1</kbd> VCO 1</td><td>WAVE, OCTAVE, SHAPE</td><td>PITCH, LEVEL, NOISE</td></tr>
+<tr><td><kbd>FX2</kbd> VCO 2</td><td>WAVE, OCTAVE, SHAPE</td><td>PITCH, LEVEL, MOD (OFF, SYNC, RING, BOTH)</td></tr>
+<tr><td><kbd>FX3</kbd> FILTER</td><td>CUTOFF, RESO, EG INT</td><td>TYPE (2 or 4 POLE), KEY TRK, VEL TRK</td></tr>
+<tr><td><kbd>FX4</kbd> AMP EG</td><td>ATTACK, DECAY, SUSTAIN</td><td>RELEASE</td></tr>
+<tr><td><kbd>FX5</kbd> EG</td><td>ATTACK, DECAY, SUSTAIN</td><td>RELEASE, PITCH EG, XMOD</td></tr>
+<tr><td><kbd>FX6</kbd> LFO</td><td>WAVE, RATE, INT</td><td>TARGET (CUTOFF, SHAPE, PITCH), EG MOD</td></tr>
+</table></div>
+<ul>
+<li><b>CTRL 1</b> to <b>CTRL 3</b> set the three settings on screen. The one you turn lights up.</li>
+<li>A VCO's <b>PITCH</b> moves one cent a step either side of the middle, out to 50 cents, then in whole semitones up to an octave.</li>
+<li><kbd>VALUE</kbd> flips between page 1/2 and 2/2. <kbd>ROLL</kbd> + the same FX key does too.</li>
+<li><kbd>MARK</kbd> opens SETUP: GHOST's LEVEL, its BUS (DRY, BUS 1 or BUS 2) and VOICES (how many notes it plays at once, 1 to 4). It is one page. <kbd>MARK</kbd> again goes back.</li>
+<li><kbd>RECORD SETTING</kbd> opens <a href="#programs">GHOST PROGRAMS</a>.</li>
+<li><kbd>EXIT</kbd> goes back to DOOM OS. <kbd>SHIFT</kbd> + <kbd>FX</kbd> goes to MIDI Controls.</li>
+</ul>
+<p>VCO 2 starts silent: turn up its <b>LEVEL</b> on page 2/2 to hear it.</p>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-vco1.png" alt="GHOST VCO 1, page 1/2: WAVE, OCTAVE, SHAPE, with the key legend VALUE PAGE MARK SETUP EXIT BACK over the bottom of the scope" width="804" height="420" loading="lazy"></div><figcaption>VCO 1, just opened: the keys show for a few seconds</figcaption></figure><figure><div class="screen"><img src="images/ghost-vco2.png" alt="GHOST VCO 2, page 2/2: PITCH, LEVEL, MOD set to SYNC" width="804" height="420" loading="lazy"></div><figcaption>VCO 2, page 2/2: MOD just turned to SYNC</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-filter.png" alt="GHOST FILTER: CUTOFF, RESO, EG INT" width="804" height="420" loading="lazy"></div><figcaption>FILTER, with CUTOFF turned</figcaption></figure><figure><div class="screen"><img src="images/ghost-lfo.png" alt="GHOST LFO: WAVE, RATE, INT" width="804" height="420" loading="lazy"></div><figcaption>LFO</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-setup.png" alt="GHOST SETUP: LEVEL 100, BUS 1, VOICES 4" width="804" height="420" loading="lazy"></div><figcaption>SETUP</figcaption></figure></div>
+<h3 id="programs">Programs</h3>
+<p>A program is a whole sound: every GHOST setting and its VOICES. GHOST comes with 20 and has room for 16 of yours. Press <kbd>RECORD SETTING</kbd> on a GHOST screen to open <b>GHOST PROGRAMS</b>. <kbd>VALUE</kbd> picks an entry, <kbd>MARK</kbd> opens it and <kbd>EXIT</kbd> goes back. <kbd>RECORD SETTING</kbd> again closes it.</p>
+<ul>
+<li><b>LOAD PROGRAM:</b> turn <kbd>VALUE</kbd> and each program loads and plays as you pass it, so you can hear it while you choose. <kbd>MARK</kbd> keeps the one you are on. <kbd>EXIT</kbd> puts your own sound back.</li>
+<li><b>SAVE PROGRAM:</b> pick one of the 16 slots and press <kbd>MARK</kbd> to name it. The name starts as the slot (<code>U01</code>). <kbd>VALUE</kbd> turns the letter, pressing it moves on, <b>CTRL 1</b> moves along the name, <b>CTRL 2</b> changes the letter and <kbd>DEL</kbd> rubs one out. <kbd>MARK</kbd> saves and <kbd>EXIT</kbd> cancels. Saving over a slot that is in use asks first.</li>
+<li><b>PERSIST PATCH CHANGES:</b> GHOST starts up with the sound it has now, every time you turn the SP on. Until you choose this, GHOST starts with its own default sound. Loading a program or turning a dial doesn't change what is kept until you choose this again.</li>
+</ul>
+<p>Your programs are saved on the SP and are the same in every project.</p>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-programs.png" alt="GHOST PROGRAMS: PERSIST PATCH CHANGES, SAVE PROGRAM, LOAD PROGRAM" width="804" height="420" loading="lazy"></div><figcaption>GHOST PROGRAMS</figcaption></figure><figure><div class="screen"><img src="images/ghost-load.png" alt="LOAD PROGRAM with PAD picked, 4 of 20" width="804" height="420" loading="lazy"></div><figcaption>LOAD PROGRAM</figcaption></figure></div>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-save.png" alt="SAVE PROGRAM: 16 slots, U01 to U05 shown" width="804" height="420" loading="lazy"></div><figcaption>SAVE PROGRAM</figcaption></figure><figure><div class="screen"><img src="images/ghost-name.png" alt="NAME PROGRAM: U01 with the cursor after it" width="804" height="420" loading="lazy"></div><figcaption>Naming a program</figcaption></figure></div>
+<h3>Recording its dials</h3>
+<p>GHOST records dial moves the way <a href="#auto">MIDI Controls</a> does, against the pattern, so a sound can change as the pattern plays.</p>
+<ul>
+<li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> on a GHOST screen switches recording on or off. A <b>REC</b> label shows beside the page number while it is on.</li>
+<li>Turn a dial while recording and it is recorded from then on, until you switch recording off. Turn it when you aren't recording and it holds your value until the pattern comes round again.</li>
+<li>An <b>A</b> beside a setting means it has recorded moves in this pattern.</li>
+<li><kbd>DEL</kbd> + turn a dial clears that setting's moves in this pattern. <kbd>ROLL</kbd> + <kbd>DEL</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> clears that bank's.</li>
+<li>Recorded moves play whether or not a GHOST screen is open. Leaving the screen, or letting GHOST rest, stops recording.</li>
+<li>They are saved on the SP a moment after you stop recording, one file for each pattern in each project, so they are still there after a restart. SETUP isn't recorded.</li>
+</ul>
+<div class="shots"><figure><div class="screen"><img src="images/ghost-rec.png" alt="GHOST FILTER while recording: a REC label beside the page number, CUTOFF turned, an A beside it" width="804" height="420" loading="lazy"></div><figcaption>Recording CUTOFF</figcaption></figure><figure><div class="screen"><img src="images/ghost-auto.png" alt="GHOST FILTER with recorded moves: an A beside CUTOFF" width="804" height="420" loading="lazy"></div><figcaption>Recorded: the A</figcaption></figure></div>
+
+<h2 id="rig">Bigger setups</h2>
+<p>The SP has one MIDI input and one MIDI output. Two small boxes take it from one synth to a whole rig: a <b>thru box</b> to reach more synths, and a <b>merger</b> to play the SP from more than one.</p>
+<figure class="diagram"><svg viewBox="0 0 600 472" class="rig" role="img" aria-labelledby="rg-title"><title id="rg-title">Example rig. A Minilogue on channel 4 and a controller keyboard on channel 6 go into a MIDI merger, which feeds the SP-404MKII MIDI input. The SP MIDI output goes into a MIDI thru box, which feeds an NTS-1 on channel 5, a volca keys on channel 1 and the Minilogue.</title><defs><marker id="rg-a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="rg-head"/></marker></defs><path d="M195 62 C195 86.0 270 86.0 270 108" class="rg-w" marker-end="url(#rg-a)"/><path d="M405 62 C405 86.0 330 86.0 330 108" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 162 C300 186.0 300 186.0 300 208" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 262 C300 286.0 300 286.0 300 308" class="rg-w" marker-end="url(#rg-a)"/><path d="M270 362 C270 386.0 105 386.0 105 408" class="rg-w" marker-end="url(#rg-a)"/><path d="M300 362 C300 386.0 300 386.0 300 408" class="rg-w" marker-end="url(#rg-a)"/><path d="M330 362 C330 386.0 495 386.0 495 408" class="rg-w" marker-end="url(#rg-a)"/><rect x="110" y="10" width="170" height="52" rx="10" class="rg-box"/><text x="195.0" y="33" class="rg-t">MINILOG</text><text x="195.0" y="51" class="rg-s">MIDI OUT · channel 4</text><rect x="320" y="10" width="170" height="52" rx="10" class="rg-box"/><text x="405.0" y="33" class="rg-t">Controller</text><text x="405.0" y="51" class="rg-s">MIDI OUT · channel 6</text><rect x="215" y="110" width="170" height="52" rx="10" class="rg-box acc"/><text x="300.0" y="133" class="rg-t">MIDI merger</text><text x="300.0" y="151" class="rg-s">2 in, 1 out</text><rect x="190" y="210" width="220" height="52" rx="10" class="rg-box sp"/><text x="300.0" y="233" class="rg-t">SP-404MKII</text><text x="300.0" y="251" class="rg-s">routes and sends</text><rect x="215" y="310" width="170" height="52" rx="10" class="rg-box acc"/><text x="300.0" y="333" class="rg-t">MIDI thru box</text><text x="300.0" y="351" class="rg-s">1 in, 3 out</text><rect x="20" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="105.0" y="433" class="rg-t">NTS-1</text><text x="105.0" y="451" class="rg-s">MIDI IN · channel 5</text><rect x="215" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="300.0" y="433" class="rg-t">volca keys</text><text x="300.0" y="451" class="rg-s">MIDI IN · channel 1</text><rect x="410" y="410" width="170" height="52" rx="10" class="rg-box"/><text x="495.0" y="433" class="rg-t">MINILOG</text><text x="495.0" y="451" class="rg-s">MIDI IN · channel 4</text><text x="312" y="190" class="rg-l" text-anchor="start">into MIDI IN</text><text x="312" y="290" class="rg-l" text-anchor="start">from MIDI OUT</text></svg><figcaption>An example rig. The Minilogue appears twice: its MIDI OUT feeds the merger, and its MIDI IN takes the SP's output.</figcaption></figure>
+
+<h3>Cables</h3>
+<p>The SP's MIDI sockets are 3.5 mm TRS jacks, Type A. Most synths have 5-pin DIN sockets, so you need a TRS-to-DIN adaptor or cable for each SP socket you use. Make sure it is <b>Type A</b>: a Type B adaptor is wired differently and won't pass anything. A synth with its own Type A TRS jacks takes a plain TRS-to-TRS cable.</p>
+
+<h3>More synths: a MIDI thru box</h3>
+<p>Everything the SP sends leaves from its one output, each synth's part on its own channel. A thru box, also called a MIDI splitter, copies that stream to several outputs, one cable per synth. Every synth hears everything and plays only its own channel.</p>
+<ul>
+<li><b>Daisy-chaining</b> works too: SP to synth A, synth A's MIDI THRU to synth B. It's fine for two or three synths. Each hop adds a little delay, so for more synths a thru box keeps timing tight.</li>
+<li><b>Synths with only a MIDI IN</b>, like the volcas, can't pass MIDI on. Give them a thru box output, or put them last in a chain.</li>
+<li><b>Set every synth to its own channel</b>, matching its device in <a href="#pads">DEVICES</a>. Two synths on one channel both play.</li>
+</ul>
+
+<h3>More players: a MIDI merger</h3>
+<p>To <a href="#routes">route</a> synths through the SP, their MIDI outputs have to reach its one input. A merger combines two or more MIDI streams into one. Keep each synth on its own channel: that's how the ROUTES grid tells them apart.</p>
+<ul>
+<li>MIDI over USB from a computer or phone is a second input, routed the same way, so you may not need a merger for that.</li>
+<li>Only send what you route. A synth that streams a lot of CC, such as every dial move, shares the merger's bandwidth with the others.</li>
+</ul>
+
+<h2 id="keys">Key summary</h2>
+<div class="tbl"><table>
+<tr><th>Keys</th><th>Does</th></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd></td><td>Open or close MIDI SETTINGS</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>FX1..FX6</kbd></td><td>MIDI Controls on, bank 1 to 6</td></tr>
+<tr><td><kbd>VALUE</kbd></td><td>MIDI page: CTRL page 1/2, 2/2. Menus: pick and open</td></tr>
+<tr><td><kbd>MARK</kbd></td><td>MIDI page: edit CTRLs. Route: open the CC map</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>VALUE</kbd></td><td>Record dial moves on or off (MIDI page or GHOST screen)</td></tr>
+<tr><td><kbd>DEL</kbd> + turn a CTRL</td><td>Clear that CTRL's (or GHOST setting's) moves in this pattern</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>DEL</kbd> + <kbd>FX1..FX6</kbd></td><td>Clear that bank's moves in this pattern (MIDI page)</td></tr>
+<tr><td><kbd>ROLL</kbd> + <kbd>DEL</kbd> + <kbd>FX1..FX6</kbd></td><td>Clear that bank's moves in this pattern (GHOST)</td></tr>
+<tr><td><kbd>SHIFT</kbd> + <kbd>DEL</kbd></td><td>CC map: remove a pair</td></tr>
+<tr><td><kbd>EXIT</kbd></td><td>Back one level; from the MIDI page, MIDI Controls off; from GHOST, back to DOOM OS</td></tr>
+<tr><td><kbd>ROLL</kbd> + <kbd>REVERSE</kbd></td><td>Wake GHOST in this project, or let it rest</td></tr>
+<tr><td><kbd>ROLL</kbd> + <kbd>FX1..FX6</kbd></td><td>GHOST's settings, bank 1 to 6</td></tr>
+<tr><td><kbd>RECORD SETTING</kbd></td><td>On a GHOST screen: GHOST PROGRAMS (persist, save, load)</td></tr>
+</table></div>
+
+<h2 id="limits">Limits</h2>
+<ul>
+<li>MIDI goes out of the MIDI output only. USB MIDI out isn't supported; routing takes MIDI in from both.</li>
+<li>With MIDI Controls on, the CTRL dials don't move the SP's own effect.</li>
+<li>GHOST plays up to four notes at once, and its screens open from DOOM OS's page only.</li>
+<li>7 devices, 10 synth names of your own plus GHOST, 250 CC names, 64 CC map pairs.</li>
+<li>Two devices on one channel look like one synth to the router.</li>
+<li>Routing passes notes, CC, bend, aftertouch and program change. Clock, start/stop and SysEx stay with the SP.</li>
+<li>A synth that echoes CC back, or a routing loop, may cause feedback. Untested.</li>
+<li>Works only with Roland 5.52 and DOOM OS 0.6.2-alpha (3824), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
+</ul>
+<h2 id="support">Support</h2>
+<p>MIDI Conductor is free to use. If it's useful to you, you can support its development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
+</main>
+</div>
+<footer><div class="wrap">
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
+<p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
+<p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
+</div></footer>
+</body></html>

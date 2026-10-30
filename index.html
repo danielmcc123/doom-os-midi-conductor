@@ -9,7 +9,7 @@
 </head><body>
 <header class="top"><div class="wrap">
 <a class="brand" href="index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>for SP-404MKII</small></a>
-<nav class="links" aria-label="Site"><a href="index.html" aria-current="page">Overview</a><a href="manual.html">Manual</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html">Patch firmware</a></nav>
+<nav class="links" aria-label="Site"><a href="index.html" aria-current="page">Overview</a><a href="manual.html">Manual</a><a href="changelog.html">Changelog</a><a href="https://github.com/danielmcc123/doom-os-midi-conductor">GitHub</a><a class="btn small" href="patcher.html">Patch firmware</a></nav>
 </div></header>
 
 <main>
@@ -18,7 +18,7 @@
 <h1>Conduct your whole rig from the SP-404MKII</h1>
 <p class="lead">Play, sequence and tweak your synths straight from the SP. Pads play notes, CTRL dials send CC, and patterns drive every synth on its own channel. No computer needed.</p>
 <div class="row"><a class="cta" href="patcher.html">Patch your firmware</a><a class="cta alt" href="manual.html#quick">Quick start</a></div>
-<p class="fine">Free to use. For Roland firmware 5.52, with DOOM OS 0.6.2 built in.</p>
+<p class="fine">Free to use. For Roland firmware 5.52, with DOOM OS 0.7.2 built in. <a href="changelog.html">New in 0.7.0</a>: MIDI Instruments and MIDI FX.</p>
 </div>
 <figure class="screen glow"><img src="images/midi-page-1.png" width="804" height="420" alt="The SP's MIDI page: CTRL 1 to 3 with their values, the synth each one plays and the control it moves, by name"></figure>
 </div>
@@ -29,49 +29,56 @@
 
 <div class="feature">
 <div class="text"><h3>Sequence your synths</h3>
-<p>Every step of a pattern goes out as a MIDI note. Point pads at different synths and one pattern plays them all.</p>
-<ul><li>Each pad on its own synth or channel</li><li>Piano-roll pitches come with each step</li><li>Notes follow the step's gate</li></ul></div>
-<figure><div class="screen"><img src="images/learn-pads.png" width="804" height="420" alt="Pad C4 set to play the synth MINILOG" loading="lazy"></div><figcaption>Pad C4 plays the Minilogue.</figcaption></figure>
+<p>Pick <b>MIDI</b> in DOOM OS's instrument picker and a pad plays your synth, with its own track in the pattern. Make one for each synth and one pattern plays them all.</p>
+<ul><li>Each MIDI Instrument on its own synth or channel</li><li>Piano-roll pitches come with each step</li><li>Notes follow the step's gate</li></ul></div>
+<figure><div class="screen"><img src="images/inst-page.png" width="804" height="420" alt="The MIDI INSTRUMENT page: the pad's synth picked from the list of devices" loading="lazy"></div><figcaption>A MIDI Instrument picks its synth.</figcaption></figure>
 </div>
 
 <div class="feature flip">
 <div class="text"><h3>36 dials of CC</h3>
 <p>Turn on MIDI Controls and the CTRL dials send CC instead of moving the effect. Six banks of six, each dial set to any control on any synth.</p>
-<ul><li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> picks the bank</li><li><kbd>MARK</kbd> sets a dial's synth and control</li></ul></div>
+<ul><li><kbd>SHIFT</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> picks the bank</li><li><kbd>RECORD SETTING</kbd> sets a dial's synth and control</li></ul></div>
 <figure><div class="screen"><img src="images/midi-edit.png" width="804" height="420" alt="Edit mode on the MIDI page with CTRL 2 selected" loading="lazy"></div><figcaption>Setting CTRL 2's synth and control.</figcaption></figure>
 </div>
 
 <div class="feature">
 <div class="text"><h3>Record dial moves</h3>
 <p>Sweep a filter while the pattern plays and it comes back on every loop. Each pattern keeps its own moves, saved on the SP.</p>
-<ul><li><kbd>SHIFT</kbd> + <kbd>VALUE</kbd> starts recording</li><li>64 points per dial for smooth sweeps</li><li>Grab a dial to take over live</li></ul></div>
+<ul><li><kbd>MARK</kbd> + <kbd>REC</kbd> starts recording</li><li>64 points per dial for smooth sweeps</li><li>Grab a dial to take over live</li></ul></div>
 <figure><div class="screen"><img src="images/midi-rec.png" width="804" height="420" alt="The MIDI page with REC in the title bar" loading="lazy"></div><figcaption>Recording into the current pattern.</figcaption></figure>
 </div>
 
 <div class="feature flip">
+<div class="text"><h3>MIDI FX</h3>
+<p>Six slots on every track turn a note into a chord, a rhythm, an echo or a line that stays in key, and move a synth's controls in time with the music. They work on samples and DOOM OS's instruments too.</p>
+<ul><li>Harmonize, Echo, Scale, Chance, Randomize, Dispatch, Euclid, Loop Stretch, LFO, ENV, Time Elastic</li><li>Layer Euclids into polyrhythms from one key</li><li><kbd>PITCH/SPEED</kbd> + <kbd>FX1</kbd>..<kbd>FX6</kbd> opens a slot</li></ul></div>
+<figure><div class="screen"><img src="images/fx-chain-page.png" width="804" height="420" alt="The CHAIN page: two Euclids, an Echo switched off and an LFO in the six slots" loading="lazy"></div><figcaption>A track's chain of MIDI FX.</figcaption></figure>
+</div>
+
+<div class="feature">
 <div class="text"><h3>Speaks your synths' language</h3>
-<p>Choose your synths when you patch and the SP knows their controls by name. Pick <code>CUTOFF</code>, not CC 43.</p>
+<p>Choose your synths when you patch, or later with a <a href="devices.html">DEVICES.CSV</a>, and the SP knows their controls by name. Pick <code>CUTOFF</code>, not CC 43.</p>
 <ul><li>Korg Minilogue, MS2000 and NTS-1, and volcas</li><li>Behringer Grind and TD-3-MO, Roland S-1</li><li>Novation Bass Station II, Yamaha MODX M</li><li>Elektron Digitone II, Audiothingies MicroMonsta 2</li><li>Or load your own list</li></ul></div>
 <figure><img src="images/cc-picker.png" alt="The patcher's synth list with four synths added" loading="lazy" class="shotimg"><figcaption>Choosing synths in the patcher.</figcaption></figure>
 </div>
 
-<div class="feature">
+<div class="feature flip">
 <div class="text"><h3>Route synth to synth</h3>
-<p>Play one synth's keys and another plays along. Map one synth's dials onto another's controls. The SP sits in the middle, so a single keyboard can drive the whole rig.</p>
-<ul><li>Notes, CC, pitch bend and aftertouch, each on or off per route</li><li>Turn a dial to map it</li></ul></div>
-<figure><div class="screen"><img src="images/learn-ccmap.png" alt="CC map from the Minilogue to the NTS-1: CUTOFF to RESO and LFO RT to LFO RT" width="804" height="420" loading="lazy"></div><figcaption>The Minilogue's cutoff dial moves the NTS-1's resonance.</figcaption></figure>
+<p>Play one synth's keys and another plays along. Map one synth's dials onto another's controls, or onto the SP's mixer, EQ and MIDI FX. The SP sits in the middle, so a single keyboard can drive the whole rig.</p>
+<ul><li>Notes, CC, pitch bend and aftertouch, each on or off per route</li><li>Turn a dial to map it, with a range for each mapping</li></ul></div>
+<figure><div class="screen"><img src="images/ccmap-synth.png" alt="The CC MAP: a synth's dials mapped to another synth's controls, each with a range" width="804" height="420" loading="lazy"></div><figcaption>The CC MAP.</figcaption></figure>
 </div>
 
-<div class="feature flip">
+<div class="feature">
 <div class="text"><h3>Play and record samples from a keyboard</h3>
 <p>Route a keyboard to the SP and it plays the pad of the track DOOM OS is on, pitched like the SP's own keyboard. In record mode the notes are recorded too, with their pitch and velocity.</p></div>
 <figure><div class="screen"><img src="images/learn-route.png" width="804" height="420" alt="Route MINILOG to NTS-1 with CC and BEND on and two CC map pairs" loading="lazy"></div><figcaption>Setting up a route.</figcaption></figure>
 </div>
 
-<div class="feature">
+<div class="feature flip">
 <div class="text"><h3>Set up on the unit</h3>
-<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens MIDI SETTINGS: your synths, your pads, your routes. Every screen has a help line, and everything is saved.</p></div>
-<figure><div class="screen"><img src="images/learn-menu.png" width="804" height="420" alt="The MIDI SETTINGS menu: PADS, DEVICES, ROUTES and PATTERN" loading="lazy"></div><figcaption>The MIDI SETTINGS menu.</figcaption></figure>
+<p><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> opens MIDI SETTINGS: your synths, your routes, your recorded moves. Every screen has a help line, and each project keeps its own setup.</p></div>
+<figure><div class="screen"><img src="images/menu-07.png" width="804" height="420" alt="The MIDI SETTINGS menu: DEVICES, ROUTES and PATTERN" loading="lazy"></div><figcaption>The MIDI SETTINGS menu.</figcaption></figure>
 </div>
 
 </div></div></section>
@@ -81,8 +88,8 @@
 <dl class="specs">
 <div><dt>36</dt><dd>CTRL dials in six banks</dd></div>
 <div><dt>7</dt><dd>synths, each on its own channel</dd></div>
+<div><dt>11</dt><dd>MIDI FX, six slots on every track</dd></div>
 <div><dt>160</dt><dd>patterns, each with its own dial moves</dd></div>
-<div><dt>64</dt><dd>points per dial, per pattern</dd></div>
 <div><dt>64</dt><dd>dial-to-control pairs between synths</dd></div>
 <div><dt>250</dt><dd>controls known by name</dd></div>
 </dl>
@@ -94,9 +101,9 @@
 <li><h3>Get Roland's firmware</h3><p>Download the SP-404MKII system update 5.52 from Roland and unzip it.</p></li>
 <li><h3>Patch it</h3><p>Drop <code>SP404MKII_APP1.bin</code> on the <a href="patcher.html">patcher</a> and pick your synths. Nothing is uploaded.</p></li>
 <li><h3>Install it</h3><p>Install it the same way as <a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS</a>. DOOM OS is already inside.</p></li>
-<li><h3>Play</h3><p>The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in five steps.</p></li>
+<li><h3>Play</h3><p>The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in six steps.</p></li>
 </ol>
-<div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52 and DOOM OS 0.6.2-alpha (build 3824). Keep Roland's original files so you can go back.</p></div>
+<div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52 and DOOM OS 0.7.2 (build 359C). Keep Roland's original files so you can go back.</p></div>
 </div></section>
 </main>
 <footer><div class="wrap">
