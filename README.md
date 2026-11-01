@@ -43,9 +43,9 @@ What changed in each release is in [CHANGELOG.md](CHANGELOG.md).
 ## Files
 
 `releases/<version>/` holds each release's patcher script and `checksums.txt`, with the SHA-256 of the stock and
-patched images so you can check your file. 0.7.0 is built on DOOM OS 0.7.2 (359C). 0.6.5 (DOOM OS 0.6.2-alpha, 3824)
-can still be patched from **Previous versions** on the patcher page, and its manual is in `releases/0.6.5-alpha/`. Older
-releases are kept for reference; 0.1.0 was built on DOOM OS 0.6.1-alpha (ED5E).
+patched images so you can check your file. 0.7.0 and 0.7.1 are built on DOOM OS 0.7.2 (359C). Every earlier release can
+still be patched from **Earlier versions** on the patcher page. The 0.6.5 manual (DOOM OS 0.6.2-alpha, 3824) is in
+`releases/0.6.5-alpha/`; 0.1.0 to 0.5.0 were built on DOOM OS 0.6.1-alpha (ED5E).
 
 ## Credits and licence
 

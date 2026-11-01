@@ -74,6 +74,6 @@ release while it is reworked.
 
 ## 0.6.5 and earlier
 
-Alpha releases built on DOOM OS 0.6.x (0.6.5: DOOM OS 0.6.2-alpha, build 3824). 0.6.5 can still be patched from
-**Previous versions** on the [patcher](patcher.html?v=0.6.5), and its manual is kept at
+Alpha releases built on DOOM OS 0.6.x (0.6.5: DOOM OS 0.6.2-alpha, build 3824). They can still be patched from
+**Earlier versions** on the [patcher](patcher.html#previous), and the 0.6.5 manual is kept at
 [releases/0.6.5-alpha/manual.html](releases/0.6.5-alpha/manual.html).
