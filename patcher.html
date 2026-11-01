@@ -28,17 +28,17 @@
 .jmsg{margin:0}.jmsg.ok{color:var(--ok)}.jmsg.bad{color:var(--bad)}
 
 [data-for]{display:none}
-body[data-v="0.7.0"] [data-for~="0.7.0"],body[data-v="0.6.5"] [data-for~="0.6.5"]{display:revert}
+body[data-v="0.7.1"] [data-for~="0.7.1"],body[data-v="0.6.5"] [data-for~="0.6.5"]{display:revert}
 </style>
 <script>
 // Which release this page patches: the current one, or 0.6.5 from Previous versions (patcher.html?v=0.6.5)
 (function () {
   var RELEASES = {
-    "0.7.0": "releases/0.7.0/conductor-patcher.js?v=7be7cd7e",
+    "0.7.1": "releases/0.7.1/conductor-patcher.js?v=2438d4bb",
     "0.6.5": "releases/0.6.5-alpha/conductor-patcher.js?v=513ca1a2"
   };
   var v = new URLSearchParams(location.search).get("v");
-  if (!RELEASES[v]) v = "0.7.0";
+  if (!RELEASES[v]) v = "0.7.1";
   window.PATCHER_VERSION = v;
   window.PATCHER_SCRIPT = RELEASES[v];
 })();
@@ -55,17 +55,17 @@ body[data-v="0.7.0"] [data-for~="0.7.0"],body[data-v="0.6.5"] [data-for~="0.6.5"
 <p class="lead">Turn Roland's 5.52 firmware into DOOM OS with MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
 <div class="warn spaced old" data-for="0.6.5"><p><b>This is an older release, MIDI Conductor 0.6.5</b>, on DOOM OS 0.6.2. It has none of 0.7's features. Its manual is <a href="releases/0.6.5-alpha/manual.html">kept here</a>. <a href="patcher.html">Back to the current release</a>.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.0</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.1</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
-<div><h3>DOOM OS</h3><p><span data-for="0.7.0">0.7.2 (359C), built in</span><span data-for="0.6.5">0.6.2-alpha (3824), built in</span></p></div>
-<div><h3>Released</h3><p><span data-release="released">30 October 2026</span></p></div>
+<div><h3>DOOM OS</h3><p><span data-for="0.7.1">0.7.2 (359C), built in</span><span data-for="0.6.5">0.6.2-alpha (3824), built in</span></p></div>
+<div><h3>Released</h3><p><span data-release="released">1 November 2026</span></p></div>
 </div>
-<p data-for="0.7.0"><b>New in 0.7.0:</b> MIDI Instruments, MIDI FX on synths, GHOST and samples, the CC MAP and a setup for each project. <a href="changelog.html">Read the changelog</a>.</p>
+<p data-for="0.7.1"><b>New in 0.7.1:</b> program changes per pattern, a MIDI clock that can keep running with your gear started from the SP, and pausing the routes. <a href="changelog.html">Read the changelog</a>.</p>
 <h2>1. Patch</h2>
-<p data-for="0.7.0">Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one or an earlier MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
+<p data-for="0.7.1">Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one or an earlier MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
 <p data-for="0.6.5">Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one. Under <b>CC lists</b>, add your synths so the SP knows their controls by name. Skip it and the dials use CC numbers.</p>
 <div id="patcher"></div>
-<div data-for="0.7.0">
+<div data-for="0.7.1">
 <h2 id="devices">2. Your synths</h2>
 <p>Synths aren't built into the firmware. Pick yours here, download <code>DEVICES.CSV</code> and load it on the SP. Each synth comes with its CC names, so a CTRL dial picks <code>CUTOFF</code> instead of a number. You can make a new file at any time without patching again.</p>
 <div class="devs">
@@ -105,27 +105,27 @@ body[data-v="0.7.0"] [data-for~="0.7.0"],body[data-v="0.6.5"] [data-for~="0.6.5"
 <p>Only <code>device</code> is needed. <code>raw_ccs</code> is <code>"show"</code> or <code>"hide"</code> (the CTRL dials reach every CC, or only the named ones). Names use A to Z, 0 to 9, space, <code>-</code> and <code>.</code>, up to 7 characters. <code>ccs</code> can also be a list of <code>[cc, "name"]</code> pairs or an object like <code>{"74": "CUTOFF"}</code>.</p>
 </details>
 </div>
-<h2 data-for="0.7.0">3. Install</h2><h2 data-for="0.6.5">2. Install</h2>
+<h2 data-for="0.7.1">3. Install</h2><h2 data-for="0.6.5">2. Install</h2>
 <p>Download the patched <code>SP404MKII_APP1.bin</code> and keep that name. Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). To go back, install Roland's original files.</p>
-<p data-for="0.7.0"><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as <a href="manual.html#tracks">MIDI Instruments</a>. See the <a href="changelog.html">changelog</a> for everything that's new.</p>
-<h2 data-for="0.7.0">4. Play</h2><h2 data-for="0.6.5">3. Play</h2>
-<p data-for="0.7.0">The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in six steps.</p>
+<p data-for="0.7.1"><b>Coming from 0.6:</b> your devices, routes and CTRLs move into the first project the SP starts in. Pads you set on the old PADS screen are cleared after a few seconds; make them again as <a href="manual.html#tracks">MIDI Instruments</a>. See the <a href="changelog.html">changelog</a> for everything that's new.</p>
+<h2 data-for="0.7.1">4. Play</h2><h2 data-for="0.6.5">3. Play</h2>
+<p data-for="0.7.1">The <a href="manual.html#quick">quick start</a> puts a synth on a pad and a dial in six steps.</p>
 <p data-for="0.6.5">The <a href="releases/0.6.5-alpha/manual.html#quick">0.6.5 quick start</a> puts a synth on a pad and a dial in five steps.</p>
 <div class="warn spaced"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This is tested on one unit only, and it hooks some of Roland's own routines, which the DOOM OS author has called risky. Back up your SD card and keep Roland's original files so you can go back.</p></div>
-<h2 id="previous" data-for="0.7.0">Previous versions</h2><h2 data-for="0.6.5">Current version</h2>
-<div class="prev" data-for="0.7.0">
+<h2 id="previous" data-for="0.7.1">Previous versions</h2><h2 data-for="0.6.5">Current version</h2>
+<div class="prev" data-for="0.7.1">
 <h3>0.6.5 alpha</h3>
 <p>The last release on DOOM OS 0.6.2-alpha (3824), from 21 October 2026, for anyone who wants to stay on it. <a href="patcher.html?v=0.6.5#patcher">Patch 0.6.5</a> · <a href="releases/0.6.5-alpha/manual.html">its manual</a></p>
 </div>
 <div class="prev" data-for="0.6.5">
-<h3>0.7.0</h3>
-<p>The current release, on DOOM OS 0.7.2 (359C). <a href="patcher.html">Patch 0.7.0</a> · <a href="manual.html">the manual</a></p>
+<h3>0.7.1</h3>
+<p>The current release, on DOOM OS 0.7.2 (359C). <a href="patcher.html">Patch 0.7.1</a> · <a href="manual.html">the manual</a></p>
 </div>
 </main>
 <script>document.write('<script src="' + window.PATCHER_SCRIPT + '"><\/script>');</script>
 <script>
-// 0.7.0 only: the DEVICES.CSV maker (0.6.5's patcher carries its own CC lists)
-if (window.PATCHER_VERSION === "0.7.0")
+// 0.7 only: the DEVICES.CSV maker (0.6.5's patcher carries its own CC lists)
+if (window.PATCHER_VERSION === "0.7.1")
   document.write('<script src="cc-catalog.js?v=4c5dea5b"><\/script><script src="cc_picker.js?v=653126f7"><\/script>'
     + '<script src="devices-convert.js?v=5d1e510b"><\/script><script src="devices-maker.js?v=cf481ccf"><\/script>');
 </script>

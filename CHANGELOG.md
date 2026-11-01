@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.7.1 (1 November 2026)
+
+Built on **DOOM OS 0.7.2 (build 359C)** for Roland firmware 5.52, like 0.7.0. Better for running a rig of synths from the SP.
+
+### New
+- **Program changes per pattern.** Each pattern can switch devices 1 to 6 to a program of your choice, with a bank sent
+  as MSB or LSB. They go out when play starts and when the pattern changes, and only to a synth whose program actually
+  changes, so a synth that keeps its program isn't reset. Set them in **MIDI SETTINGS > PATTERN > PROGRAM CHANGES**.
+- **MIDI CLOCK setting** in the DOOM OS settings tab, under MIDI CONDUCTOR. **FOLLOW** (the default) starts and stops
+  your gear with the SP. With **ALWAYS** the clock never stops, so synths and loopers stay in time while the SP is
+  stopped, and you start and stop your gear yourself:
+  - **PITCH/SPEED + PATTERN EDIT** starts or stops your gear on its own: on the next bar while a pattern plays, straight
+    away when the SP is stopped.
+  - **PITCH/SPEED + PATTERN SELECT** starts or stops your gear together with the SP's pattern.
+- **Pause the routes.** Hold **SHIFT + REMAIN** to stop everything coming in from your routed devices, and hold it again to
+  bring the routes back. Use it when a synth that plays the SP should play only itself for a while.
+
+### Changed
+- The SP no longer sends a MIDI Start every time the pattern loops, so gear that follows its clock (a looper, a
+  synth's sequencer) runs on instead of jumping back to its start.
+- **MIDI SETTINGS > PATTERN** now has PROGRAM CHANGES and CLEAR AUTOMATION.
+
+### Fixed
+- MIDI Instrument notes could come out a note or two off (a C played as an A#) depending on the pad. Every pad now
+  starts from C3.
+- Euclid on a sample pad with GATE off kept playing after the pattern looped. Its rhythm now ends where the pattern
+  loops and starts fresh when play starts again.
+- The Euclid screen's step marker follows that track's own rhythm.
+
 ## 0.7.0 (30 October 2026)
 
 Built on **DOOM OS 0.7.2 (build 359C)** for Roland firmware 5.52. The biggest release yet: MIDI Instruments, MIDI FX,
