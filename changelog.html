@@ -13,10 +13,40 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
+<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-2">0.7.2</a></li><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
 <main>
 <h1>Changelog</h1>
 <p class="lead">What changed in each release.</p>
+<h2 id="v0-7-2">0.7.2 (7 November 2026)</h2>
+<p>Built on <strong>DOOM OS 0.7.3 (build 733D)</strong> for Roland firmware 5.52. The Arp is back in MIDI FX with a new HUMAN setting, Swing is new, and a
+keyboard plays your MIDI FX wherever you play it.</p>
+<h3>New</h3>
+<ul>
+<li><strong>DOOM OS 0.7.3 underneath</strong>, built into the patch as before: patch Roland's 5.52 file. MIDI Conductor 0.7.1 with
+  DOOM OS 0.7.2 stays on the patcher page under <strong>Show earlier versions</strong>.</li>
+<li><strong>The Arp</strong> is in MIDI FX. It plays held notes one at a time: a chord from Harmonize before it, a held step, or pads held
+  down. RATE, MODE (UP, DOWN, UP-DN, DN-UP, ORDER, RANDOM, CHORD), OCTAVE, GATE, REPEAT, LATCH, and a RHYTHM: ALL, one of 22
+  patterns, or a Euclidean rhythm of 2 to 16 steps with HITS of them played. It stops when the pattern stops.</li>
+<li><strong>HUMAN</strong> on the Arp's third page: each note's velocity and length move a little, more as you turn it
+  up. It isn't on the CC map.</li>
+<li><strong>Swing</strong>, a new MIDI FX. While the pattern plays, every second 1/16 (or 1/8) comes later, from AMOUNT 50 (straight) to
+  75. Put it last in the chain, so the notes an Arp, Euclid or Echo before it makes swing too.</li>
+</ul>
+<h3>Changed</h3>
+<ul>
+<li><strong>Loop Stretch</strong> no longer has a REPEAT setting: switched on, it stretches. A slot saved with REPEAT OFF loads switched off.</li>
+<li><strong>Loop Stretch and Time Elastic with SOURCE CHAIN</strong> take the slots before them too, so Harmonize then Loop Stretch
+  stretches the chord.</li>
+<li><strong>PITCH/SPEED on DOOM OS's page</strong> reaches DOOM OS when you let go of it, and not at all when you press another key with
+  it. On the mixer, a tap opens the EQ as before, and the gear keys no longer open it.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>A keyboard routed to the SP only ran a sample track's or DOOM OS instrument's MIDI FX while rehearsing or recording. It
+  runs them any time now, at the keyboard's pitch.</li>
+<li>A keyboard routed to a synth skipped a MIDI Instrument's MIDI FX until something was recorded on its track.</li>
+<li>The gear keys (PITCH/SPEED + PATTERN EDIT or PATTERN SELECT) did nothing on the MIDI FX screens.</li>
+</ul>
 <h2 id="v0-7-1">0.7.1 (1 November 2026)</h2>
 <p>Built on <strong>DOOM OS 0.7.2 (build 359C)</strong> for Roland firmware 5.52, like 0.7.0. Better for running a rig of synths from the SP.</p>
 <h3>New</h3>

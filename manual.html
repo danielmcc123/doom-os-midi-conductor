@@ -17,7 +17,7 @@
 <main>
 <h1>Manual</h1>
 <p class="lead">How to play, sequence, shape, route and record your synths from the SP-404MKII.</p>
-<div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This version is tested on one unit only, with Roland 5.52 and DOOM OS 0.7.2 (build 359C), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
+<div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This version is tested on one unit only, with Roland 5.52 and DOOM OS 0.7.3 (build 733D), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
 
 <h2 id="quick">Quick start</h2>
 <p>Six steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
@@ -189,7 +189,8 @@
 <tr><td><kbd>PITCH/SPEED</kbd> + <kbd>PATTERN EDIT</kbd></td><td>Your gear starts or stops on its own. While a pattern plays it starts on the next bar; with the SP stopped it starts straight away. Stop is always straight away.</td></tr>
 <tr><td><kbd>PITCH/SPEED</kbd> + <kbd>PATTERN SELECT</kbd></td><td>Your gear starts or stops together with the SP's pattern.</td></tr>
 </table></div>
-<p>The screen says what happened for a moment: GEAR START, GEAR START ON THE BAR, GEAR STOP, or GEAR AND PATTERN START or STOP.</p>
+<p>The screen says what happened for a moment: GEAR START, GEAR START ON THE BAR, GEAR STOP, or GEAR AND PATTERN START or STOP. Both work on the MIDI FX screens too.</p>
+<p>On DOOM OS's page, DOOM OS gets <kbd>PITCH/SPEED</kbd> when you let go of it, and not at all when you press another key with it. So on the mixer, a tap still opens the EQ, and these shortcuts don't.</p>
 
 <h2 id="midi">MIDI Controls</h2>
 <p>With MIDI Controls on, the CTRL dials send CC instead of changing the effect. There are 36 CTRLs: six banks of six.</p>
@@ -243,7 +244,7 @@
 <h3 id="fxsamples">On samples and DOOM OS instruments</h3>
 <p>Give a sample track or a DOOM OS instrument track a chain and its pattern steps and pad hits go through it too. The extra notes play the pad again.</p>
 <ul>
-<li><b>Echo, Chance, Randomize, Euclid, Loop Stretch, Time Elastic:</b> repeat, drop or move the pad's hits.</li>
+<li><b>Echo, Chance, Randomize, Euclid, Arp, Swing, Loop Stretch, Time Elastic:</b> repeat, drop or move the pad's hits.</li>
 <li><b>Harmonize, Scale and Echo's PITCH</b> change the pitch only when the SP's pad mode is chromatic. On plain pads the extra notes play at the pad's own pitch, and Scale does nothing.</li>
 <li><b>Euclid's GATE</b> goes up to <b>TIE</b>: each hit rings until the next one, like a one-shot. That suits samples best.</li>
 <li><b>LFO and ENV</b> can move the SP's mixer and MIDI FX settings. A sample has no synth, so their CC to a device does nothing.</li>
@@ -279,6 +280,7 @@
 <li>Scale in FX1, Randomize with SOURCE PAD in FX2: the played note in key, plus a wandering one beside it.</li>
 </ul>
 <p>Notes an effect makes itself (a Euclid's hits, a Loop Stretch's) go past a SOURCE PAD slot without changing.</p>
+<p>Loop Stretch and Time Elastic read the track's notes from the pattern. With SOURCE CHAIN they take the slots before them too: Harmonize then Loop Stretch stretches the chord. With SOURCE PAD the chain plays on as it is and the pad's note, stretched, joins it.</p>
 <p>A moved effect takes everything with it: its settings, its recorded dial moves in every pattern, an LFO or ENV aimed at it, and the <a href="#ccmap">CC MAP</a> mappings to it.</p>
 <div class="shots">
 <figure><div class="screen"><img src="images/fx-chain-page.png" alt="The CHAIN page: FX1 EUCLD, FX2 EUCLD with SOURCE PAD framed, FX3 ECHO off, FX4 LFO, FX5 and FX6 empty, and two help lines" width="804" height="420" loading="lazy"></div><figcaption>The CHAIN page: FX2 picked, its SOURCE set to PAD</figcaption></figure>
@@ -295,7 +297,9 @@
 <tr><td><b>RANDOMIZE</b></td><td>Random changes to pitch, octave and velocity.</td><td>PITCH, OCTAVE, VELO, AMOUNT, LOOP, LENGTH, SHAPE (EVEN or BELL), BIAS</td></tr>
 <tr><td><b>DISPATCH</b></td><td>Shares notes out over up to three synths: in turn, a chord's notes split, or at random.</td><td>MODE (ROUND, CHORD, RANDOM), TO 1, TO 2, TO 3 (THIS track's synth or a device)</td></tr>
 <tr><td><b>EUCLID</b></td><td>Plays held notes in an even rhythm of hits over steps. NOTE plays the held note, a shift of it, or a note of its own (a drum, say). Set the Euclids after the first to SOURCE PAD and they layer into a polyrhythm from one key.</td><td>RATE, STEPS (1–32), HITS, ROTATE, GATE (up to TIE: each hit rings until the next), NOTE (HELD, a shift, or a fixed note)</td></tr>
-<tr><td><b>LOOP STRETCH</b></td><td>Replays the track's own pattern at another length, so it drifts against the others and meets them again.</td><td>REPEAT (OFF, ON), LENGTH (1/32 to 2 BARS), DIR (FORWARD, REVERSE, PINGPNG)</td></tr>
+<tr><td><b>LOOP STRETCH</b></td><td>Replays the track's own pattern at another length, so it drifts against the others and meets them again.</td><td>LENGTH (1/32 to 2 BARS), DIR (FORWARD, REVERSE, PINGPNG). Switch the slot off to hear the track as it is.</td></tr>
+<tr><td><b>ARP</b></td><td>Plays held notes one at a time: a chord from Harmonize before it, a held step, or pads held down.</td><td>RATE, MODE (UP, DOWN, UP-DN, DN-UP, ORDER, RANDOM, CHORD), OCTAVE (1–4), GATE, REPEAT, LATCH, RHYTHM (ALL, 22 patterns, or a Euclidean rhythm of 2 to 16 steps), HITS (how many of a Euclidean rhythm's steps play; it does nothing with ALL or a pattern), HUMAN (0–100: each note's velocity and length move a little; on the third page, and not on the CC map)</td></tr>
+<tr><td><b>SWING</b></td><td>While the pattern plays, moves every second 1/16 (or 1/8) later, note-offs and all. Put it last in the chain: an Arp, Euclid or Echo before it swings too.</td><td>AMOUNT (50 straight to 75), GRID (1/16, 1/8)</td></tr>
 <tr><td><b>LFO</b></td><td>A wave that moves a CC on the track's synth, or a setting of another slot.</td><td>RATE (1/16 to 8 BARS), SHAPE (SINE, TRI, SAW, SQUARE, RANDOM, DRIFT), DEPTH, CENTER, and its TARGET</td></tr>
 <tr><td><b>ENV</b></td><td>An envelope started by each note, moving a CC or a setting of another slot.</td><td>DEPTH, ATTACK, DECAY, SUSTAIN, RELEASE, CENTER, and its TARGET</td></tr>
 <tr><td><b>TIME ELASTIC</b></td><td>Plays the track's pattern faster or slower than the tempo, falling back into step every few bars. Press <kbd>VALUE</kbd> to put it back in step now.</td><td>SPEED (±50 %), FINE, RESYNC (NEVER, 1 to 16 BARS)</td></tr>
@@ -339,7 +343,7 @@
 <h3>Notes to the SP</h3>
 <p>Notes routed to the <b>SP</b> play the track DOOM OS is on (turn <kbd>VALUE</kbd> on DOOM's page to pick another).</p>
 <ul>
-<li><b>A sample track:</b> the pad plays, pitched like the SP's own keyboard. The SP only takes notes C2 to C4 (36 to 60), so notes outside that are moved by octaves to fit.</li>
+<li><b>A sample track</b> (a sample or a DOOM OS instrument): the pad plays, pitched like the SP's own keyboard. The SP only takes notes C2 to C4 (36 to 60), so notes outside that are moved by octaves to fit. If the track has <a href="#fx">MIDI FX</a>, they play too.</li>
 <li><b>A MIDI Instrument or GHOST track:</b> the note goes to that track's synth as played, through the track's <a href="#fx">MIDI FX</a>. Your keyboard plays whichever synth the current track plays.</li>
 <li>While DOOM OS is recording or rehearsing, the note is recorded on that track, at the pitch and velocity you played, with the length you held it.</li>
 </ul>
@@ -498,18 +502,18 @@
 <li>With MIDI Controls on, the CTRL dials don't move the SP's own effect.</li>
 <li>GHOST plays up to four notes at once, and its screens open from DOOM OS's page only.</li>
 <li>7 devices, 251 CC names, 64 CC MAP mappings, 6 MIDI FX per track.</li>
-<li>MIDI FX at once: 32 notes held with added notes, 96 notes waiting to play, 8 Euclids, 4 Loop Stretch or Time Elastic, 16 LFOs and ENVs.</li>
+<li>MIDI FX at once: 32 notes held with added notes, 96 notes waiting to play, 8 Euclids, 4 Loop Stretch or Time Elastic, 4 Arps, 16 LFOs and ENVs.</li>
 <li>Two devices on one channel look like one synth to the router.</li>
 <li>Routing passes notes, CC, bend and aftertouch. Clock, start/stop and SysEx stay with the SP.</li>
 <li>A synth that echoes CC back, or a routing loop, may cause feedback. Untested.</li>
-<li>Works only with Roland 5.52 and DOOM OS 0.7.2 (359C), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
+<li>Works only with Roland 5.52 and DOOM OS 0.7.3 (733D), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
 </ul>
 <h2 id="support">Support</h2>
 <p>MIDI Conductor is free to use. If it's useful to you, you can support its development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
 </main>
 </div>
 <footer><div class="wrap">
-<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
+<p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use. MIDI FX's Arp rhythms come from Mutable Instruments' Yarns (MIT).</p>
 <p>You can support MIDI Conductor's development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>
 <p>Not affiliated with Roland or the DOOM OS author. This site contains no Roland firmware. SP-404MKII is a trademark of Roland Corporation.</p>
 </div></footer>

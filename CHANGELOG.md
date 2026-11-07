@@ -1,5 +1,34 @@
 # Changelog
 
+## 0.7.2 (7 November 2026)
+
+Built on **DOOM OS 0.7.3 (build 733D)** for Roland firmware 5.52. The Arp is back in MIDI FX with a new HUMAN setting, Swing is new, and a
+keyboard plays your MIDI FX wherever you play it.
+
+### New
+- **DOOM OS 0.7.3 underneath**, built into the patch as before: patch Roland's 5.52 file. MIDI Conductor 0.7.1 with
+  DOOM OS 0.7.2 stays on the patcher page under **Show earlier versions**.
+- **The Arp** is in MIDI FX. It plays held notes one at a time: a chord from Harmonize before it, a held step, or pads held
+  down. RATE, MODE (UP, DOWN, UP-DN, DN-UP, ORDER, RANDOM, CHORD), OCTAVE, GATE, REPEAT, LATCH, and a RHYTHM: ALL, one of 22
+  patterns, or a Euclidean rhythm of 2 to 16 steps with HITS of them played. It stops when the pattern stops.
+- **HUMAN** on the Arp's third page: each note's velocity and length move a little, more as you turn it
+  up. It isn't on the CC map.
+- **Swing**, a new MIDI FX. While the pattern plays, every second 1/16 (or 1/8) comes later, from AMOUNT 50 (straight) to
+  75. Put it last in the chain, so the notes an Arp, Euclid or Echo before it makes swing too.
+
+### Changed
+- **Loop Stretch** no longer has a REPEAT setting: switched on, it stretches. A slot saved with REPEAT OFF loads switched off.
+- **Loop Stretch and Time Elastic with SOURCE CHAIN** take the slots before them too, so Harmonize then Loop Stretch
+  stretches the chord.
+- **PITCH/SPEED on DOOM OS's page** reaches DOOM OS when you let go of it, and not at all when you press another key with
+  it. On the mixer, a tap opens the EQ as before, and the gear keys no longer open it.
+
+### Fixed
+- A keyboard routed to the SP only ran a sample track's or DOOM OS instrument's MIDI FX while rehearsing or recording. It
+  runs them any time now, at the keyboard's pitch.
+- A keyboard routed to a synth skipped a MIDI Instrument's MIDI FX until something was recorded on its track.
+- The gear keys (PITCH/SPEED + PATTERN EDIT or PATTERN SELECT) did nothing on the MIDI FX screens.
+
 ## 0.7.1 (1 November 2026)
 
 Built on **DOOM OS 0.7.2 (build 359C)** for Roland firmware 5.52, like 0.7.0. Better for running a rig of synths from the SP.
