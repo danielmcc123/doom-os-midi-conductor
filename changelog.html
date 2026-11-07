@@ -26,7 +26,10 @@ keyboard plays your MIDI FX wherever you play it.</p>
   DOOM OS 0.7.2 stays on the patcher page under <strong>Show earlier versions</strong>.</li>
 <li><strong>The Arp</strong> is in MIDI FX. It plays held notes one at a time: a chord from Harmonize before it, a held step, or pads held
   down. RATE, MODE (UP, DOWN, UP-DN, DN-UP, ORDER, RANDOM, CHORD), OCTAVE, GATE, REPEAT, LATCH, and a RHYTHM: ALL, one of 22
-  patterns, or a Euclidean rhythm of 2 to 16 steps with HITS of them played. It stops when the pattern stops.</li>
+  patterns, or a Euclidean rhythm of 2 to 16 steps with HITS of them played. While the pattern plays it keeps to the
+  pattern's grid and starts from its top every time the pattern loops, and a step as long as the whole pattern keeps it
+  going every bar. LATCH holds the notes you play; a pattern step's notes end with the step. It stops when the pattern
+  stops.</li>
 <li><strong>HUMAN</strong> on the Arp's third page: each note's velocity and length move a little, more as you turn it
   up. It isn't on the CC map.</li>
 <li><strong>Swing</strong>, a new MIDI FX. While the pattern plays, every second 1/16 (or 1/8) comes later, from AMOUNT 50 (straight) to
