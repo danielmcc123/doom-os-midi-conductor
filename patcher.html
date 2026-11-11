@@ -43,6 +43,7 @@ body[data-old] [data-for~="old"]{display:revert}
 (function () {
   // version: [script, released, DOOM OS it is built on, changelog anchor]; newest first, the first is the current release
   var R = window.RELEASES = [
+    ["0.7.2", "releases/0.7.2/conductor-patcher.js?v=d2dd1dec", "7 November 2026", "0.7.3 (733D)", "v0-7-2"],
     ["0.7.1", "releases/0.7.1/conductor-patcher.js?v=2438d4bb", "1 November 2026", "0.7.2 (359C)", "v0-7-1"],
     ["0.7.0", "releases/0.7.0/conductor-patcher.js?v=7be7cd7e", "30 October 2026", "0.7.2 (359C)", "v0-7-0"],
     ["0.6.5", "releases/0.6.5-alpha/conductor-patcher.js?v=513ca1a2", "21 October 2026", "0.6.2-alpha (3824)", "v0-6-5-and-earlier"],
@@ -82,12 +83,12 @@ if (window.PATCHER_VERSION !== window.RELEASES[0][0]) document.body.dataset.old 
 <p class="lead">Turn Roland's 5.52 firmware into DOOM OS with MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
 <div class="warn spaced old" data-for="old"><p><b>This is an earlier release, MIDI Conductor <span class="vname"></span></b>, kept for reference.<span data-for="0.6"> It is built on DOOM OS <span class="vdoom"></span> and has none of 0.7's features. The 0.6.5 manual is <a href="releases/0.6.5-alpha/manual.html">kept here</a>.</span> <a href="patcher.html">Back to the current release</a>.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.1</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.2</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
-<div><h3>DOOM OS</h3><p><span class="vdoom">0.7.2 (359C)</span>, built in</p></div>
-<div><h3>Released</h3><p><span data-release="released">1 November 2026</span></p></div>
+<div><h3>DOOM OS</h3><p><span class="vdoom">0.7.3 (733D)</span>, built in</p></div>
+<div><h3>Released</h3><p><span data-release="released">7 November 2026</span></p></div>
 </div>
-<p data-for="0.7" class="newin"><b>New in 0.7.1:</b> program changes per pattern, a MIDI clock that can keep running with your gear started from the SP, and pausing the routes. <a href="changelog.html">Read the changelog</a>.</p>
+<p data-for="0.7" class="newin"><b>New in 0.7.2:</b> DOOM OS 0.7.3 underneath, the Arp back in MIDI FX with a new HUMAN setting, Swing, and a keyboard that plays your MIDI FX outside rehearse and record. <a href="changelog.html">Read the changelog</a>.</p>
 <p class="vtog"><a href="#previous" id="vtoggle" aria-expanded="false" aria-controls="previous">Show earlier versions</a></p>
 <div id="previous" hidden>
 <ul class="vers" id="vers"></ul>
