@@ -6,7 +6,7 @@ every synth on its own channel. Built on [DOOM OS](https://klangfeldlabs.com/doo
 **Guide and patcher: https://danielmcc123.github.io/doom-os-midi-conductor/**
 
 > **Experimental.** Modified firmware can brick your SP-404MKII. This is tested on one unit only, with Roland 5.52
-> and DOOM OS 0.7.2 (build 359C), and it changes some of Roland's own routines. Keep Roland's original files
+> and DOOM OS 0.7.3 (build 733D), and it changes some of Roland's own routines. Keep Roland's original files
 > so you can go back.
 
 ## What it does
@@ -43,7 +43,7 @@ What changed in each release is in [CHANGELOG.md](CHANGELOG.md).
 ## Files
 
 `releases/<version>/` holds each release's patcher script and `checksums.txt`, with the SHA-256 of the stock and
-patched images so you can check your file. 0.7.0 and 0.7.1 are built on DOOM OS 0.7.2 (359C). Every earlier release can
+patched images so you can check your file. 0.7.2 and 0.7.3 are built on DOOM OS 0.7.3 (733D), 0.7.0 and 0.7.1 on DOOM OS 0.7.2 (359C). Every earlier release can
 still be patched from **Earlier versions** on the patcher page. The 0.6.5 manual (DOOM OS 0.6.2-alpha, 3824) is in
 `releases/0.6.5-alpha/`; 0.1.0 to 0.5.0 were built on DOOM OS 0.6.1-alpha (ED5E).
 

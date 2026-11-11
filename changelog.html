@@ -13,10 +13,25 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-2">0.7.2</a></li><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
+<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-3">0.7.3</a></li><li><a href="#v0-7-2">0.7.2</a></li><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
 <main>
 <h1>Changelog</h1>
 <p class="lead">What changed in each release.</p>
+<h2 id="v0-7-3">0.7.3 (11 November 2026)</h2>
+<p>Built on <strong>DOOM OS 0.7.3 (build 733D)</strong> for Roland firmware 5.52, like 0.7.2. Fixes for MIDI Instruments and DOOM OS's own
+instruments, and Loop Stretch after a Euclid.</p>
+<h3>Changed</h3>
+<ul>
+<li><strong>Loop Stretch with SOURCE CHAIN</strong> stretches what the slots before it make: a Euclid's rhythm, an Echo's delays and an
+  Arp's rate run in its stretched time, so Euclid then Loop Stretch plays the Euclid's notes, stretched. With SOURCE PAD it
+  works as before.</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>A new MIDI Instrument didn't get its silent sample on DOOM OS 0.7.3. The pad lit up but had no sample, so it couldn't be
+  played from the pad, live or in chromatic mode; only the sequencer played it.</li>
+<li>DOOM OS instruments showed the kit name DOOM where a note belongs, for example OCT DOOM2 instead of OCT C2.</li>
+</ul>
 <h2 id="v0-7-2">0.7.2 (7 November 2026)</h2>
 <p>Built on <strong>DOOM OS 0.7.3 (build 733D)</strong> for Roland firmware 5.52. MIDI FX gains an Arp with a HUMAN setting and Swing, and a
 keyboard plays your MIDI FX wherever you play it.</p>

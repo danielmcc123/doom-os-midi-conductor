@@ -23,7 +23,7 @@
 <p>Six steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
 <ol class="steps">
 <li><b>Set up the SP.</b> Set MIDI Mode to A and turn MIDI Through off. See <a href="#spset">SP settings</a>.</li>
-<li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on.</li>
+<li><b>Connect.</b> Run a MIDI cable from the SP's MIDI output to your synth's MIDI input. Most synths need a TRS-to-DIN adaptor, Type A (see <a href="#rig">Bigger setups</a>). Note the channel your synth listens on. Use 11 to 15 if you can: the SP itself sends each bank's pads on channels 1 to 10 (bank A on 1, bank B on 2 ...) and chromatic mode on 16, so a synth on one of those also plays those pads.</li>
 <li><b>Add the synth.</b> <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>. On device 1, turn <b>CTRL 3</b> to your synth's channel. Press <kbd>VALUE</kbd> and open <b>NAME</b> to give it a name.</li>
 <li><b>Make a MIDI Instrument.</b> Open DOOM OS's instrument picker as you would to add a drum, pick <b>MIDI</b> and tap a free pad. The pad lights blue and the MIDI INSTRUMENT page opens: turn <kbd>VALUE</kbd> to your synth and press it. Hit the pad and the synth plays.</li>
 <li><b>Turn its dials.</b> <kbd>SHIFT</kbd> + <kbd>FX1</kbd> turns MIDI Controls on. Press <kbd>RECORD SETTING</kbd>, set CTRL 1's device with <b>CTRL 1</b> and its CC with <b>CTRL 2</b>, press <kbd>RECORD SETTING</kbd> again. Now CTRL 1 moves that control on the synth.</li>
@@ -280,7 +280,7 @@
 <li>Scale in FX1, Randomize with SOURCE PAD in FX2: the played note in key, plus a wandering one beside it.</li>
 </ul>
 <p>Notes an effect makes itself (a Euclid's hits, a Loop Stretch's) go past a SOURCE PAD slot without changing.</p>
-<p>Loop Stretch and Time Elastic read the track's notes from the pattern. With SOURCE CHAIN they take the slots before them too: Harmonize then Loop Stretch stretches the chord. With SOURCE PAD the chain plays on as it is and the pad's note, stretched, joins it.</p>
+<p>Loop Stretch and Time Elastic read the track's notes from the pattern. With SOURCE CHAIN they take the slots before them too: Harmonize then Loop Stretch stretches the chord, and a Euclid, Echo or Arp before a Loop Stretch is stretched with it (at double the length, a 1/16 Euclid plays its rhythm at 1/8). With SOURCE PAD the chain plays on as it is and the pad's note, stretched, joins it.</p>
 <p>A moved effect takes everything with it: its settings, its recorded dial moves in every pattern, an LFO or ENV aimed at it, and the <a href="#ccmap">CC MAP</a> mappings to it.</p>
 <div class="shots">
 <figure><div class="screen"><img src="images/fx-chain-page.png" alt="The CHAIN page: FX1 EUCLD, FX2 EUCLD with SOURCE PAD framed, FX3 ECHO off, FX4 LFO, FX5 and FX6 empty, and two help lines" width="804" height="420" loading="lazy"></div><figcaption>The CHAIN page: FX2 picked, its SOURCE set to PAD</figcaption></figure>
