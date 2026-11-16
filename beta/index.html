@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>MIDI Conductor 0.7.5 Beta</title>
+<title>MIDI Conductor 0.7.5 Beta 1</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="description" content="A test version of MIDI Conductor 0.7.5 for invited testers.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -13,16 +13,16 @@
 </style>
 </head><body>
 <header class="top"><div class="wrap">
-<a class="brand" href="../index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>0.7.5 beta</small></a>
+<a class="brand" href="../index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>0.7.5 beta 1</small></a>
 <nav class="links" aria-label="Site"><a href="../manual.html">Manual</a><a href="../index.html">Current release</a><a class="btn small" href="#get">Patch firmware</a></nav>
 </div></header>
 
 <main class="wrap tool">
-<h1>MIDI Conductor 0.7.5 beta</h1>
+<h1>MIDI Conductor 0.7.5 beta 1</h1>
 <p class="lead">A test version for a few invited testers: CIRCLE, a chord MIDI FX with key changes you can play live, and Plaits as an alternative oscillator for GHOST, in place of its VCOs. Thank you for trying it.</p>
 <div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back. Please don't share this page.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.5 beta</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.5-beta1</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
 <div><h3>DOOM OS</h3><p>0.7.4 (651C), built in</p></div>
 <div><h3>Released</h3><p><span data-release="released">16 November 2026</span></p></div>
@@ -46,7 +46,7 @@
 <p id="pwmsg" role="status" style="margin:0;color:var(--dim)"></p>
 </form>
 <div id="patcher"></div>
-<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
+<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5 B1</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
 
 <h2>2. CIRCLE</h2>
 <ol class="steps">
@@ -78,7 +78,7 @@
 // The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
 // patch. The password is not in this page or the repository.
 (function () {
-  var ENC = "releases/0.7.5-beta/patcher.enc?v=a54da0f0";
+  var ENC = "releases/0.7.5-beta1/patcher.enc?v=15518fe6";
   var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   f.addEventListener("submit", function (e) {
