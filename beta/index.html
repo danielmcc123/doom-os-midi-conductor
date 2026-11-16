@@ -1,6 +1,110 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><title>MIDI Conductor</title>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>MIDI Conductor 0.7.5 Beta</title>
 <meta name="robots" content="noindex">
-<meta http-equiv="refresh" content="0; url=../patcher.html">
-<link rel="canonical" href="../patcher.html">
-</head><body><p>The 0.7 beta is now the release: <a href="../patcher.html">patch MIDI Conductor 0.7.0</a>.</p></body></html>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="description" content="A test version of MIDI Conductor 0.7.5 for invited testers.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wdth,wght@75..100,400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="../site.css?v=a4b7d38d">
+<style>
+.new{margin:14px 0 0;padding-left:20px}
+.new li{margin:6px 0}
+</style>
+</head><body>
+<header class="top"><div class="wrap">
+<a class="brand" href="../index.html"><span class="mark" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i class="on"></i></span>MIDI Conductor <small>0.7.5 beta</small></a>
+<nav class="links" aria-label="Site"><a href="../manual.html">Manual</a><a href="../index.html">Current release</a><a class="btn small" href="#get">Patch firmware</a></nav>
+</div></header>
+
+<main class="wrap tool">
+<h1>MIDI Conductor 0.7.5 beta</h1>
+<p class="lead">A test version for a few invited testers: CIRCLE, a chord MIDI FX with key changes you can play live, and Plaits as an alternative oscillator for GHOST, in place of its VCOs. Thank you for trying it.</p>
+<div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back. Please don't share this page.</p></div>
+<div class="release">
+<div><h3>Release</h3><p><span data-release="version">0.7.5 beta</span></p></div>
+<div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
+<div><h3>DOOM OS</h3><p>0.7.4 (651C), built in</p></div>
+<div><h3>Released</h3><p><span data-release="released">16 November 2026</span></p></div>
+</div>
+
+<h2>What's new since 0.7.4</h2>
+<ul class="new">
+<li><b>CIRCLE</b>, a new MIDI FX: the key's seven chords on pads 1 to 7, one chord for the whole project. Every pad with a CIRCLE plays it, and a change waits for the CHANGE line (beat, 1, 2 or 4 bars) so it lands in time.</li>
+<li><b>Key jumps:</b> hold <kbd>ROLL</kbd> on a CIRCLE screen and pads 1 to 7 jump the key: HOME, REL (relative), PAR (parallel), IV, V, +1 and +2. The screen shows where each one lands.</li>
+<li><b>A key per pattern:</b> on CIRCLE's KEY page, tap <kbd>MARK</kbd> and the key becomes the pattern's own. When that pattern comes up, CIRCLE moves to it.</li>
+<li><b>Plaits</b> as GHOST's oscillator: Mutable Instruments' macro oscillator takes the place of GHOST's VCOs (OSC: VCO or PLAITS), one voice, with its MODEL, HARM, TIMBRE, MORPH and their envelopes on two banks.</li>
+<li><b>Scales:</b> SCALE's SNAP MAP (the white keys play the scale in order), and the WHOLE and GYPSY scales.</li>
+<li><b>Mixer:</b> a MIDI Instrument's LEVEL and PAN in DOOM OS's mixer go to its synth as CC 7 and CC 10.</li>
+</ul>
+
+<h2 id="get">1. Patch</h2>
+<p>Drop <code>SP404MKII_APP1.bin</code> from Roland's 5.52 update below: Roland's own file, not a DOOM OS one or an earlier MIDI Conductor. It runs in your browser and nothing is uploaded. Enter the beta password first. Your synths' <code>DEVICES.CSV</code> is made on the <a href="../patcher.html#devices">patcher page</a> as before.</p>
+<form id="unlock" class="have" autocomplete="off">
+<label for="pw"><b>Beta password</b> (you'll have it from the invite)</label>
+<div class="row"><input id="pw" type="password" autocapitalize="off" spellcheck="false" style="flex:1;min-width:0;font:inherit;padding:10px 12px;border-radius:10px;border:1px solid var(--line);background:var(--bg2);color:var(--fg)"><button class="btn" type="submit">Unlock</button></div>
+<p id="pwmsg" role="status" style="margin:0;color:var(--dim)"></p>
+</form>
+<div id="patcher"></div>
+<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
+
+<h2>2. CIRCLE</h2>
+<ol class="steps">
+<li>On a MIDI Instrument or GHOST track, <kbd>PITCH/SPEED</kbd> + <kbd>FX1</kbd> and pick <b>CIRCLE</b>.</li>
+<li>Tap <kbd>PITCH/SPEED</kbd> to give it the pads. Pads 1 to 7 are the chords (the dim green one is where this chord likes to go, the cyan one a softer move), pad 8 HOLD, pads 9 to 15 the chord's type, pad 16 NOW.</li>
+<li>Play notes into the track (pattern, pads or a keyboard) and they play the chord.</li>
+<li>Page 2 is the key: KEY, MODE and CHANGE. Page 3 is how it plays: PLAYS, INPUT (ANY or KEYS) and STRUM.</li>
+<li>Hold <kbd>ROLL</kbd> for the key jumps. <kbd>MARK</kbd> on page 2 stores the key in the pattern; tap it again to clear.</li>
+</ol>
+
+<h2>3. Plaits</h2>
+<ol class="steps">
+<li>Wake GHOST (<kbd>ROLL</kbd> + <kbd>REVERSE</kbd> on DOOM OS's page) if it isn't yet.</li>
+<li><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>, open GHOST's menu and set <b>OSC</b> to <b>PLAITS</b>.</li>
+<li><kbd>ROLL</kbd> + <kbd>FX1</kbd> and <kbd>FX2</kbd> are now the PLAITS banks. Turn MODEL to hear its engines. GHOST's filter, envelopes and LFO still shape it.</li>
+</ol>
+
+<h2>4. What to test</h2>
+<ul class="new">
+<li>CIRCLE with a pattern running: chord changes on the CHANGE line, HOLD, NOW, and the different VOICE settings.</li>
+<li>Key jumps live, and patterns with their own keys as you switch patterns.</li>
+<li>Plaits' models, and the CPU meter on GHOST's SETUP while it plays with DOOM OS's own instruments.</li>
+<li>Anything from 0.7.4 that behaves differently.</li>
+</ul>
+<p>When something goes wrong, note what you pressed and what you expected, and send it over with a photo or video of the screen if you can.</p>
+</main>
+
+<script>
+// The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
+// patch. The password is not in this page or the repository.
+(function () {
+  var ENC = "releases/0.7.5-beta/patcher.enc?v=a54da0f0";
+  var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
+  var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
+  f.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var pw = document.getElementById("pw").value;
+    if (!pw) return;
+    msg.textContent = "Unlocking ...";
+    fetch(ENC).then(function (r) { if (!r.ok) throw new Error("the beta isn't there (" + r.status + ")"); return r.json(); })
+      .then(function (blob) {
+        return crypto.subtle.importKey("raw", new TextEncoder().encode(pw), "PBKDF2", false, ["deriveKey"])
+          .then(function (base) {
+            return crypto.subtle.deriveKey({ name: "PBKDF2", hash: "SHA-256", salt: b64(blob.salt), iterations: blob.iter },
+                                           base, { name: "AES-GCM", length: 256 }, false, ["decrypt"]);
+          })
+          .then(function (key) { return crypto.subtle.decrypt({ name: "AES-GCM", iv: b64(blob.iv) }, key, b64(blob.data)); })
+          .catch(function () { throw new Error("That password isn't right."); });
+      })
+      .then(function (plain) {
+        var s = document.createElement("script");
+        s.src = URL.createObjectURL(new Blob([plain], { type: "text/javascript" }));
+        document.body.appendChild(s);
+        f.hidden = true;
+        msg.textContent = "";
+      })
+      .catch(function (err) { msg.textContent = err.message; });
+  });
+})();
+</script>
+</body></html>
