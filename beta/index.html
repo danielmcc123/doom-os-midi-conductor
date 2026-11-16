@@ -35,6 +35,7 @@
 <li><b>A key per pattern:</b> on CIRCLE's KEY page, tap <kbd>MARK</kbd> and the key becomes the pattern's own. When that pattern comes up, CIRCLE moves to it.</li>
 <li><b>Plaits</b> as GHOST's oscillator: Mutable Instruments' macro oscillator takes the place of GHOST's VCOs (OSC: VCO or PLAITS), one voice, with its MODEL, HARM, TIMBRE, MORPH and their envelopes on two banks.</li>
 <li><b>Scales:</b> SCALE's SNAP MAP (the white keys play the scale in order), and the WHOLE and GYPSY scales.</li>
+<li><b>Fix:</b> deleting a MIDI Instrument now removes its MIDI FX too, so an LFO it had no longer keeps sending CC to the synth.</li>
 <li><b>Mixer:</b> a MIDI Instrument's LEVEL and PAN in DOOM OS's mixer go to its synth as CC 7 and CC 10.</li>
 </ul>
 
@@ -71,14 +72,14 @@
 <li>Plaits' models, and the CPU meter on GHOST's SETUP while it plays with DOOM OS's own instruments.</li>
 <li>Anything from 0.7.4 that behaves differently.</li>
 </ul>
-<p>When something goes wrong, note what you pressed and what you expected, and send it over with a photo or video of the screen if you can.</p>
+<p>When something goes wrong, note what you pressed and what you expected, and email it to <a href="mailto:beta@loopcartographer.com">beta@loopcartographer.com</a> with a photo or video of the screen if you can. Say which beta you have: the MIDI SETTINGS title bar shows it (V0.7.5 B1).</p>
 </main>
 
 <script>
 // The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
 // patch. The password is not in this page or the repository.
 (function () {
-  var ENC = "releases/0.7.5-beta1/patcher.enc?v=15518fe6";
+  var ENC = "releases/0.7.5-beta1/patcher.enc?v=a866ff98";
   var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   f.addEventListener("submit", function (e) {
