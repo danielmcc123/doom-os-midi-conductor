@@ -1,5 +1,23 @@
 # Changelog
 
+## 0.7.4 (16 November 2026)
+
+Built on **DOOM OS 0.7.4 (build 651C)** for Roland firmware 5.52. MIDI Instruments now go with their pad when you COPY or
+EXCHANGE it, and the MIDI SETTINGS menu shows which version you have.
+
+### New
+- **DOOM OS 0.7.4 underneath**, built into the patch as before: patch Roland's 5.52 file. Its own changes (CTRL dials that show
+  the track's parameters, DEL + FX to clear one effect's automation, finer note lengths and many fixes) are in
+  [DOOM OS's changelog](https://klangfeldlabs.com/doom-os/changelog/).
+- **The version on the MIDI SETTINGS menu:** V0.7.4 at the right of its title bar. Give it when you report a problem.
+- **Patcher:** the synth list is always shown, and the Arturia MiniFreak is in it (all 41 CCs on Arturia's chart).
+
+### Fixed
+- COPY and EXCHANGE didn't take a MIDI Instrument with the pad. A copy got the silent sample but no synth: it didn't light
+  blue, play or open its MIDI INSTRUMENT page. Now a copy plays the same synth on the same channel, an exchange swaps the two
+  pads, and a sample copied over a MIDI Instrument makes it a sample pad again. Whole banks too.
+- MIDI Instruments get their silent sample on DOOM OS 0.7.4, which keeps its instruments in a new way.
+
 ## 0.7.3 (11 November 2026)
 
 Built on **DOOM OS 0.7.3 (build 733D)** for Roland firmware 5.52, like 0.7.2. Fixes for MIDI Instruments and DOOM OS's own

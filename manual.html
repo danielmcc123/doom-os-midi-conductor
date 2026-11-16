@@ -17,7 +17,7 @@
 <main>
 <h1>Manual</h1>
 <p class="lead">How to play, sequence, shape, route and record your synths from the SP-404MKII.</p>
-<div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This version is tested on one unit only, with Roland 5.52 and DOOM OS 0.7.3 (build 733D), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
+<div class="warn"><p><b>Experimental.</b> Modified firmware can brick your SP-404MKII. This version is tested on one unit only, with Roland 5.52 and DOOM OS 0.7.4 (build 651C), and it changes some of Roland's own routines. Keep Roland's original files so you can go back.</p></div>
 
 <h2 id="quick">Quick start</h2>
 <p>Six steps from a freshly patched SP to a synth that plays and moves. Install first: see the <a href="patcher.html">patcher</a>.</p>
@@ -59,9 +59,9 @@
 <tr><td><b>ROUTES</b></td><td>Pass MIDI from one synth to another, or to the SP</td></tr>
 <tr><td><b>PATTERN</b></td><td>The current pattern's <a href="#programs">program changes</a>, and clearing its recorded dial moves</td></tr>
 </table></div>
-<p>Turn <kbd>VALUE</kbd> to pick, press it to open. <kbd>EXIT</kbd> goes back a level; in the menu it closes it. Which synth a pad plays is set on the pad's own <a href="#tracks">MIDI INSTRUMENT page</a>.</p>
+<p>Turn <kbd>VALUE</kbd> to pick, press it to open. <kbd>EXIT</kbd> goes back a level; in the menu it closes it. Which synth a pad plays is set on the pad's own <a href="#tracks">MIDI INSTRUMENT page</a>. The version of MIDI Conductor you have is at the right of the menu's title bar: give it when you report a problem.</p>
 <div class="shots">
-<figure><div class="screen"><img src="images/menu-07.png" alt="MIDI SETTINGS menu: DEVICES, ROUTES and PATTERN" width="804" height="420" loading="lazy"></div><figcaption>The MIDI SETTINGS menu</figcaption></figure>
+<figure><div class="screen"><img src="images/menu-07.png?v=074" alt="MIDI SETTINGS menu: DEVICES, ROUTES and PATTERN, with the version V0.7.4 on the title bar" width="804" height="420" loading="lazy"></div><figcaption>The MIDI SETTINGS menu</figcaption></figure>
 </div>
 
 <h2 id="tracks">MIDI Instruments</h2>
@@ -87,7 +87,7 @@
 <figure><div class="screen"><img src="images/inst-page-raw.png" alt="MIDI INSTRUMENT page with RAW channel 12 picked" width="804" height="420" loading="lazy"></div><figcaption>A RAW channel, no device</figcaption></figure>
 </div>
 <h3>Removing one</h3>
-<p>Delete the pad's sample on the SP and the pad stops being a MIDI Instrument. REPLACE can't turn a pad into a MIDI Instrument yet; it shows NOT POSSIBLE.</p>
+<p>Delete the pad's sample on the SP and the pad stops being a MIDI Instrument. COPY and EXCHANGE take it with the pad: a copy plays the same synth on the same channel, an exchange swaps the two pads, and a sample copied over a MIDI Instrument makes it a sample pad again. REPLACE can't turn a pad into a MIDI Instrument yet; it shows NOT POSSIBLE.</p>
 
 <h2 id="devices">Devices</h2>
 <p>A <b>device</b> is one of your synths: a channel, a name and, if you like, names for its CCs. Point pads, CTRLs and routes at a device rather than a bare channel, and when the synth's channel changes you change it once. There are seven devices.</p>
@@ -506,7 +506,7 @@
 <li>Two devices on one channel look like one synth to the router.</li>
 <li>Routing passes notes, CC, bend and aftertouch. Clock, start/stop and SysEx stay with the SP.</li>
 <li>A synth that echoes CC back, or a routing loop, may cause feedback. Untested.</li>
-<li>Works only with Roland 5.52 and DOOM OS 0.7.3 (733D), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
+<li>Works only with Roland 5.52 and DOOM OS 0.7.4 (651C), which is built into the patch. The patcher refuses any other file, so new Roland or DOOM OS releases wait until they've been tested.</li>
 </ul>
 <h2 id="support">Support</h2>
 <p>MIDI Conductor is free to use. If it's useful to you, you can support its development on <a href="https://www.patreon.com/cw/LoopCartographer" rel="noopener">Patreon</a>.</p>

@@ -13,10 +13,28 @@
 </div></header>
 
 <div class="wrap doc">
-<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-3">0.7.3</a></li><li><a href="#v0-7-2">0.7.2</a></li><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
+<aside class="rail"><p>Releases</p><ol><li><a href="#v0-7-4">0.7.4</a></li><li><a href="#v0-7-3">0.7.3</a></li><li><a href="#v0-7-2">0.7.2</a></li><li><a href="#v0-7-1">0.7.1</a></li><li><a href="#v0-7-0">0.7.0</a></li><li><a href="#v0-6-5-and-earlier">0.6.5 and earlier</a></li></ol></aside>
 <main>
 <h1>Changelog</h1>
 <p class="lead">What changed in each release.</p>
+<h2 id="v0-7-4">0.7.4 (16 November 2026)</h2>
+<p>Built on <strong>DOOM OS 0.7.4 (build 651C)</strong> for Roland firmware 5.52. MIDI Instruments now go with their pad when you COPY or
+EXCHANGE it, and the MIDI SETTINGS menu shows which version you have.</p>
+<h3>New</h3>
+<ul>
+<li><strong>DOOM OS 0.7.4 underneath</strong>, built into the patch as before: patch Roland's 5.52 file. Its own changes (CTRL dials that show
+  the track's parameters, DEL + FX to clear one effect's automation, finer note lengths and many fixes) are in
+  <a href="https://klangfeldlabs.com/doom-os/changelog/">DOOM OS's changelog</a>.</li>
+<li><strong>The version on the MIDI SETTINGS menu:</strong> V0.7.4 at the right of its title bar. Give it when you report a problem.</li>
+<li><strong>Patcher:</strong> the synth list is always shown, and the Arturia MiniFreak is in it (all 41 CCs on Arturia's chart).</li>
+</ul>
+<h3>Fixed</h3>
+<ul>
+<li>COPY and EXCHANGE didn't take a MIDI Instrument with the pad. A copy got the silent sample but no synth: it didn't light
+  blue, play or open its MIDI INSTRUMENT page. Now a copy plays the same synth on the same channel, an exchange swaps the two
+  pads, and a sample copied over a MIDI Instrument makes it a sample pad again. Whole banks too.</li>
+<li>MIDI Instruments get their silent sample on DOOM OS 0.7.4, which keeps its instruments in a new way.</li>
+</ul>
 <h2 id="v0-7-3">0.7.3 (11 November 2026)</h2>
 <p>Built on <strong>DOOM OS 0.7.3 (build 733D)</strong> for Roland firmware 5.52, like 0.7.2. Fixes for MIDI Instruments and DOOM OS's own
 instruments, and Loop Stretch after a Euclid.</p>

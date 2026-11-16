@@ -1,7 +1,7 @@
 // The DEVICES.CSV maker on the patcher page: the synths you pick (or a JSON / CSV file) become DEVICES.CSV
 (function () {
   var $ = function (i) { return document.getElementById(i); }, csv = "";
-  var picker = createPicker($("ccpicker"), window.CC_CATALOG, update, 5);
+  var picker = createPicker($("ccpicker"), window.CC_CATALOG, update, 5, { open: true });
   var intro = $("ccpicker").querySelector(".ccpick p");
   if (intro) intro.textContent = "Add the synths you use. Each one comes with its CC names, so a CTRL dial picks \"CUTOFF\" instead of a number. Add your own with a JSON or CSV file.";
   function update() {

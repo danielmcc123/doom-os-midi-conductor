@@ -341,6 +341,7 @@ const CC_STYLE = `
 .ccpick .dev .x:hover{color:var(--fg,#e8eaed);background:var(--line,#2a2f37)}
 .ccpick .empty{color:var(--dim,#9aa3ad);font-size:.92em;padding:8px 0}
 .ccpick .add{margin-top:8px}
+.ccpick .pickhead{font-weight:600;margin:4px 0 0}
 .ccpick .menu{margin-top:8px;max-height:380px;overflow:auto;padding:4px 6px 8px;border:1px solid var(--line,#2a2f37);
   border-radius:10px;background:var(--bg,transparent)}
 .ccpick .maker{margin:10px 6px 2px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:.78em;
@@ -364,7 +365,8 @@ const CC_STYLE = `
   text-decoration:underline;cursor:pointer}
 `;
 
-function createPicker(host, catalog, onChange, reserve) {
+function createPicker(host, catalog, onChange, reserve, opts) {
+  const open = !!(opts && opts.open);                 // the synth list always shown (the patcher page), no "+ Add a synth" button
   ccLimit = CC_MAX_DEVICES - (reserve || 0);
   const doc = host.ownerDocument;
   const style = doc.createElement('style');
@@ -392,8 +394,8 @@ function createPicker(host, catalog, onChange, reserve) {
   const add = el('div', 'add');
   const addBtn = button('mini', '+ Add a synth');
   const menu = el('div', 'menu');
-  menu.hidden = true;
-  add.append(addBtn, menu);
+  menu.hidden = !open;
+  add.append(...(open ? [el('div', 'pickhead', 'Pick your synths')] : [addBtn]), menu);
   const file = el('input');
   file.type = 'file';
   file.accept = '.json,.csv,application/json,text/csv,text/plain';
@@ -446,6 +448,7 @@ function createPicker(host, catalog, onChange, reserve) {
     let slots = '';
     try { slots = ccSlots(valid(entries), ccLimit < CC_MAX_DEVICES).slice(0, ccLimit + 1).join(' · '); } catch (e) { say(e.message, true); }
     order.textContent = slots ? 'On the SP: ' + slots : '';
+    if (open) fillMenu();
     if (onChange) onChange(!problem);
   }
 
@@ -486,7 +489,7 @@ function createPicker(host, catalog, onChange, reserve) {
     own.addEventListener('click', () => { closeMenu(); file.click(); });
     menu.append(own);
   }
-  function closeMenu() { menu.hidden = true; }
+  function closeMenu() { if (!open) menu.hidden = true; }
   addBtn.addEventListener('click', e => {
     e.stopPropagation();
     if (menu.hidden) { fillMenu(); menu.hidden = false; } else closeMenu();

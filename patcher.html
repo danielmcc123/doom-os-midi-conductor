@@ -43,6 +43,7 @@ body[data-old] [data-for~="old"]{display:revert}
 (function () {
   // version: [script, released, DOOM OS it is built on, changelog anchor]; newest first, the first is the current release
   var R = window.RELEASES = [
+    ["0.7.4", "releases/0.7.4/conductor-patcher.js?v=75b37205", "16 November 2026", "0.7.4 (651C)", "v0-7-4"],
     ["0.7.3", "releases/0.7.3/conductor-patcher.js?v=c07f60b2", "11 November 2026", "0.7.3 (733D)", "v0-7-3"],
     ["0.7.2", "releases/0.7.2/conductor-patcher.js?v=d2dd1dec", "7 November 2026", "0.7.3 (733D)", "v0-7-2"],
     ["0.7.1", "releases/0.7.1/conductor-patcher.js?v=2438d4bb", "1 November 2026", "0.7.2 (359C)", "v0-7-1"],
@@ -84,12 +85,12 @@ if (window.PATCHER_VERSION !== window.RELEASES[0][0]) document.body.dataset.old 
 <p class="lead">Turn Roland's 5.52 firmware into DOOM OS with MIDI Conductor. It runs in your browser and nothing is uploaded.</p>
 <div class="warn spaced old" data-for="old"><p><b>This is an earlier release, MIDI Conductor <span class="vname"></span></b>, kept for reference.<span data-for="0.6"> It is built on DOOM OS <span class="vdoom"></span> and has none of 0.7's features. The 0.6.5 manual is <a href="releases/0.6.5-alpha/manual.html">kept here</a>.</span> <a href="patcher.html">Back to the current release</a>.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.3</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.4</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
-<div><h3>DOOM OS</h3><p><span class="vdoom">0.7.3 (733D)</span>, built in</p></div>
-<div><h3>Released</h3><p><span data-release="released">11 November 2026</span></p></div>
+<div><h3>DOOM OS</h3><p><span class="vdoom">0.7.4 (651C)</span>, built in</p></div>
+<div><h3>Released</h3><p><span data-release="released">16 November 2026</span></p></div>
 </div>
-<p data-for="0.7" class="newin"><b>New in 0.7.3:</b> MIDI Instruments get their silent sample again, so you can play them from the pad; DOOM OS instruments show note names again (OCT C2); Loop Stretch stretches a Euclid before it. <a href="changelog.html">Read the changelog</a>.</p>
+<p data-for="0.7" class="newin"><b>New in 0.7.4:</b> DOOM OS 0.7.4 underneath; COPY and EXCHANGE take a MIDI Instrument with its pad; the version on the MIDI SETTINGS menu; the synth list always shown. <a href="changelog.html">Read the changelog</a>.</p>
 <p class="vtog"><a href="#previous" id="vtoggle" aria-expanded="false" aria-controls="previous">Show earlier versions</a></p>
 <div id="previous" hidden>
 <ul class="vers" id="vers"></ul>
@@ -172,8 +173,8 @@ if (window.PATCHER_VERSION !== window.RELEASES[0][0]) document.body.dataset.old 
 <script>
 // 0.7 only: the DEVICES.CSV maker (0.6.5's patcher carries its own CC lists)
 if (window.PATCHER_LINE === "0.7")
-  document.write('<script src="cc-catalog.js?v=afad0a0b"><\/script><script src="cc_picker.js?v=653126f7"><\/script>'
-    + '<script src="devices-convert.js?v=5d1e510b"><\/script><script src="devices-maker.js?v=cf481ccf"><\/script>');
+  document.write('<script src="cc-catalog.js?v=afad0a0b"><\/script><script src="cc_picker.js?v=56c4fa5e"><\/script>'
+    + '<script src="devices-convert.js?v=5d1e510b"><\/script><script src="devices-maker.js?v=39600b4f"><\/script>');
 </script>
 <footer><div class="wrap">
 <p>MIDI Conductor is built on <a href="https://klangfeldlabs.com/doom-os/">DOOM OS</a>. DOOM OS is used with permission from Quintus Oostendorp. MIDI Conductor is free to use.</p>
