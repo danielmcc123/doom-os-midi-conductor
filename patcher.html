@@ -104,16 +104,16 @@ if (window.PATCHER_VERSION !== window.RELEASES[0][0]) document.body.dataset.old 
 <h2 id="devices">2. Your synths</h2>
 <p>Synths aren't built into the firmware. Pick yours here, download <code>DEVICES.CSV</code> and load it on the SP. Each synth comes with its CC names, so a CTRL dial picks <code>CUTOFF</code> instead of a number. You can make a new file at any time without patching again.</p>
 <div class="devs">
-<div class="have">
-<h3>Already have a JSON or CSV file?</h3>
-<p>Drop a CC list you made for an earlier patcher and its synths join the list below. A device-numbered JSON (see <a href="#json">the JSON</a>) goes straight to <code>DEVICES.CSV</code>.</p>
-<label class="dropin" id="jdrop"><input type="file" id="jfile" accept=".json,.csv,application/json,text/csv,text/plain"><span>Drop your file here, or click to choose</span></label>
-<p class="jmsg" id="jmsg" role="status" hidden></p>
-</div>
 <div id="ccpicker"></div>
 <div class="row"><button class="btn" id="save" type="button" disabled>Download DEVICES.CSV</button><span id="dstatus" role="status"></span></div>
 <ul class="notes" id="dnotes" hidden></ul>
 <output id="dout" hidden></output>
+<div class="have">
+<h3>Already have a JSON or CSV file?</h3>
+<p>Drop a CC list you made for an earlier patcher and its synths join the list above. A device-numbered JSON (see <a href="#json">the JSON</a>) goes straight to <code>DEVICES.CSV</code>.</p>
+<label class="dropin" id="jdrop"><input type="file" id="jfile" accept=".json,.csv,application/json,text/csv,text/plain"><span>Drop your file here, or click to choose</span></label>
+<p class="jmsg" id="jmsg" role="status" hidden></p>
+</div>
 </div>
 <p>Up to six synths, as devices 1 to 6 in the order shown (device 7 is GHOST). The file holds their names, CC names and, when your list gives one, their MIDI channel: the SP puts each device on that channel when it imports.</p>
 <ol class="steps">
@@ -173,7 +173,7 @@ if (window.PATCHER_VERSION !== window.RELEASES[0][0]) document.body.dataset.old 
 <script>
 // 0.7 only: the DEVICES.CSV maker (0.6.5's patcher carries its own CC lists)
 if (window.PATCHER_LINE === "0.7")
-  document.write('<script src="cc-catalog.js?v=afad0a0b"><\/script><script src="cc_picker.js?v=56c4fa5e"><\/script>'
+  document.write('<script src="cc-catalog.js?v=0fb5df4d"><\/script><script src="cc_picker.js?v=56c4fa5e"><\/script>'
     + '<script src="devices-convert.js?v=5d1e510b"><\/script><script src="devices-maker.js?v=39600b4f"><\/script>');
 </script>
 <footer><div class="wrap">
