@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>MIDI Conductor 0.7.5 Beta 1</title>
+<title>MIDI Conductor 0.7.5 Beta 2</title>
 <meta name="robots" content="noindex">
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"><link rel="icon" href="../favicon-32.png" sizes="32x32" type="image/png"><link rel="apple-touch-icon" href="../apple-touch-icon.png"><meta name="description" content="A test version of MIDI Conductor 0.7.5 for invited testers.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,25 +18,30 @@
 </div></header>
 
 <main class="wrap tool">
-<h1>MIDI Conductor 0.7.5 beta 1</h1>
-<p class="lead">A test version for a few invited testers: CIRCLE, a chord MIDI FX with key changes you can play live, and Plaits as an alternative oscillator for GHOST, in place of its VCOs. Thank you for trying it.</p>
+<h1>MIDI Conductor 0.7.5 beta 2</h1>
+<p class="lead">The second test version for invited testers. CIRCLE grows progressions, a chord viewer, FREE chords and negative harmony. STEPS is a new step sequencer for any setting. Plaits moves out of GHOST into a synth of its own, WRAITH. A track's effect sends get their own screen, and one MIDI cable can play a different SP track on each channel. Thank you for trying it.</p>
 <div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back. Please don't share this page.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.5-beta1</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.5-beta2</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
 <div><h3>DOOM OS</h3><p>0.7.4 (651C), built in</p></div>
-<div><h3>Released</h3><p><span data-release="released">16 November 2026</span></p></div>
+<div><h3>Released</h3><p><span data-release="released">23 November 2026</span></p></div>
 </div>
 
-<h2>What's new since 0.7.4</h2>
+<h2>What's new since beta 1</h2>
 <ul class="new">
-<li><b>CIRCLE</b>, a new MIDI FX: the key's seven chords on pads 1 to 7, one chord for the whole project. Every pad with a CIRCLE plays it, and a change waits for the CHANGE line (beat, 1, 2 or 4 bars) so it lands in time.</li>
-<li><b>Key jumps:</b> hold <kbd>ROLL</kbd> on a CIRCLE screen and pads 1 to 7 jump the key: HOME, REL (relative), PAR (parallel), IV, V, +1 and +2. The screen shows where each one lands.</li>
-<li><b>A key per pattern:</b> on CIRCLE's KEY page, tap <kbd>MARK</kbd> and the key becomes the pattern's own. When that pattern comes up, CIRCLE moves to it.</li>
-<li><b>Plaits</b> as GHOST's oscillator: Mutable Instruments' macro oscillator takes the place of GHOST's VCOs (OSC: VCO or PLAITS), one voice, with its MODEL, HARM, TIMBRE, MORPH and their envelopes on two banks.</li>
-<li><b>Scales:</b> SCALE's SNAP MAP (the white keys play the scale in order), and the WHOLE and GYPSY scales.</li>
-<li><b>Fix:</b> deleting a MIDI Instrument now removes its MIDI FX too, so an LFO it had no longer keeps sending CC to the synth.</li>
-<li><b>Mixer:</b> a MIDI Instrument's LEVEL and PAN in DOOM OS's mixer go to its synth as CC 7 and CC 10.</li>
+<li><b>CIRCLE progressions:</b> eight a project (A to H), up to 16 chords each, a half beat to 4 bars per chord. Hold <kbd>MARK</kbd> on a progression page and tap chord pads to record one. PLAY ON follows it from play, and a pattern can have its own. Steps can be rests, borrow from the parallel key (PAR) or play their negative (NEG).</li>
+<li><b>Chord viewer:</b> CIRCLE's last page draws the chord on the circle of fifths, with the next chord's notes beside it.</li>
+<li><b>FREE mode:</b> CIRCLE's MODE past the scales. One chord shape (MAJ7, MIN9, MIN7B5 and 15 more) on any of 12 roots, played from pads 1 to 12.</li>
+<li><b>Negative harmony:</b> hold the SP's <kbd>HOLD</kbd> and press a chord pad to play its negative. A tap on <kbd>HOLD</kbd> holds the chord. HOLD is now the SP's own key, so pad 8 is free.</li>
+<li><b>INPUT PADS:</b> CIRCLE's chord pads play the chord themselves, at once, without waiting for the CHANGE line.</li>
+<li><b>STEPS</b>, a new MIDI FX: up to 16 steps of values for a CC or any setting of another slot (CIRCLE's chord, a Euclid's HITS, an Echo's DECAY), with GLIDE. Set steps with the pads.</li>
+<li><b>WRAITH</b>, a second built-in synth: Mutable Instruments Plaits, one voice, with programs of its own. GHOST is back to its VCOs. Both are found on the DEVICES channel dial, past channel 16: GHOST, then WRAITH. No waking needed.</li>
+<li><b>SENDS:</b> <kbd>MARK</kbd> on DOOM OS's mixer opens the track's sends to BUS 1, BUS 2 and MASTER.</li>
+<li><b>Tracks by channel:</b> a route from a device to the SP gets TRACKS, a list of links from a MIDI channel to an SP track. A sequencer like a HAPAX or Pyramid can play a different track on each channel, and one channel can play several tracks at once.</li>
+<li><b>MicroFreak</b> in the patcher's synth list.</li>
+<li><b>Changed: SHIFT + DEL removes an effect.</b> A tap on <kbd>DEL</kbd> alone no longer does: on STEPS and progressions it deletes a step.</li>
+<li><b>Fixes:</b> an arp no longer keeps playing after you let go when two held keys make the same notes (a CIRCLE or a Harmonize before it). With WRAITH on, MIDI FX no longer run at double speed while the pattern is stopped. A device turned past GHOST or WRAITH on the channel dial gets its own name and CC names back. A note repeated on the next step is no longer cut short by the first one's note-off. The PADS popup stays up for 3 seconds. STEPS without a target no longer draws NO TARGET over its steps. CIRCLE spells its key by the mode (DB MAJOR, but C# MINOR). CIRCLE's KEY page hint reads MARK PTN KEY.</li>
 </ul>
 
 <h2 id="get">1. Patch</h2>
@@ -47,39 +52,49 @@
 <p id="pwmsg" role="status" style="margin:0;color:var(--dim)"></p>
 </form>
 <div id="patcher"></div>
-<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5 B1</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
+<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5 B2</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
+<p><b>Coming from beta 1:</b> GHOST no longer has OSC PLAITS, so a GHOST patch set to PLAITS plays its VCOs. For Plaits, put a device on WRAITH (below).</p>
 
-<h2>2. CIRCLE</h2>
+<h2>2. CIRCLE progressions</h2>
 <ol class="steps">
-<li>On a MIDI Instrument or GHOST track, <kbd>PITCH/SPEED</kbd> + <kbd>FX1</kbd> and pick <b>CIRCLE</b>.</li>
-<li>Tap <kbd>PITCH/SPEED</kbd> to give it the pads. Pads 1 to 7 are the chords (the dim green one is where this chord likes to go, the cyan one a softer move), pad 8 HOLD, pads 9 to 15 the chord's type, pad 16 NOW.</li>
-<li>Play notes into the track (pattern, pads or a keyboard) and they play the chord.</li>
-<li>Page 2 is the key: KEY, MODE and CHANGE. Page 3 is how it plays: PLAYS, INPUT (ANY or KEYS) and STRUM.</li>
-<li>Hold <kbd>ROLL</kbd> for the key jumps. <kbd>MARK</kbd> on page 2 stores the key in the pattern; tap it again to clear.</li>
+<li>On a MIDI Instrument, GHOST or WRAITH track, <kbd>PITCH/SPEED</kbd> + <kbd>FX1</kbd> and pick <b>CIRCLE</b>. Tap <kbd>PITCH/SPEED</kbd> to give it the pads.</li>
+<li>Turn <kbd>VALUE</kbd> to page 5. Hold <kbd>MARK</kbd> and tap chord pads 1 to 7, one a bar (pad 8 is a rest). Let go of <kbd>MARK</kbd>.</li>
+<li>On page 4, set PLAY to ON and press play: the chord follows the progression. Tap <kbd>MARK</kbd> there to give it to the pattern you're on.</li>
+<li>On pages 5 and 6, pick a step with its pad and change its CHORD, TYPE, LENGTH, VOICE or COLOUR with the dials. <kbd>DEL</kbd> deletes the step.</li>
+<li>Page 7 is the chord viewer.</li>
 </ol>
 
-<h2>3. Plaits</h2>
+<h2>3. STEPS</h2>
 <ol class="steps">
-<li>Wake GHOST (<kbd>ROLL</kbd> + <kbd>REVERSE</kbd> on DOOM OS's page) if it isn't yet.</li>
-<li><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>, open GHOST's menu and set <b>OSC</b> to <b>PLAITS</b>.</li>
-<li><kbd>ROLL</kbd> + <kbd>FX1</kbd> and <kbd>FX2</kbd> are now the PLAITS banks. Turn MODEL to hear its engines. GHOST's filter, envelopes and LFO still shape it.</li>
+<li>Add <b>STEPS</b> to a slot, press <kbd>RECORD SETTING</kbd> and pick its target: a CC of the synth, or a setting of another slot.</li>
+<li>Tap <kbd>PITCH/SPEED</kbd>. Pad n picks step n; <kbd>CTRL 2</kbd> sets its VALUE. <kbd>DEL</kbd> empties it.</li>
+<li>Page 2 sets RATE, GLIDE and SYNC (from play, or from the pattern's top).</li>
 </ol>
 
-<h2>4. What to test</h2>
+<h2>4. WRAITH</h2>
+<ol class="steps">
+<li><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>, pick a device and turn its channel (<kbd>CTRL 3</kbd>) past 16 to <b>WRAITH</b>.</li>
+<li>Make a MIDI Instrument on that device in DOOM OS's instrument picker, and play it.</li>
+<li><kbd>ROLL</kbd> + <kbd>REVERSE</kbd> switches the settings between GHOST and WRAITH. <kbd>ROLL</kbd> + <kbd>FX1</kbd> to <kbd>FX6</kbd> then opens WRAITH's banks; turn MODEL to hear Plaits' engines. Its menu has LOAD PROGRAM.</li>
+</ol>
+
+<h2>5. What to test</h2>
 <ul class="new">
-<li>CIRCLE with a pattern running: chord changes on the CHANGE line, HOLD, NOW, and the different VOICE settings.</li>
-<li>Key jumps live, and patterns with their own keys as you switch patterns.</li>
-<li>Plaits' models, and the CPU meter on GHOST's SETUP while it plays with DOOM OS's own instruments.</li>
-<li>Anything from 0.7.4 that behaves differently.</li>
+<li>Progressions with a pattern running, rests, PAR and NEG steps, and patterns with their own progression as you switch.</li>
+<li>STEPS on a synth's CC and on CIRCLE's CHORD or TYPE, with and without GLIDE.</li>
+<li>WRAITH and GHOST playing together, and the CPU meter on GHOST's SETUP.</li>
+<li>SENDS on a few tracks, and TRACKS links if you have a multi-channel sequencer.</li>
+<li>Anything from beta 1 or 0.7.4 that behaves differently.</li>
 </ul>
-<p>When something goes wrong, note what you pressed and what you expected, and email it to <a href="mailto:beta@loopcartographer.com">beta@loopcartographer.com</a> with a photo or video of the screen if you can. Say which beta you have: the MIDI SETTINGS title bar shows it (V0.7.5 B1).</p>
+<p>A full description of every MIDI FX screen and setting is in the MIDI FX reference that came with the invite.</p>
+<p>When something goes wrong, note what you pressed and what you expected, and email it to <a href="mailto:beta@loopcartographer.com">beta@loopcartographer.com</a> with a photo or video of the screen if you can. Say which beta you have: the MIDI SETTINGS title bar shows it (V0.7.5 B2).</p>
 </main>
 
 <script>
 // The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
 // patch. The password is not in this page or the repository.
 (function () {
-  var ENC = "releases/0.7.5-beta1/patcher.enc?v=a866ff98";
+  var ENC = "releases/0.7.5-beta2/patcher.enc?v=b101ef71";
   var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   f.addEventListener("submit", function (e) {
