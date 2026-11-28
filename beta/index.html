@@ -18,23 +18,28 @@
 </div></header>
 
 <main class="wrap tool">
-<h1>MIDI Conductor 0.7.5 beta 3</h1>
-<p class="lead">A test version for invited testers, on DOOM OS 0.7.4. This page has the whole picture: everything 0.7.5 adds to 0.7.4, so it doesn't matter whether you tried beta 1 or 2. If you did, <a href="#beta3">what's new in beta 3</a> is just below. Thank you for trying it.</p>
+<h1>MIDI Conductor 0.7.5 beta 4</h1>
+<p class="lead">A test version for invited testers, on DOOM OS 0.7.4. This page has the whole picture: everything 0.7.5 adds to 0.7.4, so it doesn't matter whether you tried beta 1, 2 or 3. If you did, <a href="#beta4">what's new in beta 4</a> is just below. Thank you for trying it.</p>
 <div class="warn"><p><b>Beta, experimental.</b> Modified firmware can brick your SP-404MKII. This build is tested on one unit only. Back up your SD card and projects first, and keep Roland's original 5.52 files so you can go back. Please don't share this page.</p></div>
 <div class="release">
-<div><h3>Release</h3><p><span data-release="version">0.7.5-beta3</span></p></div>
+<div><h3>Release</h3><p><span data-release="version">0.7.5-beta4</span></p></div>
 <div><h3>Roland firmware</h3><p><span data-release="firmware">5.52</span></p></div>
 <div><h3>DOOM OS</h3><p>0.7.4 (651C), built in</p></div>
-<div><h3>Released</h3><p><span data-release="released">24 November 2026</span></p></div>
+<div><h3>Released</h3><p><span data-release="released">28 November 2026</span></p></div>
 </div>
 
-<h2 id="beta3">New in beta 3</h2>
+<h2 id="beta4">New in beta 4</h2>
 <ul class="new">
-<li><b>Recording a keyboard onto a MIDI Instrument keeps every note as played.</b> Routed notes recorded in REC or rehearsal were folded into two octaves (C2 to C4), the sample tracks' range. A MIDI Instrument, GHOST or WRAITH track now records and plays back the whole MIDI range. Sample tracks still fold.</li>
-<li><b>GHOST's and WRAITH's bus is set on DOOM OS's mixer only.</b> BUS has gone from their setup page (LEVEL is on CTRL 1, VOICES on CTRL 2). Fixed: a synth set to DRY on the mixer actually played into BUS 1, BUS 1 into BUS 2, and BUS 2 into DRY.</li>
-<li><b>SHIFT + VALUE on MIDI FX:</b> on an effect's screen it moves through the track's slots, FX1 to FX6. On the CHAIN page it moves through the pattern's tracks.</li>
-<li><b>SENDS and the SP's effects:</b> an effect opened from SENDS (FX1 to FX6) goes back to SENDS on one EXIT. Before, it took two presses and landed on the mixer.</li>
+<li><b>GHOST's and WRAITH's sounds belong to the project.</b> Each project keeps its own starting sound for each synth. <b>PERSIST PATCH CHANGES</b> in the synth's menu saves it for this project; live tweaks you don't persist go when you change project, so the project always opens on its starting sound. <b>AUTO SAVE</b> (SETUP, <kbd>CTRL 3</kbd>) saves changes as you make them instead. A new project starts from your old power-up patch if you had one. Copying a project copies its synth sounds.</li>
+<li><b>WRAITH's settings that did nothing are new ones:</b> <b>GLIDE</b> in NOISE's place (FX1 page 2; CC 5) slides each note from the one before. <b>HARM EG</b> in DECAY's place (FX2 page 2) moves HARMONICS with the EG. <b>AUX EG</b> in XMOD's place (EG bank page 2) crossfades Plaits' two outputs with the EG. <b>EG VEL</b> (AMP EG page 2) makes soft notes move the EG less.</li>
+<li><b>Recorded dial moves:</b> a dial with nothing recorded records one pass of the pattern from your first turn, then plays it back, and you can see the dial move. REC stays on: turn a dial with moves to take it over while you turn it; half a second after you stop it lets go. <kbd>MARK</kbd> + <kbd>REC</kbd> ends recording. This is the same on MIDI Controls, GHOST and WRAITH.</li>
+<li><b>SP PADS for drum sequencers:</b> in a route's TRACKS, a link (turn <kbd>CTRL 3</kbd> past the last track) or OTHER CH can be <b>SP PADS</b>: that channel's notes reach the SP's pads by note number, so kick, snare and hats on one channel each hit their own pad.</li>
+<li><b>TRACKS is under the boxes</b> on a route's screen: <kbd>VALUE</kbd> goes right along NOTES, CC, BEND and PRES, then down to TRACKS.</li>
+<li>The SP's <kbd>VOLUME</kbd> works again while SENDS, the TRACKS table or a GHOST/WRAITH menu is up.</li>
+<li>Copying a project on the SP brings its MIDI setup with it (devices, MIDI FX, routes and more), with a MIDI SETUP FROM PROJECT popup. Please tell us if it doesn't.</li>
+<li>A device on ALL channels says CH ALL on the MIDI INSTRUMENT page (it said CH 1E).</li>
 </ul>
+<div class="warn"><p><b>Check two SP settings:</b> in UTILITY &gt; SYSTEM &gt; MIDI, <b>Pad Note Out</b> and <b>SEQ Note Out</b> must be <b>ON</b>. MIDI Instruments, GHOST and WRAITH get their notes from the SP's note output, so with either off the pads or the patterns are silent on them.</p></div>
 
 <h2>Everything new since 0.7.4</h2>
 <h3>CIRCLE: chords, keys and progressions</h3>
@@ -51,6 +56,7 @@
 <ul class="new">
 <li><b>STEPS</b>, a step sequencer for any value: up to 16 steps for a synth's CC or a setting of another slot (CIRCLE's chord, a Euclid's HITS, an Echo's DECAY), with GLIDE. Set the steps with the pads.</li>
 <li><b>SCALE:</b> SNAP MAP (the white keys play the scale in order), and the WHOLE and GYPSY scales.</li>
+<li><b>SHIFT + VALUE:</b> on an effect's screen it moves through the track's slots, FX1 to FX6; on the CHAIN page through the pattern's tracks.</li>
 <li><b>Changed: SHIFT + DEL removes an effect.</b> A tap on <kbd>DEL</kbd> alone no longer does; on STEPS and progressions it deletes a step.</li>
 <li>Deleting a MIDI Instrument removes its MIDI FX too.</li>
 </ul>
@@ -68,6 +74,9 @@
 </ul>
 <h3>Fixes</h3>
 <ul class="new">
+<li>Recording a keyboard onto a MIDI Instrument, GHOST or WRAITH track keeps every note as played, across the whole MIDI range (it folded them into C2 to C4).</li>
+<li>GHOST's and WRAITH's bus is set on DOOM OS's mixer only, and is now the right one (DRY played into BUS 1, BUS 1 into BUS 2, BUS 2 into DRY).</li>
+<li>An effect opened from SENDS goes back to SENDS on one EXIT.</li>
 <li>An arp no longer keeps playing after you let go when two keys make the same notes (a CIRCLE or a Harmonize before it).</li>
 <li>With WRAITH on, MIDI FX no longer run at double speed while the pattern is stopped.</li>
 <li>A note repeated on the next step is no longer cut short by the first one's note-off. The PADS popup stays up for 3 seconds. STEPS without a target no longer draws NO TARGET over its steps.</li>
@@ -81,7 +90,7 @@
 <p id="pwmsg" role="status" style="margin:0;color:var(--dim)"></p>
 </form>
 <div id="patcher"></div>
-<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5 B3</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
+<p>Install it the same way as DOOM OS (<a href="https://klangfeldlabs.com/doom-os/manual/">DOOM OS manual</a>). <kbd>SHIFT</kbd> + <kbd>REMAIN</kbd> shows <b>V0.7.5 B4</b> on the MIDI SETTINGS title bar. To go back, patch 0.7.4 from the <a href="../patcher.html">patcher</a>.</p>
 <p><b>Coming from beta 1:</b> GHOST no longer has OSC PLAITS, so a GHOST patch set to PLAITS plays its VCOs. For Plaits, put a device on WRAITH.</p>
 
 <h2>2. CIRCLE</h2>
@@ -104,31 +113,35 @@
 <li><kbd>SHIFT</kbd> + <kbd>REMAIN</kbd>, open <b>DEVICES</b>, pick a device and turn its channel (<kbd>CTRL 3</kbd>) past 16 to <b>WRAITH</b>.</li>
 <li>Make a MIDI Instrument on that device in DOOM OS's instrument picker, and play it.</li>
 <li><kbd>ROLL</kbd> + <kbd>REVERSE</kbd> switches the settings to WRAITH; <kbd>ROLL</kbd> + <kbd>FX1</kbd> to <kbd>FX6</kbd> opens its banks. Turn MODEL to hear Plaits' engines. Its menu has LOAD PROGRAM.</li>
+<li>Happy with a sound? <kbd>RECORD SETTING</kbd> and <b>PERSIST PATCH CHANGES</b> makes it this project's starting sound.</li>
 </ol>
 
 <h2>5. Tracks by channel</h2>
 <ol class="steps">
 <li>In <b>DEVICES</b>, turn your sequencer's channel (<kbd>CTRL 3</kbd>) past 16 to <b>ALL</b>.</li>
-<li>In <b>ROUTES</b>, make a route from it to the SP and open it. Turn <kbd>VALUE</kbd> to <b>TRACKS</b> and press it.</li>
-<li>Press <kbd>VALUE</kbd> on <b>+ ADD</b> for a link: <kbd>CTRL 1</kbd> sets its channel, <kbd>CTRL 3</kbd> its track. <b>OTHER CH</b> says what channels with no link do (FOLLOW or OFF).</li>
+<li>In <b>ROUTES</b>, make a route from it to the SP and open it. Turn <kbd>VALUE</kbd> past PRES down to <b>TRACKS</b> and press it.</li>
+<li>Press <kbd>VALUE</kbd> on <b>+ ADD</b> for a link: <kbd>CTRL 1</kbd> sets its channel, <kbd>CTRL 3</kbd> its track. <b>OTHER CH</b> says what channels with no link do (FOLLOW, OFF or SP PADS). For a drum channel, turn the link's <kbd>CTRL 3</kbd> all the way up to <b>SP PADS</b>.</li>
 </ol>
 
 <h2>6. What to test</h2>
 <ul class="new">
+<li>Each project's GHOST and WRAITH sounds: PERSIST, change project and back, AUTO SAVE on and off.</li>
+<li>Recording dial moves and taking them over; WRAITH's GLIDE, HARM EG, AUX EG and EG VEL.</li>
+<li>SP PADS with a drum sequencer; copying a project on the SP.</li>
 <li>Recording a keyboard onto a MIDI Instrument across its whole range, and playing it back.</li>
 <li>GHOST and WRAITH on DRY, BUS 1 and BUS 2 from the mixer, with an effect on each bus; and SENDS on a few tracks.</li>
 <li>CIRCLE and its progressions with a pattern running; STEPS on a synth's CC and on CIRCLE.</li>
 <li>TRACKS links if you have a multi-channel sequencer.</li>
 <li>Anything from 0.7.4 that behaves differently.</li>
 </ul>
-<p>When something goes wrong, note what you pressed and what you expected, and email it to <a href="mailto:beta@loopcartographer.com">beta@loopcartographer.com</a> with a photo or video of the screen if you can. Say which beta you have: the MIDI SETTINGS title bar shows it (V0.7.5 B3).</p>
+<p>When something goes wrong, note what you pressed and what you expected, and email it to <a href="mailto:beta@loopcartographer.com">beta@loopcartographer.com</a> with a photo or video of the screen if you can. Say which beta you have: the MIDI SETTINGS title bar shows it (V0.7.5 B4).</p>
 </main>
 
 <script>
 // The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
 // patch. The password is not in this page or the repository.
 (function () {
-  var ENC = "releases/0.7.5-beta3/patcher.enc?v=1966299d";
+  var ENC = "releases/0.7.5-beta4/patcher.enc?v=2a5f5d4a";
   var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   f.addEventListener("submit", function (e) {
