@@ -37,6 +37,8 @@
 <li><b>TRACKS is under the boxes</b> on a route's screen: <kbd>VALUE</kbd> goes right along NOTES, CC, BEND and PRES, then down to TRACKS.</li>
 <li>The SP's <kbd>VOLUME</kbd> works again while SENDS, the TRACKS table or a GHOST/WRAITH menu is up.</li>
 <li>Copying a project on the SP brings its MIDI setup with it (devices, MIDI FX, routes and more), with a MIDI SETUP FROM PROJECT popup. Please tell us if it doesn't.</li>
+<li><b>STEPS, LFO and ENV on a WRAITH track</b> offer WRAITH's own settings by name, in its screens' order (MODEL to the LFO's RATE and INT), not 128 numbered CCs.</li>
+<li>GHOST's and WRAITH's devices have RAW CCS locked on HIDE.</li>
 <li>A device on ALL channels says CH ALL on the MIDI INSTRUMENT page (it said CH 1E).</li>
 </ul>
 <div class="warn"><p><b>Check two SP settings:</b> in UTILITY &gt; SYSTEM &gt; MIDI, <b>Pad Note Out</b> and <b>SEQ Note Out</b> must be <b>ON</b>. MIDI Instruments, GHOST and WRAITH get their notes from the SP's note output, so with either off the pads or the patterns are silent on them.</p></div>
@@ -141,7 +143,7 @@
 // The patch is encrypted (AES-256-GCM, key from the password with PBKDF2-SHA256): only testers with the password can
 // patch. The password is not in this page or the repository.
 (function () {
-  var ENC = "releases/0.7.5-beta4/patcher.enc?v=2a5f5d4a";
+  var ENC = "releases/0.7.5-beta4/patcher.enc?v=f6cb17a5";
   var f = document.getElementById("unlock"), msg = document.getElementById("pwmsg");
   var b64 = function (s) { return Uint8Array.from(atob(s), function (c) { return c.charCodeAt(0); }); };
   f.addEventListener("submit", function (e) {
